@@ -1,0 +1,204 @@
+// ===============================================================================================================
+// addWarehouse (warehouseId, city, street, houseNumber, zipCode)
+addWarehouse	2	Acre		Naftali	57	1999112
+addWarehouse	3	Yokneam		Nitzan	24	1888112
+addWarehouse	4	Haifa		Eli		12	1777112
+addWarehouse	5	Holon		Nitzan	45	1999131
+addWarehouse	6	Raanana		Haiem	6	7878787
+addWarehouse	7	Tel_Aviv	street2	16	7777777
+addWarehouse	8	Nazareth	s3		14	7777777
+addWarehouse	9	Afula		s5		15	7777777
+addWarehouse	10	Karmiel   	s2		13	7777777
+addWarehouse	11	Eilat   	s62		10	7777777
+addWarehouse	12	Sderot   	s134	12	7777777
+addWarehouse	13	Rahat   	s524	5	7777777
+// ===============================================================================================================
+// addReceiver (id,firstName,lastName,birthDate,city,street,houseNumber,zipCode,email)
+addReceiver    2222221 Acre1   Arkin    4/04/1990   Acre      Haim 1  7777777  mail1@gmail.com
+addReceiver    2222222 Acre2   Arkin    4/04/1990   Acre      Haim 2  7777777  mail2@gmail.com
+addReceiver    2222223 Acre3   Arkin    4/04/1990   Acre      Haim 3  7777777  mail3@gmail.com
+addReceiver    2222224 Acre4   Arkin    4/04/1990   Acre      Haim 3  7777777  mail4@hotmail.com
+addReceiver    3333331 Yokneam1   Arkin    4/04/1990   Yokneam      Haim 1  7777777  mail5@gmail.com
+addReceiver    3333332 Yokneam2   Arkin    4/04/1990   Yokneam      Haim 2  7777777  mail6@gmail.com
+addReceiver    3333333 Yokneam3   Arkin    4/04/1990   Yokneam      Haim 3  7777777  mail7@gmail.com
+addReceiver    3333334 Yokneam4   Arkin    4/04/1990   Yokneam      Haim 4  7777777  haim1@gmail.com
+addReceiver    4444441 Haifa1   Arkin    4/04/1990   Haifa      Haim 1  7777777  mail8@gmail.com
+addReceiver    4444442 Haifa2   Arkin    4/04/1990   Haifa      Haim 2  7777777  mail9@gmail.com
+addReceiver    4444443 Haifa3   Arkin    4/04/1990   Haifa      Haim 3  7777777  mail10@gmail.com
+addReceiver    5555551 Holon1   Arkin    4/04/1990   Holon      Haim 1  7777777  mail11@gmail.com
+addReceiver    5555552 Holon2   Arkin    4/04/1990   Holon      Haim 2  7777777  mail12@gmail.com
+addReceiver    5555553 Holon3   Arkin    4/04/1990   Holon      Haim 3  7777777  mail13@gmail.com
+addReceiver    5555554 Holon4   Arkin    4/04/1990   Holon      Haim 4  7777777  mail14@hotmail.com
+addReceiver    6666661 Raanana1   Arkin    4/04/1990   Raanana      Haim 1  7777777  mail15@gmail.com
+addReceiver    6666662 Raanana2   Arkin    4/04/1990   Raanana      Haim 2  7777777  mail16@gmail.com
+addReceiver    7777771 Tel_Aviv1   Arkin    4/04/1990   Tel_Aviv      Haim 1  7777777  mail17@gmail.com
+addReceiver    7777772 Tel_Aviv2   Arkin    4/04/1990   Tel_Aviv      Haim 2  7777777  mail18@gmail.com
+addReceiver    8888881 Eilat1   street1    4/04/1990   Eilat      Haim 1  7777777  mail19@gmail.com
+addReceiver    8888882 Eilat2   street2    4/04/1990   Eilat      Haim 2  7777777  mail30@gmail.com
+addReceiver    8888883 Eilat3   street3    4/04/1990   Eilat      Haim 3  7777777  mail31@gmail.com
+addReceiver    8888884 Eilat4   street4    4/04/1990   Eilat      Haim 4  7777777  mail32@hotmail.com
+addReceiver    9999991 Sderot1   Arkin    4/04/1990   Sderot      Haim 1  7777777  mail33@gmail.com
+addReceiver    9999992 Sderot2   Arkin    4/04/1990   Sderot      Haim 2  7777777  mail34@gmail.com
+addReceiver    9999993 Sderot3   Arkin    4/04/1990   Sderot      Haim 3  7777777  mail35@gmail.com
+addReceiver    9999994 Sderot4   Arkin    4/04/1990   Sderot      Haim 4  7777777  mail36@gmail.com
+addReceiver    1010101 Rahat1   Arkin    4/04/1990   Rahat      Haim 1  7777777  mail37@gmail.com
+addReceiver    1010102 Rahat1   Arkin    4/04/1990   Rahat      Haim 2  7777777  mail38@hotmail.com
+addReceiver    1010103 Rahat3   Arkin    4/04/1990   Rahat      Haim 3  7777777  mail39@gmail.com
+addReceiver    1010104 Rahat4   Arkin    4/04/1990   Rahat      Haim 4  7777777  mail40@gmail.com
+// ===============================================================================================================
+// add new driver(id,name,surname,date,city,street,houseNumber,ZipCode,hasValidLicense)
+addDriver 1000001   Eyal   Haim   16/12/1984   Afula   Vizman    7    1111111   true
+addDriver 2000002   Yaron  Levi   06/10/1980   Afula   Menachem  11   1111111   true
+addDriver 3000003   Nidal  Fahum  16/02/1990   Afula   Syonar    7    1111111   true
+addDriver 4000004   Eyal   Haim   16/12/1984   Afula   Vizman    7    1111111   true
+addDriver 5000005   Yaron  Levi   06/10/1980   Afula   Menachem  11   1111111   true
+addDriver 6000006   Nidal  Fahum  16/02/1990   Afula   Syonar    7    1111111   true
+addDriver 7000007   Eyal   Haim   22/04/1983   Afula   Vizman    7    1111111   true
+addDriver 8000008   Leon   Nahum  18/07/1985   Yavne   Dovrim    19   1010101   true
+addDriver 9000009   Eyal   Haim   22/04/1983   Afula   Vizman    7    1111111   true
+// ===============================================================================================================
+//addCar(String vin, String color, E_ModelType type,long driverId,boolean hybryd)
+addCar  36310121    red   RENO       1000001    true
+addCar  56310621    blue  MITSUBISHI 2000002    false
+addCar  24316301    blue  MITSUBISHI 3000003    false 
+addCar  93101111    black RENO		 4000004    true
+// ===============================================================================================================
+// addTruck(String vin, String color, E_ModelType type, long driverId, E_TypeTruck typeTrunk)
+addTruck 1H111014   black   KIA     5000005     MINIVAN
+addTruck A12T1014   white   TOYOTA  6000006     TANK_TRUCK
+addTruck A12T1532   white   KIA     7000007     TANK_TRUCK
+addTruck A12T1533   white   KIA     8000008     TANK_TRUCK 
+addTruck A12T1535   white   KIA     9000009     TANK_TRUCK
+// ===============================================================================================================
+// addItem (catalogId, itemName, price, hasFreeShipping, weight)
+addItem	741258	headphones	450	TRUE	0.1
+addItem	852145	chargerTypeC	100	TRUE	0.1
+addItem	953555	hp_monitror	700	FALSE	5.5 
+addItem	953555	dell_monitror	600	FALSE	4.3 
+addItem	582999	iPad		3000	FALSE	1.2
+addItem	670214	Jacket_Nike	120	TRUE	1
+addItem	670213	Nike_Shoes1	350	TRUE	1.2
+addItem	600233	Magic_Box1	5000	TRUE	18
+addItem	600233	Magic_Box2	6000	TRUE	19
+addItem	600234	item1    	2000	TRUE	2
+addItem	600234	item2    	21	TRUE	2
+addItem	600234	item3    	300	TRUE	32
+addItem	600234	item4    	100	TRUE	4.2
+addItem	600234	item5    	100	TRUE	4.2
+addItem	600235	yitem1    	100	TRUE	9.4
+addItem	600235	yitem2    	120	TRUE	4
+addItem	600235	yitem3    	100	TRUE	5.1
+// ================================================================================================================
+// addLargeParcel
+addLargeParcel  1 	 5555551
+addLargeParcel  2 	 5555551
+addLargeParcel  3	 5555552
+addLargeParcel  4	 5555552
+addLargeParcel  5	 6666662
+addLargeParcel  6	 6666662
+addLargeParcel  7  	 9999994
+addLargeParcel  8	 9999994
+addLargeParcel  9	 9999994
+addLargeParcel  10	 9999994
+addLargeParcel  11	 2222221
+// ================================================================================================================
+// addSmallParcel
+addSmallParcel  101  2222224
+addSmallParcel  102  2222221
+addSmallParcel  103	 8888881
+addSmallParcel  104	 2222221
+addSmallParcel  105	 8888881
+addSmallParcel  106	 2222224
+addSmallParcel  107  4444441
+addSmallParcel  108	 8888881
+addSmallParcel  109	 4444441
+addSmallParcel  110	 4444441
+addSmallParcel  111	 2222224
+// ===============================================================================================================
+// Scenario 1: Send to Eilat receivers
+//Generate parcels
+addSmallParcel 801 8888881
+addLargeParcel 802 8888881
+addLargeParcel 803 8888881
+addSmallParcel 804 8888882
+addLargeParcel 805 8888882
+addLargeParcel 806 8888882
+addSmallParcel 807 8888883
+addLargeParcel 808 8888883
+addLargeParcel 809 8888883
+//add items
+addItemToParcel 801 600235	yitem3
+addItemToParcel 802 600235	yitem3
+addItemToParcel 802 600234	item2
+addItemToParcel 803 852145	chargerTypeC
+addItemToParcel 804 852145	chargerTypeC
+addItemToParcel 805 953555	hp_monitror
+addItemToParcel 806 953555	hp_monitror
+addItemToParcel 806 953555	dell_monitror
+addItemToParcel 807 670213	Nike_Shoes1
+addItemToParcel 808 600234	item1
+addItemToParcel 808 600234	item4
+addItemToParcel 809 600234	item5
+addItemToParcel 809 600234	item2
+getParcelLocation 801
+getParcelsFromWareHouseByPriceRange 1 100 400
+//Send parcels to south district
+addAllPossibleParcelsToTruck 1H111014 1 10
+sendTruckToWareHouse 1H111014
+getParcelsFromWareHouseByPriceRange 10 0 400
+addAllPossibleParcelsToTruck 1H111014 1 10
+sendTruckToWareHouse 1H111014
+addAllPossibleParcelsToTruck 1H111014 10 13
+addAllPossibleParcelsToTruck A12T1533 10 13
+getTruckWithMaxWeight
+sendTruckToWareHouse 1H111014
+sendTruckToWareHouse A12T1533
+addAllPossibleParcelsToTruck 1H111014 13 12
+addAllPossibleParcelsToTruck A12T1533 13 12
+sendTruckToWareHouse 1H111014
+sendTruckToWareHouse A12T1533
+getAllTrucksTransactions    13
+addAllPossibleParcelsToTruck 1H111014 13 10 //All parcels exist on the right district.
+addAllPossibleParcelsToTruck 1H111014 12 11 
+getFreeTrucks
+busyWarehouse
+sendTruckToWareHouse 1H111014 
+addAllPossibleParcelsToTruck 1H111014 12 11 
+sendTruckToWareHouse 1H111014 
+getParcelLocation 801
+getFreeTrucks
+sendParcelsToReceivers 11 36310121
+sendParcelsToReceivers 11 36310121
+sendParcelsToReceivers 11 36310121
+getTruckWithMaxWeight //no trucks found.
+sendParcelsToReceivers 11 36310121 //there is no parcels on the warehouse.
+getParcelsFromWareHouseByPriceRange 11 0 400 //warehouse is empty
+getReceiverItems 8888881
+getAllUniqCategories 8888882
+getPersonWithMaxReceivedItems
+// ================================================================================================================
+// ================================================================================================================
+//Queries 
+smartBuy					99.99 // barrier price
+getParcelsFromWareHouseByPriceRange 1 0 400
+// ======================================
+// Scenario for checking twice at warehouse;
+addLargeParcel 99999 7777772
+addItemToParcel 99999 600234	item4
+addItemToParcel 99999 600234	item2
+addLargeParcel 88999 7777772
+addItemToParcel 88999 600234	item4
+addItemToParcel 88999 600234	item2
+addAllPossibleParcelsToTruck 1H111014 1 6
+sendTruckToWareHouse 1H111014
+addAllPossibleParcelsToTruck 1H111014 6 5
+sendTruckToWareHouse 1H111014
+addAllPossibleParcelsToTruck 1H111014 5 6
+sendTruckToWareHouse 1H111014
+addAllPossibleParcelsToTruck 1H111014 6 7
+sendTruckToWareHouse 1H111014
+sendParcelsToReceivers 7 36310121
+TwiceAtWarehouse
+smartBuy 109.99
+//========================================
+

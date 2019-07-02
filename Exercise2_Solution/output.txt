@@ -1,0 +1,332 @@
+
+
+Successfully added warehouse: 2
+Successfully added warehouse: 3
+Successfully added warehouse: 4
+Successfully added warehouse: 5
+Successfully added warehouse: 6
+Successfully added warehouse: 7
+Successfully added warehouse: 8
+Successfully added warehouse: 9
+Successfully added warehouse: 10
+Successfully added warehouse: 11
+Successfully added warehouse: 12
+Successfully added warehouse: 13
+
+
+Successfully added Receiver: 2222221 | Acre1 Arkin
+Successfully added Receiver: 2222222 | Acre2 Arkin
+Successfully added Receiver: 2222223 | Acre3 Arkin
+Successfully added Receiver: 2222224 | Acre4 Arkin
+Successfully added Receiver: 3333331 | Yokneam1 Arkin
+Successfully added Receiver: 3333332 | Yokneam2 Arkin
+Successfully added Receiver: 3333333 | Yokneam3 Arkin
+Successfully added Receiver: 3333334 | Yokneam4 Arkin
+Successfully added Receiver: 4444441 | Haifa1 Arkin
+Successfully added Receiver: 4444442 | Haifa2 Arkin
+Successfully added Receiver: 4444443 | Haifa3 Arkin
+Successfully added Receiver: 5555551 | Holon1 Arkin
+Successfully added Receiver: 5555552 | Holon2 Arkin
+Successfully added Receiver: 5555553 | Holon3 Arkin
+Successfully added Receiver: 5555554 | Holon4 Arkin
+Successfully added Receiver: 6666661 | Raanana1 Arkin
+Successfully added Receiver: 6666662 | Raanana2 Arkin
+Successfully added Receiver: 7777771 | Tel_Aviv1 Arkin
+Successfully added Receiver: 7777772 | Tel_Aviv2 Arkin
+Successfully added Receiver: 8888881 | Eilat1 street1
+Successfully added Receiver: 8888882 | Eilat2 street2
+Successfully added Receiver: 8888883 | Eilat3 street3
+Successfully added Receiver: 8888884 | Eilat4 street4
+Successfully added Receiver: 9999991 | Sderot1 Arkin
+Successfully added Receiver: 9999992 | Sderot2 Arkin
+Successfully added Receiver: 9999993 | Sderot3 Arkin
+Successfully added Receiver: 9999994 | Sderot4 Arkin
+Successfully added Receiver: 1010101 | Rahat1 Arkin
+Successfully added Receiver: 1010102 | Rahat1 Arkin
+Successfully added Receiver: 1010103 | Rahat3 Arkin
+Successfully added Receiver: 1010104 | Rahat4 Arkin
+
+
+Successfully added new Driver: 1000001 | Eyal | Haim
+Successfully added new Driver: 2000002 | Yaron | Levi
+Successfully added new Driver: 3000003 | Nidal | Fahum
+Successfully added new Driver: 4000004 | Eyal | Haim
+Successfully added new Driver: 5000005 | Yaron | Levi
+Successfully added new Driver: 6000006 | Nidal | Fahum
+Successfully added new Driver: 7000007 | Eyal | Haim
+Successfully added new Driver: 8000008 | Leon | Nahum
+Successfully added new Driver: 9000009 | Eyal | Haim
+
+Successfully added Car: 36310121
+Successfully added Car: 56310621
+Successfully added Car: 24316301
+Successfully added Car: 93101111
+
+
+Successfully added truck: 1H111014
+Successfully added truck: A12T1014
+Successfully added truck: A12T1532
+Successfully added truck: A12T1533
+Successfully added truck: A12T1535
+
+
+Successfully added Item: 741258 | headphones
+Successfully added Item: 852145 | chargerTypeC
+Successfully added Item: 953555 | hp_monitror
+Successfully added Item: 953555 | dell_monitror
+Successfully added Item: 582999 | iPad
+Successfully added Item: 670214 | Jacket_Nike
+Successfully added Item: 670213 | Nike_Shoes1
+Successfully added Item: 600233 | Magic_Box1
+Successfully added Item: 600233 | Magic_Box2
+Successfully added Item: 600234 | item1
+Successfully added Item: 600234 | item2
+Successfully added Item: 600234 | item3
+Successfully added Item: 600234 | item4
+Successfully added Item: 600234 | item5
+Successfully added Item: 600235 | yitem1
+Successfully added Item: 600235 | yitem2
+Successfully added Item: 600235 | yitem3
+
+
+Successfully added large Parcel, Receiver ID:5555551, generated id to parcel:1
+Successfully added large Parcel, Receiver ID:5555551, generated id to parcel:2
+Successfully added large Parcel, Receiver ID:5555552, generated id to parcel:3
+Successfully added large Parcel, Receiver ID:5555552, generated id to parcel:4
+Successfully added large Parcel, Receiver ID:6666662, generated id to parcel:5
+Successfully added large Parcel, Receiver ID:6666662, generated id to parcel:6
+Successfully added large Parcel, Receiver ID:9999994, generated id to parcel:7
+Successfully added large Parcel, Receiver ID:9999994, generated id to parcel:8
+Successfully added large Parcel, Receiver ID:9999994, generated id to parcel:9
+Successfully added large Parcel, Receiver ID:9999994, generated id to parcel:10
+Successfully added large Parcel, Receiver ID:2222221, generated id to parcel:11
+
+
+Successfully added Small Parcel, Receiver ID:2222224, generated id to parcel:101
+Successfully added Small Parcel, Receiver ID:2222221, generated id to parcel:102
+Successfully added Small Parcel, Receiver ID:8888881, generated id to parcel:103
+Successfully added Small Parcel, Receiver ID:2222221, generated id to parcel:104
+Successfully added Small Parcel, Receiver ID:8888881, generated id to parcel:105
+Successfully added Small Parcel, Receiver ID:2222224, generated id to parcel:106
+Successfully added Small Parcel, Receiver ID:4444441, generated id to parcel:107
+Successfully added Small Parcel, Receiver ID:8888881, generated id to parcel:108
+Successfully added Small Parcel, Receiver ID:4444441, generated id to parcel:109
+Successfully added Small Parcel, Receiver ID:4444441, generated id to parcel:110
+Successfully added Small Parcel, Receiver ID:2222224, generated id to parcel:111
+
+
+Successfully added Small Parcel, Receiver ID:8888881, generated id to parcel:801
+Successfully added large Parcel, Receiver ID:8888881, generated id to parcel:802
+Successfully added large Parcel, Receiver ID:8888881, generated id to parcel:803
+Successfully added Small Parcel, Receiver ID:8888882, generated id to parcel:804
+Successfully added large Parcel, Receiver ID:8888882, generated id to parcel:805
+Successfully added large Parcel, Receiver ID:8888882, generated id to parcel:806
+Successfully added Small Parcel, Receiver ID:8888883, generated id to parcel:807
+Successfully added large Parcel, Receiver ID:8888883, generated id to parcel:808
+Successfully added large Parcel, Receiver ID:8888883, generated id to parcel:809
+Successfully added Item: 600235 | yitem3 to parcel: 801
+Successfully added Item: 600235 | yitem3 to parcel: 802
+Successfully added Item: 600234 | item2 to parcel: 802
+Successfully added Item: 852145 | chargerTypeC to parcel: 803
+Successfully added Item: 852145 | chargerTypeC to parcel: 804
+Successfully added Item: 953555 | hp_monitror to parcel: 805
+Successfully added Item: 953555 | hp_monitror to parcel: 806
+Successfully added Item: 953555 | dell_monitror to parcel: 806
+Successfully added Item: 670213 | Nike_Shoes1 to parcel: 807
+Successfully added Item: 600234 | item1 to parcel: 808
+Successfully added Item: 600234 | item4 to parcel: 808
+Successfully added Item: 600234 | item5 to parcel: 809
+Successfully added Item: 600234 | item2 to parcel: 809
+Parcel 801 existing on Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]
+
+Parcels on warehouse 1 and their price between 100 and 400  are:
+1: Parcel ID:804 and its price is:100.0
+2: Parcel ID:803 and its price is:100.0
+3: Parcel ID:801 and its price is:100.0
+4: Parcel ID:809 and its price is:121.0
+5: Parcel ID:802 and its price is:121.0
+6: Parcel ID:807 and its price is:350.0
+
+TRUCK-1H111014-CURRENT PARCELS:
+801 | index is:23 | Receiver Address:Eilat
+802 | index is:24 | Receiver Address:Eilat
+803 | index is:25 | Receiver Address:Eilat
+804 | index is:26 | Receiver Address:Eilat
+805 | index is:27 | Receiver Address:Eilat
+806 | index is:28 | Receiver Address:Eilat
+807 | index is:29 | Receiver Address:Eilat
+808 | index is:30 | Receiver Address:Eilat
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+
+Parcels on warehouse 10 and their price between 0 and 400  are:
+1: Parcel ID:804 and its price is:100.0
+2: Parcel ID:803 and its price is:100.0
+3: Parcel ID:801 and its price is:100.0
+4: Parcel ID:802 and its price is:121.0
+5: Parcel ID:807 and its price is:350.0
+
+TRUCK-1H111014-CURRENT PARCELS:
+809 | index is:31 | Receiver Address:Eilat
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+801 | index is:1 | Receiver Address:Eilat
+802 | index is:2 | Receiver Address:Eilat
+803 | index is:3 | Receiver Address:Eilat
+804 | index is:4 | Receiver Address:Eilat
+805 | index is:5 | Receiver Address:Eilat
+806 | index is:6 | Receiver Address:Eilat
+807 | index is:7 | Receiver Address:Eilat
+808 | index is:8 | Receiver Address:Eilat
+
+
+TRUCK-A12T1533-CURRENT PARCELS:
+809 | index is:9 | Receiver Address:Eilat
+
+
+Truck with max weight:1H111014
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+Truck A12T1533 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+801 | index is:1 | Receiver Address:Eilat
+802 | index is:2 | Receiver Address:Eilat
+803 | index is:3 | Receiver Address:Eilat
+804 | index is:4 | Receiver Address:Eilat
+805 | index is:5 | Receiver Address:Eilat
+806 | index is:6 | Receiver Address:Eilat
+807 | index is:7 | Receiver Address:Eilat
+808 | index is:8 | Receiver Address:Eilat
+
+
+TRUCK-A12T1533-CURRENT PARCELS:
+809 | index is:9 | Receiver Address:Eilat
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+Truck A12T1533 dismantle its parcels to destination warehouse successfully
+Truck:1H111014 passed from warehouse 13
+
+Truck:A12T1533 passed from warehouse 13
+
+TRUCK-1H111014- is empty. no parcels added to the truck
+
+
+TRUCK-1H111014-CURRENT PARCELS:
+801 | index is:1 | Receiver Address:Eilat
+802 | index is:2 | Receiver Address:Eilat
+803 | index is:3 | Receiver Address:Eilat
+804 | index is:4 | Receiver Address:Eilat
+805 | index is:5 | Receiver Address:Eilat
+806 | index is:6 | Receiver Address:Eilat
+807 | index is:7 | Receiver Address:Eilat
+808 | index is:8 | Receiver Address:Eilat
+
+
+Available trucks:A12T1533,A12T1014,A12T1532,A12T1535,
+Busy warehouse:
+1	WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]]
+2	WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]]
+3	WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]]
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+809 | index is:9 | Receiver Address:Eilat
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+Parcel 801 existing on Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]
+Available trucks:A12T1533,A12T1014,A12T1532,1H111014,A12T1535,
+Parcels which car 36310121 sent to receivers are:
+1	Parcel ID:801,Receiver: 8888881
+2	Parcel ID:802,Receiver: 8888881
+3	Parcel ID:803,Receiver: 8888881
+4	Parcel ID:804,Receiver: 8888882
+5	Parcel ID:805,Receiver: 8888882
+Parcels which car 36310121 sent to receivers are:
+1	Parcel ID:806,Receiver: 8888882
+2	Parcel ID:809,Receiver: 8888883
+3	Parcel ID:807,Receiver: 8888883
+Parcels which car 36310121 sent to receivers are:
+1	Parcel ID:808,Receiver: 8888883
+Failed to get truck
+Failed to upload list
+No parcels found on warehouse 11 and their price exist on the range
+Received items for 8888881 are: yitem3,yitem3,item2,chargerTypeC,
+Number of unique categories to receiver:8888882 is:2
+Max received items is:Person [id=8888883, Name=Eilat3 street3, House number:3]
+
+
+1	Parcel [parcelId=802, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=600235, itemName=yitem3, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=7.1, sentToReceiver=true, receiver=Person [id=8888881, Name=Eilat1 street1, House number:1]]
+2	Parcel [parcelId=809, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=600234, itemName=item5, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=6.2, sentToReceiver=true, receiver=Person [id=8888883, Name=Eilat3 street3, House number:3]]
+3	Parcel [parcelId=805, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=953555, itemName=hp_monitror, price=700.0, hasFreeShipping=false]], weight=5.5, sentToReceiver=true, receiver=Person [id=8888882, Name=Eilat2 street2, House number:2]]
+4	Parcel [parcelId=803, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=852145, itemName=chargerTypeC, price=100.0, hasFreeShipping=true]], weight=0.1, sentToReceiver=true, receiver=Person [id=8888881, Name=Eilat1 street1, House number:1]]
+
+
+Parcels on warehouse 1 and their price between 0 and 400  are:
+1: Parcel ID:1 and its price is:0.0
+2: Parcel ID:2 and its price is:0.0
+3: Parcel ID:3 and its price is:0.0
+4: Parcel ID:4 and its price is:0.0
+5: Parcel ID:5 and its price is:0.0
+6: Parcel ID:6 and its price is:0.0
+7: Parcel ID:7 and its price is:0.0
+8: Parcel ID:8 and its price is:0.0
+9: Parcel ID:9 and its price is:0.0
+10: Parcel ID:10 and its price is:0.0
+11: Parcel ID:11 and its price is:0.0
+12: Parcel ID:101 and its price is:0.0
+13: Parcel ID:102 and its price is:0.0
+14: Parcel ID:103 and its price is:0.0
+15: Parcel ID:104 and its price is:0.0
+16: Parcel ID:105 and its price is:0.0
+17: Parcel ID:106 and its price is:0.0
+18: Parcel ID:107 and its price is:0.0
+19: Parcel ID:108 and its price is:0.0
+20: Parcel ID:109 and its price is:0.0
+21: Parcel ID:110 and its price is:0.0
+22: Parcel ID:111 and its price is:0.0
+
+
+
+Successfully added large Parcel, Receiver ID:7777772, generated id to parcel:99999
+Successfully added Item: 600234 | item4 to parcel: 99999
+Successfully added Item: 600234 | item2 to parcel: 99999
+Successfully added large Parcel, Receiver ID:7777772, generated id to parcel:88999
+Successfully added Item: 600234 | item4 to parcel: 88999
+Successfully added Item: 600234 | item2 to parcel: 88999
+TRUCK-1H111014-CURRENT PARCELS:
+99999 | index is:23 | Receiver Address:Tel_Aviv
+88999 | index is:24 | Receiver Address:Tel_Aviv
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+99999 | index is:1 | Receiver Address:Tel_Aviv
+88999 | index is:2 | Receiver Address:Tel_Aviv
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+99999 | index is:1 | Receiver Address:Tel_Aviv
+88999 | index is:2 | Receiver Address:Tel_Aviv
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+TRUCK-1H111014-CURRENT PARCELS:
+99999 | index is:1 | Receiver Address:Tel_Aviv
+88999 | index is:2 | Receiver Address:Tel_Aviv
+
+
+Truck 1H111014 dismantle its parcels to destination warehouse successfully
+Parcels which car 36310121 sent to receivers are:
+1	Parcel ID:99999,Receiver: 7777772
+2	Parcel ID:88999,Receiver: 7777772
+1	 Parcel :88999	 was 3 times
+2	 Parcel :99999	 was 3 times
+1	Parcel [parcelId=802, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=600235, itemName=yitem3, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=7.1, sentToReceiver=true, receiver=Person [id=8888881, Name=Eilat1 street1, House number:1]]
+2	Parcel [parcelId=809, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=600234, itemName=item5, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=6.2, sentToReceiver=true, receiver=Person [id=8888883, Name=Eilat3 street3, House number:3]]
+3	Parcel [parcelId=99999, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=6, address=Address [city=Raanana, street=Haiem, houseNumber=6, zipCode=7878787]], WareHouse [warehouseId=5, address=Address [city=Holon, street=Nitzan, houseNumber=45, zipCode=1999131]], WareHouse [warehouseId=6, address=Address [city=Raanana, street=Haiem, houseNumber=6, zipCode=7878787]], WareHouse [warehouseId=7, address=Address [city=Tel_Aviv, street=street2, houseNumber=16, zipCode=7777777]]], listOfItem=[Item [catalogID=600234, itemName=item4, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=6.2, sentToReceiver=true, receiver=Person [id=7777772, Name=Tel_Aviv2 Arkin, House number:2]]
+4	Parcel [parcelId=88999, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=6, address=Address [city=Raanana, street=Haiem, houseNumber=6, zipCode=7878787]], WareHouse [warehouseId=5, address=Address [city=Holon, street=Nitzan, houseNumber=45, zipCode=1999131]], WareHouse [warehouseId=6, address=Address [city=Raanana, street=Haiem, houseNumber=6, zipCode=7878787]], WareHouse [warehouseId=7, address=Address [city=Tel_Aviv, street=street2, houseNumber=16, zipCode=7777777]]], listOfItem=[Item [catalogID=600234, itemName=item4, price=100.0, hasFreeShipping=true], Item [catalogID=600234, itemName=item2, price=21.0, hasFreeShipping=true]], weight=6.2, sentToReceiver=true, receiver=Person [id=7777772, Name=Tel_Aviv2 Arkin, House number:2]]
+5	Parcel [parcelId=805, locations=[WareHouse [warehouseId=1, address=Address [city=Ashdod, street=1, houseNumber=1, zipCode=77041]], WareHouse [warehouseId=10, address=Address [city=Karmiel, street=s2, houseNumber=13, zipCode=7777777]], WareHouse [warehouseId=13, address=Address [city=Rahat, street=s524, houseNumber=5, zipCode=7777777]], WareHouse [warehouseId=12, address=Address [city=Sderot, street=s134, houseNumber=12, zipCode=7777777]], WareHouse [warehouseId=11, address=Address [city=Eilat, street=s62, houseNumber=10, zipCode=7777777]]], listOfItem=[Item [catalogID=953555, itemName=hp_monitror, price=700.0, hasFreeShipping=false]], weight=5.5, sentToReceiver=true, receiver=Person [id=8888882, Name=Eilat2 street2, House number:2]]
