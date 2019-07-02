@@ -50,7 +50,8 @@ public class login {
 	 */
 	private void initialize() {
 		frame = new JFrame("Delivery");
-		
+		ImageIcon logo = new ImageIcon(this.getClass().getResource("/delivery2-512.png"));
+		frame.setIconImage(logo.getImage());
 		frame.setBounds(100, 100, 675, 473);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
