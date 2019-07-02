@@ -79,12 +79,28 @@ public class login {
 		lblNewLabel.setIcon(image1);
 		lblNewLabel.setBounds(372, 44, 285, 382);
 		frame.getContentPane().add(lblNewLabel);
+		JLabel lblIncorrectEmailOr = new JLabel("Incorrect Email or Password.");
+		lblIncorrectEmailOr.setVisible(false);
+		lblIncorrectEmailOr.setForeground(Color.RED);
+		lblIncorrectEmailOr.setBackground(Color.WHITE);
+		lblIncorrectEmailOr.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblIncorrectEmailOr.setBounds(165, 322, 205, 16);
+		frame.getContentPane().add(lblIncorrectEmailOr);
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBackground(Color.ORANGE);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String password = new String (passwordField.getPassword());
+				if(!textField.getText().equals("Admin") || !password.equals("Admin")) {
+				lblIncorrectEmailOr.setVisible(true);
+				}
+				if(textField.getText().equals("Admin") && password.equals("Admin")) {
+					Homepage home = new Homepage();
+					home.setVisible(true);
+					frame.dispose();
+				}
 			}
 		});
 		ImageIcon image4=new ImageIcon(this.getClass().getResource("/log.png"));
@@ -100,6 +116,8 @@ public class login {
 		lim.setBounds(0, 0,	675, 473);
 		lim.setIcon(image3);
 		frame.getContentPane().add(lim);
+		
+		
 		
 		
 		
