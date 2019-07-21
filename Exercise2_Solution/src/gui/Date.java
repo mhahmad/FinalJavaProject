@@ -2,7 +2,7 @@ package gui;
 
 import java.io.*; 
   
-class Date 
+public class Date 
 { 
   
     static int MAX_VALID_YR = 9999; 
@@ -23,7 +23,7 @@ class Date
   
     // Returns true if given  
     // year is valid or not. 
-    static boolean isValidDate(int d,  
+   public static boolean isValidDate(int d,  
                                int m,  
                                int y) 
     { 

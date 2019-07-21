@@ -1,32 +1,36 @@
-package gui;
-import Utils.Constants;
-import Utils.E_Cities;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+package InternalFrames;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import Model.Receiver;
-import javax.swing.DropMode;
-public class RegisterPage extends JFrame {
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+
+import Utils.Constants;
+import Utils.E_Cities;
+import gui.Date;
+import gui.HintTextField;
+import gui.OnlyLettersException;
+import javax.swing.JPasswordField;
+
+public class AddReceiver extends JInternalFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -38,7 +42,7 @@ public class RegisterPage extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	
+	private JPasswordField passwordField;
 	/**
 	 * Launch the application.
 	 */
@@ -46,7 +50,7 @@ public class RegisterPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterPage frame = new RegisterPage();
+					AddReceiver frame = new AddReceiver();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,25 +62,23 @@ public class RegisterPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterPage() {
-		this.setTitle("Registeration Page");
-		this.setIconImage(new ImageIcon(this.getClass().getResource("/delivery2-512.png")).getImage());
+	public AddReceiver() {
+		getContentPane().setLayout(null);
+		setBounds(100, 100, 640, 850);
 		allCities = Utils.E_Cities.values();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 491, 730);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(null);
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 473, 703);
+		panel.setBounds(0, 13, 624, 814);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ID number :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(31, 66, 109, 21);
+		lblNewLabel.setBounds(31, 111, 109, 21);
 		panel.add(lblNewLabel);
 		
 		JLabel lblRegisterPageFor = new JLabel("Register Page for recievers");
@@ -87,10 +89,10 @@ public class RegisterPage extends JFrame {
 		JLabel wrongIdVal = new JLabel("Only Numbers!");
 		wrongIdVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		wrongIdVal.setForeground(Color.RED);
-		wrongIdVal.setBounds(330, 70, 102, 16);
+		wrongIdVal.setBounds(327, 114, 102, 16);
 		panel.add(wrongIdVal);
 		wrongIdVal.setVisible(false);
-		textField = new HintTextField("Only Digits");
+		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -104,131 +106,137 @@ public class RegisterPage extends JFrame {
 				}
 			}
 		});
-		textField.setBounds(152, 64, 172, 29);
+		textField.setBounds(152, 108, 172, 29);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblFirstName = new JLabel("First Name :");
 		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblFirstName.setBounds(31, 126, 109, 21);
+		lblFirstName.setBounds(31, 167, 109, 21);
 		panel.add(lblFirstName);
 		
-		textField_1 = new HintTextField("Enter your name");
+		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_1.setBounds(152, 124, 172, 29);
+		textField_1.setBounds(152, 167, 172, 29);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name :");
 		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblLastName.setBounds(31, 190, 109, 21);
+		lblLastName.setBounds(31, 225, 109, 21);
 		panel.add(lblLastName);
 		
-		textField_2 = new HintTextField("Enter your last name");
+		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_2.setBounds(152, 188, 172, 29);
+		textField_2.setBounds(152, 222, 172, 29);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblEmail.setBounds(52, 255, 88, 21);
+		lblEmail.setBounds(52, 280, 88, 21);
 		panel.add(lblEmail);
 		
-		textField_3 = new HintTextField("email@hotmail.com");
+		textField_3 = new JTextField();
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_3.setBounds(152, 253, 172, 29);
+		textField_3.setBounds(152, 277, 172, 29);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblBirthdate = new JLabel("Birthdate :");
 		lblBirthdate.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblBirthdate.setBounds(31, 318, 109, 21);
+		lblBirthdate.setBounds(31, 404, 109, 21);
 		panel.add(lblBirthdate);
 		
-		textField_4 = new HintTextField("dd/mm/yyyy");
+		textField_4 = new JTextField();
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_4.setBounds(152, 316, 172, 29);
+		textField_4.setBounds(152, 401, 172, 29);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblCity = new JLabel("City :");
 		lblCity.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblCity.setBounds(52, 378, 60, 21);
+		lblCity.setBounds(52, 463, 60, 21);
 		panel.add(lblCity);
 		
 		JComboBox comboBox = new JComboBox(allCities);
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 15));
-		comboBox.setBounds(152, 379, 172, 22);
+		comboBox.setBounds(152, 463, 172, 22);
 		panel.add(comboBox);
 		
 		JLabel lblStreet = new JLabel("Street :");
 		lblStreet.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblStreet.setBounds(52, 430, 88, 16);
+		lblStreet.setBounds(52, 521, 88, 16);
 		panel.add(lblStreet);
 		
-		textField_5 = new HintTextField("Enter street name");
+		textField_5 = new JTextField();
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_5.setBounds(152, 426, 172, 29);
+		textField_5.setBounds(152, 516, 172, 29);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
 		JLabel lblHouseNumber = new JLabel("House Number :");
 		lblHouseNumber.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblHouseNumber.setBounds(12, 491, 138, 16);
+		lblHouseNumber.setBounds(12, 568, 138, 16);
 		panel.add(lblHouseNumber);
 		
-		textField_6 = new HintTextField("Only numbers");
+		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_6.setBounds(152, 487, 172, 29);
+		textField_6.setBounds(152, 563, 172, 29);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
 		
 		JLabel lblZipCode = new JLabel("ZIP Code :");
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblZipCode.setBounds(31, 550, 109, 16);
+		lblZipCode.setBounds(31, 629, 109, 16);
 		panel.add(lblZipCode);
 		
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_7.setBounds(152, 545, 80, 29);
+		textField_7.setBounds(152, 624, 80, 29);
 		panel.add(textField_7);
 		textField_7.setColumns(10);
 		JLabel emptyFieldLabel = new JLabel("There is an empty Field!");
 		emptyFieldLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		emptyFieldLabel.setForeground(Color.RED);
-		emptyFieldLabel.setBounds(162, 650, 138, 16);
+		emptyFieldLabel.setBounds(164, 752, 138, 16);
 		panel.add(emptyFieldLabel);
 		emptyFieldLabel.setVisible(false);
 		JLabel exceptionLabel1 = new JLabel("");
+		exceptionLabel1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		exceptionLabel1.setForeground(Color.RED);
-		exceptionLabel1.setBounds(83, 661, 356, 16);
+		exceptionLabel1.setBounds(31, 751, 409, 16);
 		panel.add(exceptionLabel1);
 		exceptionLabel1.setVisible(false);
 		JLabel zipLabel = new JLabel("Wrong ZIP Code");
 		zipLabel.setForeground(Color.RED);
 		zipLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		zipLabel.setBounds(244, 552, 109, 16);
+		zipLabel.setBounds(244, 630, 109, 16);
 		panel.add(zipLabel);
 		zipLabel.setVisible(false);
 		JLabel housenumberLabel = new JLabel("Wrong number format");
 		housenumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		housenumberLabel.setForeground(Color.RED);
-		housenumberLabel.setBounds(330, 492, 143, 16);
+		housenumberLabel.setBounds(327, 570, 143, 16);
 		panel.add(housenumberLabel);
 		housenumberLabel.setVisible(false);
 		JLabel emailLabel = new JLabel("Wrong email format");
 		emailLabel.setForeground(Color.RED);
-		emailLabel.setBounds(330, 259, 131, 16);
+		emailLabel.setBounds(330, 284, 131, 16);
 		panel.add(emailLabel);
 		emailLabel.setVisible(false);
 		JLabel birthLabel = new JLabel("Invalid birthdate");
 		birthLabel.setForeground(Color.RED);
-		birthLabel.setBounds(330, 322, 102, 16);
+		birthLabel.setBounds(330, 408, 102, 16);
 		panel.add(birthLabel);
 		birthLabel.setVisible(false);
 		JButton registerButton = new JButton("Register");
+		JLabel lblPasswordLengthMust = new JLabel("Password length must be 8 or more");
+		lblPasswordLengthMust.setForeground(Color.RED);
+		lblPasswordLengthMust.setBounds(327, 345, 253, 16);
+		panel.add(lblPasswordLengthMust);
+		lblPasswordLengthMust.setVisible(false);
 		registerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -237,6 +245,7 @@ public class RegisterPage extends JFrame {
 				housenumberLabel.setVisible(false);
 				emailLabel.setVisible(false);
 				birthLabel.setVisible(false);
+				lblPasswordLengthMust.setVisible(false);
 				textField.setBorder(new JTextField().getBorder());
 				textField_2.setBorder(new JTextField().getBorder());
 				textField_1.setBorder(new JTextField().getBorder());
@@ -245,6 +254,7 @@ public class RegisterPage extends JFrame {
 				textField_5.setBorder(new JTextField().getBorder());
 				textField_6.setBorder(new JTextField().getBorder());
 				textField_7.setBorder(new JTextField().getBorder());
+				passwordField.setBorder(new JPasswordField().getBorder());
 				emptyFieldLabel.setVisible(false);
 				if(textField.getText().equals("Only Digits") || textField_1.getText().equals("Enter your name") || textField_2.getText().equals("Enter your last name") || textField_3.getText().equals("email@hotmail.com") ||
 						textField_4.getText().equals("dd/mm/yyyy") || textField_5.getText().equals("Enter street name") || textField_6.getText().equals("Only numbers") || textField_7.getText().isEmpty()) {
@@ -272,6 +282,11 @@ public class RegisterPage extends JFrame {
 					textField_3.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
+				}
+				if(passwordField.getPassword().length==0) {
+					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
+					passwordField.setBorder(emptyBorder);
+					emptyFieldLabel.setVisible(true);
 				}
 				if(textField_4.getText().isEmpty() || textField_4.getText().equals("dd/mm/yyyy")) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
@@ -311,6 +326,10 @@ public class RegisterPage extends JFrame {
 				else if (!checkEmailIsValid(textField_3.getText())) {
 					emailLabel.setVisible(true);
 				}
+				else if(passwordField.getPassword().length < 8) {
+					lblPasswordLengthMust.setVisible(true);
+
+				}
 				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())) {
 					birthLabel.setVisible(true);
 				}
@@ -323,7 +342,6 @@ public class RegisterPage extends JFrame {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Your Registeration is successfully done !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-					dispose();
 				}
 					
 			}
@@ -331,18 +349,23 @@ public class RegisterPage extends JFrame {
 		registerButton.setBackground(Color.BLUE);
 		registerButton.setForeground(Color.WHITE);
 		registerButton.setFont(new Font("Tahoma", Font.BOLD, 20));
-		registerButton.setBounds(152, 610, 158, 41);
+		registerButton.setBounds(152, 698, 158, 41);
 		panel.add(registerButton);
-		ImageIcon imageicon = new ImageIcon(getClass().getResource("/regbackground.png"));
-		
-		JLabel background = new JLabel("");
-		background.setBounds(0, 0, 485, 703);
-		panel.add(background);
-		background.setIcon(imageicon);
 		this.getRootPane().setDefaultButton(registerButton);
-		this.setResizable(false);
+		
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblPassword.setBounds(38, 341, 102, 21);
+		panel.add(lblPassword);
+		
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		passwordField.setBounds(152, 339, 172, 29);
+		panel.add(passwordField);
+		
+		
+		ImageIcon imageicon = new ImageIcon(getClass().getResource("/regbackground.png"));
 	}
-	// helpful method
 	public boolean checkEmailIsValid(String email) {
 		// TODO 
 		char c;
@@ -387,7 +410,6 @@ public class RegisterPage extends JFrame {
 		}
 		return true;
 	}
-	
 	public boolean checkValidDate(String date) {
 		try {
 		int day = Integer.parseInt(date.substring(0, 2));

@@ -53,7 +53,6 @@ public class login {
 	public login() {
 		initialize();
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */

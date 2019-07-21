@@ -1,4 +1,7 @@
 package gui;
+import InternalFrames.AddItem;
+import InternalFrames.AddReceiver;
+import InternalFrames.AddVehicle;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -19,10 +22,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JDesktopPane;
 import javax.swing.JSplitPane;
 import java.awt.CardLayout;
+import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class Homepage extends JFrame {
-
-	private JPanel contentPane;
 	JPanel switchPanel = new JPanel();
 	JPanel panelHome = new JPanel();
 	JPanel panelAddTruck = new JPanel();
@@ -54,7 +57,7 @@ public class Homepage extends JFrame {
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1920, 1080);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -95,45 +98,58 @@ public class Homepage extends JFrame {
 		mntmAddDriver.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		mnActions.add(mntmAddDriver);
 		
-		JMenuItem mntmAddTruck = new JMenuItem("Add truck");
-		mntmAddTruck.setFont(new Font("Segoe UI", Font.PLAIN, 17));
-		mnActions.add(mntmAddTruck);
-		JMenuItem mntmAddCar = new JMenuItem("Add car");
-		mntmAddCar.setFont(new Font("Segoe UI", Font.PLAIN, 17));
-		mnActions.add(mntmAddCar);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-//		contentPane.setLayout(new CardLayout(0, 0));
-//		switchPanel.setLayout(cl);
-//		panelHome.add(addButton);
-//		this.add(switchPanel);
-//		panelAddTruck.add(backButton);
-//		switchPanel.add(panelHome , "1");
-//		switchPanel.add(panelAddTruck , "2");
-//		cl.show(switchPanel, "1");
-//		addButton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent arg0) {
-//				cl.show(switchPanel, "2");
-//				
-//			}
-//		});
-//		backButton.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cl.show(switchPanel, "1");
-//			}
-//			
-//		});
+		JMenuItem vehicleButtonMenu = new JMenuItem("Add Vehicle");
+		vehicleButtonMenu.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		mnActions.add(vehicleButtonMenu);
+	
+		JMenuItem menuReceiver = new JMenuItem("Add Receiver");
+		menuReceiver.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		mnActions.add(menuReceiver);
+		
+		JMenuItem menuAddItem = new JMenuItem("Add Item");
+		menuAddItem.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		mnActions.add(menuAddItem);
+		
+		JMenuItem menuAddParcel = new JMenuItem("Add Parcel");
+		menuAddParcel.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		mnActions.add(menuAddParcel);
+
 		ImageIcon logo = new ImageIcon(this.getClass().getResource("/delivery2-512.png"));
 		this.setIconImage(logo.getImage());
-		ImageIcon image1 = new ImageIcon(this.getClass().getResource("/homep.png"));
-		JLabel background = new JLabel("");
-		background.setIcon(image1);
-		this.getContentPane().add(background, "name_87963586766537");
-
+		getContentPane().setLayout(null);
+		
+		AddVehicle frame1 = new AddVehicle();
+		this.getContentPane().add(frame1);
+	    frame1.setBounds(295, 0, 1627, 994);	
+	    AddReceiver frame2 = new AddReceiver();
+		getContentPane().add(frame2);
+	    frame2.setBounds(295, 0, 1627, 994);
+	    AddItem frame3 = new AddItem();
+	    getContentPane().add(frame3);
+	    frame3.setBounds(295, 0, 1627, 994);
+		vehicleButtonMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame1.setVisible(true);
+				frame2.dispose();
+				frame3.dispose();
+			}
+		});
+		
+		menuReceiver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame2.setVisible(true);
+				frame1.dispose();
+				frame3.dispose();
+			}
+		});
+		
+		menuAddItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame3.setVisible(true);
+				frame1.dispose();
+				frame2.dispose();
+			}
+		});
+		
 	}
 }
