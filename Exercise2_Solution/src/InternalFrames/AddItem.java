@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+import Conotroller.*;
 public class AddItem extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -154,29 +154,34 @@ public class AddItem extends JInternalFrame {
 		mainEmptyLabel.setBounds(89, 715, 200, 16);
 		getContentPane().add(mainEmptyLabel);
 		
-		JLabel numbersOnlyLabel = new JLabel("It must contain numbers only !");
+		JLabel numbersOnlyLabel = new JLabel("It must contain positive numbers only !");
 		numbersOnlyLabel.setForeground(Color.RED);
 		numbersOnlyLabel.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		numbersOnlyLabel.setBounds(369, 188, 208, 25);
+		numbersOnlyLabel.setBounds(369, 188, 255, 25);
 		getContentPane().add(numbersOnlyLabel);
 		
-		JLabel numbersOnlylblPrice = new JLabel("It must contain numbers only !");
+		JLabel numbersOnlylblPrice = new JLabel("It must contain positive numbers only !");
 		numbersOnlylblPrice.setForeground(Color.RED);
 		numbersOnlylblPrice.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		numbersOnlylblPrice.setBounds(313, 378, 208, 23);
+		numbersOnlylblPrice.setBounds(313, 378, 264, 23);
 		getContentPane().add(numbersOnlylblPrice);
 		
-		JLabel lblItMustContain = new JLabel("It must contain numbers only !");
+		JLabel lblItMustContain = new JLabel("It must contain positive numbers only !");
 		lblItMustContain.setForeground(Color.RED);
 		lblItMustContain.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblItMustContain.setBounds(313, 468, 200, 19);
+		lblItMustContain.setBounds(313, 468, 264, 19);
 		getContentPane().add(lblItMustContain);
 		lblItMustContain.setVisible(false);
 		numbersOnlylblPrice.setVisible(false);
 		numbersOnlyLabel.setVisible(false);
 		mainEmptyLabel.setVisible(false);
 		lblEmpty3.setVisible(false);
-		
+		JLabel lblItemIsAlready = new JLabel("Item is already available !");
+		lblItemIsAlready.setForeground(Color.RED);
+		lblItemIsAlready.setFont(new Font("Sitka Text", Font.PLAIN, 15));
+		lblItemIsAlready.setBounds(89, 715, 183, 16);
+		getContentPane().add(lblItemIsAlready);
+		lblItemIsAlready.setVisible(false);
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField.setBorder(new JTextField().getBorder());
@@ -187,6 +192,7 @@ public class AddItem extends JInternalFrame {
 				lblEmpty1.setVisible(false);
 				lblEmpty2.setVisible(false);
 				lblEmpty3.setVisible(false);
+				lblItemIsAlready.setVisible(false);
 				lblItMustContain.setVisible(false);
 				numbersOnlylblPrice.setVisible(false);
 				numbersOnlyLabel.setVisible(false);
@@ -233,15 +239,21 @@ public class AddItem extends JInternalFrame {
 					textField_3.setBorder(emptyBorder);
 				}
 				else {
+					if(SysData.getInstance().addItem(Long.parseLong(textField.getText()), textField_1.getText(), Double.parseDouble(textField_2.getText()), toggleButton.getText().equals("Free Shipping"),Double.parseDouble(textField_3.getText()))) {
 					JOptionPane.showMessageDialog(null, "Item has been added successfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 	    			textField.setText("");
 	    			textField_1.setText("");
 	    			textField_2.setText("");
 	    			textField_3.setText("");
+					}else {
+						lblItemIsAlready.setVisible(true);
+					}
 
 				}
 			}
 		});
 		this.getRootPane().setDefaultButton(btnAddItem);
+		
+		
 	}
 }

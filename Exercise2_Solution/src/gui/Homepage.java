@@ -1,5 +1,6 @@
 package gui;
 import InternalFrames.AddItem;
+import InternalFrames.AddParcel;
 import InternalFrames.AddReceiver;
 import InternalFrames.AddVehicle;
 
@@ -111,6 +112,7 @@ public class Homepage extends JFrame {
 		mnActions.add(menuAddItem);
 		
 		JMenuItem menuAddParcel = new JMenuItem("Add Parcel");
+		
 		menuAddParcel.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		mnActions.add(menuAddParcel);
 
@@ -127,11 +129,15 @@ public class Homepage extends JFrame {
 	    AddItem frame3 = new AddItem();
 	    getContentPane().add(frame3);
 	    frame3.setBounds(295, 0, 1627, 994);
+	    AddParcel frame4 = new AddParcel();
+	    getContentPane().add(frame4);
+	    frame4.setBounds(295,0,1627,994);
 		vehicleButtonMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame1.setVisible(true);
 				frame2.dispose();
 				frame3.dispose();
+				frame4.dispose();
 			}
 		});
 		
@@ -140,6 +146,8 @@ public class Homepage extends JFrame {
 				frame2.setVisible(true);
 				frame1.dispose();
 				frame3.dispose();
+				frame4.dispose();
+
 			}
 		});
 		
@@ -148,6 +156,15 @@ public class Homepage extends JFrame {
 				frame3.setVisible(true);
 				frame1.dispose();
 				frame2.dispose();
+				frame4.dispose();
+			}
+		});
+		menuAddParcel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame4.setVisible(true);
+				frame3.dispose();
+				frame2.dispose();
+				frame1.dispose();
 			}
 		});
 		

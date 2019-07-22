@@ -5,8 +5,8 @@ import java.io.*;
 public class Date 
 { 
   
-    static int MAX_VALID_YR = 9999; 
-    static int MIN_VALID_YR = 1800; 
+    static int MAX_VALID_YR = 2001; 
+    static int MIN_VALID_YR = 1920; 
   
     // Returns true if  
     // given year is valid. 

@@ -87,7 +87,22 @@ public class SysData {
     public ArrayList<Item> allItems() {
         return allItems;
     }
-
+    public HashMap<String, Parcel> getParcelsMap(){
+    	
+    	return allParcelsMap ;
+    }
+    
+    public  HashMap<String,Vehicle> getVehclesMap(){
+    	 return allVehiclesMap ;
+    }
+    
+    public  HashMap<Integer, WareHouse> getWareHouesMap(){
+    	return allWareHouses ;
+    }
+    
+    public HashMap<Long,Receiver> getReceiversMap(){
+    	return allReciversMap ;
+    }
 // -------------------------------Add && Remove Methods------------------------------
     
 
@@ -100,7 +115,7 @@ public class SysData {
      */
     public boolean addCar(String vin, String color, E_ModelType type,long driverId,boolean hybryd) {
         //TODO
-    	if (vin != null && color != null && type != null && driverId != 0) {
+    	if (vin != null && color != null && type != null ) {
         	Driver driver = null;
         	
         	/*check if car already exist*/
@@ -108,29 +123,29 @@ public class SysData {
         		return false;
         	}
         	
-        	for(Vehicle v:allVehiclesMap.values()) {
-        		if(v.getDriver().getId()==driverId) {
-        			return false;
-        		}
-        	}
+//        	for(Vehicle v:allVehiclesMap.values()) {
+//        		if(v.getDriver().getId()==driverId) {
+//        			return false;
+//        		}
+//        	}
 
         	
 
-        	for(Driver d:allDrivers) {
-        		if(d.getId()==driverId) {
-        			driver = d;
-        			break;
-        		}
-        	}
-        	if(driver==null) 
-        		return false;
-        	
-        	if(!driver.getHasValidLicense()) 
-        		return false;
-        	
-	    	if (allReciversMap.values().contains(driver)) 
-	    		return false; //Driver should not be receiver.
-	    	
+//        	for(Driver d:allDrivers) {
+//        		if(d.getId()==driverId) {
+//        			driver = d;
+//        			break;
+//        		}
+//        	}
+//        	if(driver==null) 
+//        		return false;
+//        	
+//        	if(!driver.getHasValidLicense()) 
+//        		return false;
+//        	
+//	    	if (allReciversMap.values().contains(driver)) 
+//	    		return false; //Driver should not be receiver.
+//	    	
             Car newCar = new Car(vin,color,type,hybryd,driver);
             
             if(newCar.getVin()==null) 
@@ -139,7 +154,7 @@ public class SysData {
             }
             if (newCar != null) 
             {
-                driver.setDriverInUse(true);
+//                driver.setDriverInUse(true);
                 allVehiclesMap.put(vin,newCar);
                 return true;
                 
@@ -159,35 +174,35 @@ public class SysData {
      */
     public boolean addTruck(String vin, String color, E_ModelType type, long driverId, E_TypeTruck typeTrunk) {
     	//TODO
-    	if (vin != null && color != null && type != null && driverId != 0 && typeTrunk!=null) 
+    	if (vin != null && color != null && type != null  && typeTrunk!=null) 
     	{
     		/*check if truck already exist*/
     		if(allVehiclesMap.containsKey(vin)) {
         		return false;
         	}
-    		for(Vehicle v:allVehiclesMap.values()) {
-        		if(v.getDriver().getId()==driverId) {
-        			return false;
-        		}
-        	}
+//    		for(Vehicle v:allVehiclesMap.values()) {
+//        		if(v.getDriver().getId()==driverId) {
+//        			return false;
+//        		}
+//        	}
         	
         	Driver driver = null;
-        	//Get the proposed driver.
-        	for(Driver d:allDrivers) {
-        		if(d.getId()==driverId) {
-        			driver = d;
-        			break;
-        		}
-        	}
-        	if(driver==null) 
-        		return false;//If cannot find driver.
-        	
-        	if(driver.isDriverInUse()) 
-        		return false; //if driver already in use in another vehicle.
-        	
-	    	if (allReciversMap.containsValue(driver)) 
-	    		return false; //Driver should not be receiver.
-	    	
+//        	//Get the proposed driver.
+//        	for(Driver d:allDrivers) {
+//        		if(d.getId()==driverId) {
+//        			driver = d;
+//        			break;
+//        		}
+//        	}
+//        	if(driver==null) 
+//        		return false;//If cannot find driver.
+//        	
+//        	if(driver.isDriverInUse()) 
+//        		return false; //if driver already in use in another vehicle.
+//        	
+//	    	if (allReciversMap.containsValue(driver)) 
+//	    		return false; //Driver should not be receiver.
+//	    	
 	    	Truck newTruck = new Truck(vin, color, type, typeTrunk, driver);
 	    	
 	    	if(newTruck.getVin()==null) 
@@ -196,7 +211,7 @@ public class SysData {
             }
             if (newTruck != null ) 
             {
-                driver.setDriverInUse(true);
+//                driver.setDriverInUse(true);
                 allVehiclesMap.put(vin,newTruck);
                 return true;
             }

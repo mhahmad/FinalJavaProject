@@ -4,6 +4,9 @@ import Utils.E_ModelType;
 import java.awt.EventQueue;
 import Utils.E_TypeTruck;
 import javax.swing.border.Border;
+
+import Conotroller.SysData;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -46,7 +49,7 @@ public class AddVehicle extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AddVehicle() {
-		setBounds(100, 100, 915, 755);
+		setBounds(100, 100, 915, 850);
 		getContentPane().setLayout(null);
 		
 		JLabel vinLabel = new JLabel("Vehicle ID number :");
@@ -166,6 +169,12 @@ public class AddVehicle extends JInternalFrame {
 				comboBox_2.setEnabled(true);
 			}
 		});
+		JLabel duplicate = new JLabel("Vehicle is already available !");
+		duplicate.setForeground(Color.RED);
+		duplicate.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		duplicate.setBounds(150, 712, 198, 25);
+		getContentPane().add(duplicate);
+		duplicate.setVisible(false);
 	    JLabel wrongLabel = new JLabel("");
 	    wrongLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	    wrongLabel.setForeground(Color.RED);
@@ -177,6 +186,7 @@ public class AddVehicle extends JInternalFrame {
 	    	public void actionPerformed(ActionEvent e) {
 				textField.setBorder(new JTextField().getBorder());
 			    wrongLabel.setVisible(false);
+			    duplicate.setVisible(false);
 	    		if(textField.getText().isEmpty()) {
 	    			wrongLabel.setText("Field is empty!");
 	    			wrongLabel.setVisible(true);
@@ -189,17 +199,26 @@ public class AddVehicle extends JInternalFrame {
 	    		}
 	    		else
 	    		{
-	    			textField.setText("");
-	    			if(rdbtnYes.isEnabled() == false && rdbtnNo.isEnabled() == false && comboBox_2.isEnabled()==true)	
-	    				JOptionPane.showMessageDialog(null, "Truck has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-	    			else
-	    				JOptionPane.showMessageDialog(null, "Car has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-
+	    			if(rdbtnYes.isEnabled() == false && rdbtnNo.isEnabled() == false && comboBox_2.isEnabled()==true)	{
+	    				if(SysData.getInstance().addTruck(textField.getText(),(String) comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, (E_TypeTruck)comboBox_2.getSelectedItem()))
+	    					JOptionPane.showMessageDialog(null, "Truck has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+	    				else
+	    					duplicate.setVisible(true);
+	    			}
+	    			else {
+	    				if(SysData.getInstance().addCar(textField.getText(), (String)comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, rdbtnYes.isSelected()))
+	    					JOptionPane.showMessageDialog(null, "Car has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+	    				else
+	    					duplicate.setVisible(true);
+	    			}
+    				textField.setText("");
 	    		}
 	    	}
 	    });
 	    
 		this.getRootPane().setDefaultButton(AddButton);
+		
+	
 
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
