@@ -3,7 +3,7 @@ import Utils.Constants;
 import Utils.E_Cities;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import gui.Datei;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -203,7 +203,7 @@ public class RegisterPage extends JFrame {
 		emptyFieldLabel.setVisible(false);
 		JLabel exceptionLabel1 = new JLabel("");
 		exceptionLabel1.setForeground(Color.RED);
-		exceptionLabel1.setBounds(83, 661, 356, 16);
+		exceptionLabel1.setBounds(78, 650, 356, 16);
 		panel.add(exceptionLabel1);
 		exceptionLabel1.setVisible(false);
 		JLabel zipLabel = new JLabel("Wrong ZIP Code");
@@ -228,6 +228,12 @@ public class RegisterPage extends JFrame {
 		birthLabel.setBounds(330, 322, 102, 16);
 		panel.add(birthLabel);
 		birthLabel.setVisible(false);
+		JLabel lblMinimumAgeAllowed = new JLabel("Minimum age allowed is 12");
+		lblMinimumAgeAllowed.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblMinimumAgeAllowed.setForeground(Color.RED);
+		lblMinimumAgeAllowed.setBounds(141, 650, 196, 21);
+		panel.add(lblMinimumAgeAllowed);
+		lblMinimumAgeAllowed.setVisible(false);
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
 			@Override
@@ -237,6 +243,7 @@ public class RegisterPage extends JFrame {
 				housenumberLabel.setVisible(false);
 				emailLabel.setVisible(false);
 				birthLabel.setVisible(false);
+				lblMinimumAgeAllowed.setVisible(false);
 				textField.setBorder(new JTextField().getBorder());
 				textField_2.setBorder(new JTextField().getBorder());
 				textField_1.setBorder(new JTextField().getBorder());
@@ -311,8 +318,13 @@ public class RegisterPage extends JFrame {
 				else if (!checkEmailIsValid(textField_3.getText())) {
 					emailLabel.setVisible(true);
 				}
-				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())) {
+				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())||!textField_4.getText().matches("[0-3]\\d/[01]\\d/\\d{4}")) {
 					birthLabel.setVisible(true);
+				}
+				else if(textField_4.getText().length()==10 && Integer.parseInt(textField_4.getText().substring(6, 10)) > Datei.MAX_VALID_YR-12) {
+					lblMinimumAgeAllowed.setVisible(true);
+					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
+					textField_4.setBorder(emptyBorder);
 				}
 				else if (!textField_7.getText().matches("[0-9]+") || textField_7.getText().length()!=7){
 					zipLabel.setVisible(true);
@@ -340,6 +352,8 @@ public class RegisterPage extends JFrame {
 		panel.add(background);
 		background.setIcon(imageicon);
 		this.getRootPane().setDefaultButton(registerButton);
+		
+		
 		this.setResizable(false);
 	}
 	// helpful method
@@ -393,7 +407,7 @@ public class RegisterPage extends JFrame {
 		int day = Integer.parseInt(date.substring(0, 2));
 		int month = Integer.parseInt(date.substring(3, 5));
 		int year = Integer.parseInt(date.substring(6, 10));
-		return Date.isValidDate(day, month, year);
+		return Datei.isValidDate(day, month, year);
 		}catch(Exception e) {
 			return false;
 		}

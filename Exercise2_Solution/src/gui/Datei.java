@@ -2,10 +2,10 @@ package gui;
 
 import java.io.*; 
   
-public class Date 
+public class Datei 
 { 
   
-    static int MAX_VALID_YR = 2001; 
+  public  static int MAX_VALID_YR = 2019; 
     static int MIN_VALID_YR = 1920; 
   
     // Returns true if  

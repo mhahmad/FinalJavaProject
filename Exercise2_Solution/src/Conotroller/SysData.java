@@ -39,6 +39,7 @@ public class SysData {
     private ArrayList <Driver> allDrivers;
     private ArrayList <WareHouse> WareHouses;
     private ArrayList <Item> allItems;
+    private ArrayList <Vehicle> allVehicles;
 
     // -------------------------------DATA STRUCTURES---------------------------//
     HashMap<String, Parcel> allParcelsMap;
@@ -59,7 +60,7 @@ public class SysData {
         allWareHouses = new HashMap<Integer, WareHouse>();
         allWareHouses.put(1, Constants.BASE_WAREHOUSE);
         allReciversMap = new HashMap<Long, Receiver>();
-        
+        allVehicles = new ArrayList(allVehiclesMap.values());
         
      }
     // -----------------------------------------Getters--------------------------------------
@@ -102,6 +103,9 @@ public class SysData {
     
     public HashMap<Long,Receiver> getReceiversMap(){
     	return allReciversMap ;
+    }
+    public ArrayList<Vehicle> getVehicles(){
+    	return allVehicles;
     }
 // -------------------------------Add && Remove Methods------------------------------
     
@@ -297,6 +301,7 @@ public class SysData {
             
             if (newPerson != null && !allDrivers.contains(newDriver) && !allReciversMap.containsValue(newDriver)) 
             {
+            	System.out.println(newDriver);
                 return allDrivers.add(newDriver);
             }
         }

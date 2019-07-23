@@ -100,7 +100,7 @@ public class Person {
     }
     @Override
     public String toString() {
-    	return "Person [id="+this.id+", Name=" + this.firstName + " "+this.surname+", House number:"+this.address.getHouseNumber()+"]";
+    	return "Person [id="+this.id+", Name=" + this.firstName + " "+this.surname+",Birthdate=" + this.birthDate +", House number:"+this.address.getHouseNumber()+"]";
 
     }
     

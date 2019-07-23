@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 
 import Utils.Constants;
 import Utils.E_Cities;
-import gui.Date;
+import gui.Datei;
 import gui.HintTextField;
 import gui.OnlyLettersException;
 import javax.swing.JPasswordField;
@@ -256,28 +257,28 @@ public class AddReceiver extends JInternalFrame {
 				textField_7.setBorder(new JTextField().getBorder());
 				passwordField.setBorder(new JPasswordField().getBorder());
 				emptyFieldLabel.setVisible(false);
-				if(textField.getText().equals("Only Digits") || textField_1.getText().equals("Enter your name") || textField_2.getText().equals("Enter your last name") || textField_3.getText().equals("email@hotmail.com") ||
-						textField_4.getText().equals("dd/mm/yyyy") || textField_5.getText().equals("Enter street name") || textField_6.getText().equals("Only numbers") || textField_7.getText().isEmpty()) {
+				if(textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_2.getText().isEmpty() || textField_3.getText().isEmpty() ||
+						textField_4.getText().isEmpty() || textField_5.getText().isEmpty()|| textField_6.getText().isEmpty()|| textField_7.getText().isEmpty()) {
 			
-					if(textField.getText().isEmpty() || textField.getText().equals("Only Digits")) {
+					if(textField.getText().isEmpty()) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
-				if(textField_1.getText().isEmpty() || textField_1.getText().equals("Enter your name")) {
+				if(textField_1.getText().isEmpty() ) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_1.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
-				if(textField_2.getText().isEmpty() || textField_2.getText().equals("Enter your last name")) {
+				if(textField_2.getText().isEmpty() ) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_2.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
-				if(textField_3.getText().isEmpty() || textField_3.getText().equals("email@hotmail.com")) {
+				if(textField_3.getText().isEmpty() ) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_3.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
@@ -288,19 +289,19 @@ public class AddReceiver extends JInternalFrame {
 					passwordField.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 				}
-				if(textField_4.getText().isEmpty() || textField_4.getText().equals("dd/mm/yyyy")) {
+				if(textField_4.getText().isEmpty() ) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_4.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
-				if(textField_5.getText().isEmpty() || textField_5.getText().equals("Enter street name")) {
+				if(textField_5.getText().isEmpty()) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_5.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
-				if(textField_6.getText().isEmpty() || textField_6.getText().equals("Only numbers")) {
+				if(textField_6.getText().isEmpty()) {
 					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_6.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
@@ -330,7 +331,7 @@ public class AddReceiver extends JInternalFrame {
 					lblPasswordLengthMust.setVisible(true);
 
 				}
-				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())) {
+				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())||!textField_4.getText().matches("[0-3]\\d/[01]\\d/\\d{4}")) {
 					birthLabel.setVisible(true);
 				}
 				else if (!textField_7.getText().matches("[0-9]+") || textField_7.getText().length()!=7){
@@ -365,6 +366,9 @@ public class AddReceiver extends JInternalFrame {
 		
 		
 		ImageIcon imageicon = new ImageIcon(getClass().getResource("/regbackground.png"));
+		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+			}
 	}
 	public boolean checkEmailIsValid(String email) {
 		// TODO 
@@ -415,7 +419,7 @@ public class AddReceiver extends JInternalFrame {
 		int day = Integer.parseInt(date.substring(0, 2));
 		int month = Integer.parseInt(date.substring(3, 5));
 		int year = Integer.parseInt(date.substring(6, 10));
-		return Date.isValidDate(day, month, year);
+		return Datei.isValidDate(day, month, year);
 		}catch(Exception e) {
 			return false;
 		}

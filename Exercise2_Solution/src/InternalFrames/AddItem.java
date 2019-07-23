@@ -13,6 +13,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -254,6 +255,8 @@ public class AddItem extends JInternalFrame {
 		});
 		this.getRootPane().setDefaultButton(btnAddItem);
 		
-		
+		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+			}
 	}
 }

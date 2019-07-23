@@ -1,4 +1,5 @@
 package gui;
+import InternalFrames.AddDriver;
 import InternalFrames.AddItem;
 import InternalFrames.AddParcel;
 import InternalFrames.AddReceiver;
@@ -132,12 +133,16 @@ public class Homepage extends JFrame {
 	    AddParcel frame4 = new AddParcel();
 	    getContentPane().add(frame4);
 	    frame4.setBounds(295,0,1627,994);
+	    AddDriver frame5 = new AddDriver();
+	    getContentPane().add(frame5);
+	    frame5.setBounds(295, 0, 1627, 994);
 		vehicleButtonMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame1.setVisible(true);
 				frame2.dispose();
 				frame3.dispose();
 				frame4.dispose();
+				frame5.dispose();
 			}
 		});
 		
@@ -147,7 +152,7 @@ public class Homepage extends JFrame {
 				frame1.dispose();
 				frame3.dispose();
 				frame4.dispose();
-
+				frame5.dispose();
 			}
 		});
 		
@@ -157,6 +162,8 @@ public class Homepage extends JFrame {
 				frame1.dispose();
 				frame2.dispose();
 				frame4.dispose();
+				frame5.dispose();
+
 			}
 		});
 		menuAddParcel.addActionListener(new ActionListener() {
@@ -165,8 +172,18 @@ public class Homepage extends JFrame {
 				frame3.dispose();
 				frame2.dispose();
 				frame1.dispose();
+				frame5.dispose();
+
 			}
 		});
-		
+		mntmAddDriver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame5.setVisible(true);
+				frame1.dispose();
+				frame2.dispose();
+				frame3.dispose();			
+				frame4.dispose();
+			}
+		});
 	}
 }

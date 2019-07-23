@@ -44,7 +44,7 @@ public class Driver extends Person{
 
 	@Override
 	public String toString() {
-		return this.getFirstName()+" "+this.getSurname();
+		return super.toString();
 	}
 	
 	@Override
