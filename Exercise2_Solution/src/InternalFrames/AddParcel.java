@@ -10,10 +10,17 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import Model.Receiver;
 import Model.SmallParcel;
 import javafx.scene.Group;
 
@@ -27,13 +34,17 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
+import Conotroller.SysData;
+
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 public class AddParcel extends JInternalFrame {
 	private JTextField textField;
 	private JTable table;
-
+	private static DateFormat df;
+	private static DateFormat dtf;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +65,7 @@ public class AddParcel extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AddParcel() {
-		setBounds(100, 100, 887, 931);
+		setBounds(100, 100, 949, 921);
 		getContentPane().setLayout(null);
 		
 		JLabel lblParcel = new JLabel("Parcel  ID : ");
@@ -135,39 +146,11 @@ public class AddParcel extends JInternalFrame {
 		errorLabel1.setVisible(false);
 		emptyField.setVisible(false);
 		
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				errorLabel1.setVisible(false);
-				emptyField.setVisible(false);
-				lengthError.setVisible(false);
-				textField.setBorder(new JTextField().getBorder());
-				if(!autogenerate.isSelected() && textField.getText().isEmpty()) {
-					Border border =BorderFactory.createLineBorder(Color.RED,1);
-					textField.setBorder(border);
-					emptyField.setVisible(true);
-				}
-				else if (!autogenerate.isSelected() && !textField.getText().matches("[0-9]+")) {
-					Border border =BorderFactory.createLineBorder(Color.RED,1);
-					textField.setBorder(border);
-					errorLabel1.setVisible(true);
-				}
-				else if (!autogenerate.isSelected() && textField.getText().length()>10) {
-					Border border = BorderFactory.createLineBorder(Color.RED, 1);
-					textField.setBorder(border);
-					lengthError.setVisible(true);
-				}
-				else { 
-					if(group.isSelected(smallButton.getModel()))
-						JOptionPane.showMessageDialog(null, "Small parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-					else
-						JOptionPane.showMessageDialog(null, "Large parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-				}
-			}
-		});
+		
 		this.getRootPane().setDefaultButton(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(79, 452, 674, 300);
+		scrollPane.setBounds(79, 448, 827, 307);
 		getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -184,14 +167,141 @@ public class AddParcel extends JInternalFrame {
 		lblChooseAReceiver.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblChooseAReceiver.setBounds(79, 420, 289, 22);
 		getContentPane().add(lblChooseAReceiver);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRefresh.setBounds(349, 421, 97, 25);
+		getContentPane().add(btnRefresh);
 		table.setVisible(true);
-		DefaultTableModel model = new DefaultTableModel();
-		Object [] columns= { "ID","FIRSTNAME","LASTNAME","EMAIL","BIRTHDATE","ADDRESS"};
-		model.setColumnIdentifiers(columns);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+		JLabel receiverChoose = new JLabel("You must choose a receiver to attach to the parcel !");
+		receiverChoose.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		receiverChoose.setForeground(Color.RED);
+		receiverChoose.setBounds(231, 843, 377, 29);
+		getContentPane().add(receiverChoose);
 		
+		JLabel existLabel = new JLabel("Parcel with the givin ID does already exist !");
+		existLabel.setForeground(Color.RED);
+		existLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		existLabel.setBounds(254, 843, 320, 22);
+		getContentPane().add(existLabel);
+		existLabel.setVisible(false);
+		receiverChoose.setVisible(false);
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+//		Object [] columns= { "ID","FIRSTNAME","LASTNAME","EMAIL","BIRTHDATE","ADDRESS"};
+//		model.setColumnIdentifiers(columns);
+//		model.addColumn( columns);
+		Object rowData[] = new Object[6];
+//		model.setRowCount(0);
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				df = new SimpleDateFormat("dd/MM/yyyy");
+				dtf = new SimpleDateFormat("dd/MM/yyyy");
+				Date dd = null;
+				model.setRowCount(0);
+				for(Map.Entry<String, Receiver> temp : SysData.getInstance().getReceiversMap().entrySet()) {
+					boolean flag = false;
+					for(int i =0 ;i < table.getRowCount();i++){
+						if(table.getValueAt(0, i).equals(temp.getValue().getId())) {
+							flag = true;
+						}
+					}
+					if(!flag) {
+					String strDate = df.format(temp.getValue().getBirthDate());
+					rowData[0]=temp.getValue().getId();
+					rowData[1]=temp.getValue().getFirstName();
+					rowData[2]=temp.getValue().getSurname();
+					rowData[3]=temp.getValue().getEmail();
+					rowData[4]=strDate;
+					rowData[5]=temp.getValue().getAddress().getCity() +","+temp.getValue().getAddress().getStreet()+","+temp.getValue().getAddress().getHouseNumber()+","+temp.getValue().getAddress().getZipCode();
+					((DefaultTableModel)table.getModel()).addRow(rowData);
+					}
+				}
+			}
+		});
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				errorLabel1.setVisible(false);
+				emptyField.setVisible(false);
+				lengthError.setVisible(false);
+				existLabel.setVisible(false);
+				receiverChoose.setVisible(false);
+				textField.setBorder(new JTextField().getBorder());
+				if(!autogenerate.isSelected() && textField.getText().isEmpty()) {
+					Border border =BorderFactory.createLineBorder(Color.RED,1);
+					textField.setBorder(border);
+					emptyField.setVisible(true);
+				}
+				else if (!autogenerate.isSelected() && !textField.getText().matches("[0-9]+")) {
+					Border border =BorderFactory.createLineBorder(Color.RED,1);
+					textField.setBorder(border);
+					errorLabel1.setVisible(true);
+				}
+				else if (!autogenerate.isSelected() && textField.getText().length()>10) {
+					Border border = BorderFactory.createLineBorder(Color.RED, 1);
+					textField.setBorder(border);
+					lengthError.setVisible(true);
+				}
+				else if(table.getSelectedRow()==-1) {
+					receiverChoose.setVisible(true);
+				}
+				else {
+					if(group.isSelected(smallButton.getModel())) {
+						if(textField.isEnabled()) {
+							if(SysData.getInstance().addSmallParcel(textField.getText(),(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								JOptionPane.showMessageDialog(null, "Small parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+								textField.setText("");
+							}
+							else
+								existLabel.setVisible(true);
+						
+						}
+						else {
+							if(SysData.getInstance().addSmallParcel(null,(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								JOptionPane.showMessageDialog(null, "Small parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+								textField.setText("");
+							}
+							else
+								existLabel.setVisible(true);
+
+						}
+					}
+					else {
+						if(textField.isEnabled()) {
+							if(SysData.getInstance().addLargeParcel(textField.getText(),(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								JOptionPane.showMessageDialog(null, "Large parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+								textField.setText("");
+
+							}
+							else
+								existLabel.setVisible(true);
+						
+						}
+						else {
+							if(SysData.getInstance().addLargeParcel(null,(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								JOptionPane.showMessageDialog(null, "Large parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+								textField.setText("");
+
+							}
+							else
+								existLabel.setVisible(true);
+					}
+					}
+				}
+			}
+		});
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 }

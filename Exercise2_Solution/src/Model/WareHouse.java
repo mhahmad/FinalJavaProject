@@ -1,4 +1,5 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -46,7 +47,25 @@ public class WareHouse implements Comparable<WareHouse>{
 	//All transaction.
 	//Integer: Transaction indexer.
 	//Map: The truck and the parcels which the truck dismantled.
+	class CompareByHouseNumber implements Comparator<Parcel>,Serializable {
+		@Override
+		public int compare(Parcel arg0, Parcel arg1) {
+			return arg0.getReceiver().getAddress().getHouseNumber()-arg1.getReceiver().getAddress().getHouseNumber();
+		}
+		
+	} 
 	
+	class CompareByPriceandIndex implements Comparator<Parcel>,Serializable {
+		@Override
+		public int compare(Parcel arg0, Parcel arg1) {
+	double val1 = 100*getParcelIndex(arg0) + arg0.getCurrentCost();
+			double val2 = 100*getParcelIndex(arg1) + arg1.getCurrentCost();
+			
+			return ((int)(getParcelIndex(arg0)-getParcelIndex(arg1)));
+			
+		}
+		
+	}
 	
 	public WareHouse(int warehouseId,Address address) 
 	{
@@ -54,37 +73,62 @@ public class WareHouse implements Comparable<WareHouse>{
 		this.address = address;
 		parcels = new ArrayList<>();
 		this.region = this.address.city.getRegion();
+		parcelsListSortedByPrice = new LinkedList<Parcel>();
+
+		
+		parcelsByReceiverHouseNumber = new PriorityQueue<Parcel>(new CompareByHouseNumber() );
 		transactionsHashMap = new HashMap<Integer, HashMap<Truck,ArrayList<Parcel>>>();
 		
-		parcelsListSortedByPrice = new LinkedList<Parcel>();
 		
 		
-		parcelsByReceiverHouseNumber = new PriorityQueue<Parcel>(new Comparator<Parcel>() {
-			@Override
-			public int compare(Parcel arg0, Parcel arg1) {
-				return arg0.getReceiver().getAddress().getHouseNumber()-arg1.getReceiver().getAddress().getHouseNumber();
-			}
-		});
+		parcelsByPriceAndIndex = new PriorityQueue<Parcel>(new CompareByPriceandIndex() );
+
 		
-		parcelsByPriceAndIndex = new PriorityQueue<Parcel>(new Comparator<Parcel>() {
-			@Override
-			public int compare(Parcel arg0, Parcel arg1) {
-//				double val1 = 100*getParcelIndex(arg0) + arg0.getCurrentCost();
-//				double val2 = 100*getParcelIndex(arg1) + arg1.getCurrentCost();
-				
-				return ((int)(getParcelIndex(arg0)-getParcelIndex(arg1)));
-				
-			}
-		});
+		
 		parcelsByOrder = new ArrayList<Parcel>();
+//		this.warehouseId=warehouseId;
+//		this.address = address;
+//		parcels = new ArrayList<>();
+//		this.region = this.address.city.getRegion();
+//		transactionsHashMap = new HashMap<Integer, HashMap<Truck,ArrayList<Parcel>>>();
+//		
+//		parcelsListSortedByPrice = new LinkedList<Parcel>();
+//		
+//		
+//		parcelsByReceiverHouseNumber = new PriorityQueue<Parcel>(new Comparator<Parcel>() {
+//			@Override
+//			public int compare(Parcel arg0, Parcel arg1) {
+//				return arg0.getReceiver().getAddress().getHouseNumber()-arg1.getReceiver().getAddress().getHouseNumber();
+//			}
+//		});
+//		
+//		parcelsByPriceAndIndex = new PriorityQueue<Parcel>(new Comparator<Parcel>() {
+//			@Override
+//			public int compare(Parcel arg0, Parcel arg1) {
+////				double val1 = 100*getParcelIndex(arg0) + arg0.getCurrentCost();
+////				double val2 = 100*getParcelIndex(arg1) + arg1.getCurrentCost();
+//				
+//				return ((int)(getParcelIndex(arg0)-getParcelIndex(arg1)));
+//				
+//			}
+//		});
+//		parcelsByOrder = new ArrayList<Parcel>();
 	}
 	
 	
 
 	public WareHouse(int warehouseId)
 	{
+//		this.warehouseId = warehouseId;
+//		parcels = new ArrayList<>();
 		this.warehouseId = warehouseId;
 		parcels = new ArrayList<>();
+		this.region = this.address.city.getRegion();
+        parcelsListSortedByPrice = new LinkedList<Parcel>();
+		parcelsByReceiverHouseNumber = new PriorityQueue<Parcel>(new CompareByHouseNumber() );
+		transactionsHashMap = new HashMap<Integer, HashMap<Truck,ArrayList<Parcel>>>();		
+		parcelsByPriceAndIndex = new PriorityQueue<Parcel>(new CompareByPriceandIndex() );
+		parcelsByOrder = new ArrayList<Parcel>();
 	}
 	
 	/***

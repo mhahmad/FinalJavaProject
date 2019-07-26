@@ -50,6 +50,11 @@ public class Person {
         this.address = address;
     }
     
+    public Person(long id , String firstName,String surname) {
+    	this.id=id;
+    	this.firstName=firstName;
+    	this.surname=surname;
+    }
     /**
      * Partial constructor using only id.
      * @param id The id of the person.

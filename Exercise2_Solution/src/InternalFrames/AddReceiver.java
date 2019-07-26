@@ -10,6 +10,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import Conotroller.SysData;
+import Model.Address;
 import Utils.Constants;
 import Utils.E_Cities;
 import gui.Datei;
@@ -44,6 +50,8 @@ public class AddReceiver extends JInternalFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JPasswordField passwordField;
+	public static DateFormat df;
+	public static DateFormat dtf;
 	/**
 	 * Launch the application.
 	 */
@@ -192,7 +200,15 @@ public class AddReceiver extends JInternalFrame {
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblZipCode.setBounds(31, 629, 109, 16);
 		panel.add(lblZipCode);
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblPassword.setBounds(38, 341, 102, 21);
+		panel.add(lblPassword);
 		
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		passwordField.setBounds(152, 339, 172, 29);
+		panel.add(passwordField);
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_7.setBounds(152, 624, 80, 29);
@@ -233,7 +249,14 @@ public class AddReceiver extends JInternalFrame {
 		panel.add(birthLabel);
 		birthLabel.setVisible(false);
 		JButton registerButton = new JButton("Register");
-		JLabel lblPasswordLengthMust = new JLabel("Password length must be 8 or more");
+		JLabel lblPasswordLengthMust = new JLabel("Password length must be 8 to 16 letters!");
+		JLabel lblReceiverWithThe = new JLabel("Receiver with the given ID does exist !");
+		lblReceiverWithThe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblReceiverWithThe.setForeground(Color.RED);
+		lblReceiverWithThe.setBounds(95, 745, 287, 29);
+		panel.add(lblReceiverWithThe);
+		lblReceiverWithThe.setVisible(false);
+		
 		lblPasswordLengthMust.setForeground(Color.RED);
 		lblPasswordLengthMust.setBounds(327, 345, 253, 16);
 		panel.add(lblPasswordLengthMust);
@@ -242,6 +265,7 @@ public class AddReceiver extends JInternalFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				exceptionLabel1.setVisible(false);
+				lblReceiverWithThe.setVisible(false);
 				zipLabel.setVisible(false);
 				housenumberLabel.setVisible(false);
 				emailLabel.setVisible(false);
@@ -327,7 +351,7 @@ public class AddReceiver extends JInternalFrame {
 				else if (!checkEmailIsValid(textField_3.getText())) {
 					emailLabel.setVisible(true);
 				}
-				else if(passwordField.getPassword().length < 8) {
+				else if(passwordField.getPassword().length < 8 || passwordField.getPassword().length > 16) {
 					lblPasswordLengthMust.setVisible(true);
 
 				}
@@ -342,9 +366,36 @@ public class AddReceiver extends JInternalFrame {
 
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Your Registeration is successfully done !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-				}
+					df = new SimpleDateFormat("dd/MM/yyyy");
+					dtf = new SimpleDateFormat("dd/MM/yyyy");
+					Date dd = null;
 					
+			      try {
+				 dd =	dtf.parse(textField_4.getText());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
+			      String strDate = df.format(dd);
+			      String password = String.valueOf(passwordField.getPassword());
+					if(SysData.getInstance().addReceiver(Long.parseLong(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_6.getText()),textField_7.getText()), textField_3.getText(),password)) {
+					JOptionPane.showMessageDialog(null, "Receiver has been added successfuly!","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+					textField.setText("");
+					passwordField.setText("");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					textField_6.setText("");
+					textField_7.setText("");
+				}
+				else {
+					lblReceiverWithThe.setVisible(true);
+
+				}
+				}	
 			}
 		});
 		registerButton.setBackground(Color.BLUE);
@@ -354,16 +405,9 @@ public class AddReceiver extends JInternalFrame {
 		panel.add(registerButton);
 		this.getRootPane().setDefaultButton(registerButton);
 		
-		JLabel lblPassword = new JLabel("Password :");
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblPassword.setBounds(38, 341, 102, 21);
-		panel.add(lblPassword);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		passwordField.setBounds(152, 339, 172, 29);
-		panel.add(passwordField);
 		
+	
 		
 		ImageIcon imageicon = new ImageIcon(getClass().getResource("/regbackground.png"));
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){

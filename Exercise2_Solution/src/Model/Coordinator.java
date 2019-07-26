@@ -5,8 +5,8 @@ import java.util.Date;
 public class Coordinator extends Person {
 
 	private String password ;
-	public Coordinator(long id , String firstName , String lastName,Date birthDate,Address address,String password) {
-		super(id,firstName,lastName,birthDate,address);
+	public Coordinator(long id , String firstName , String lastName,String password) {
+		super(id,firstName,lastName);
 		this.password = password;
 		
 	}
@@ -15,6 +15,10 @@ public class Coordinator extends Person {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "[ Name : " + this.getFirstName() + " " + this.getSurname() + " , ID : " + this.getId() + " ]";
 	}
 
 	

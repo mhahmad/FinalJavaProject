@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import Conotroller.SysData;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -24,8 +27,15 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import Model.Address;
 import Model.Receiver;
 import javax.swing.DropMode;
+import javax.swing.JPasswordField;
 public class RegisterPage extends JFrame {
 
 	private JPanel contentPane;
@@ -38,7 +48,9 @@ public class RegisterPage extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	
+	private JPasswordField passwordField;
+	private static DateFormat df;
+	private static DateFormat dtf;
 	/**
 	 * Launch the application.
 	 */
@@ -76,7 +88,7 @@ public class RegisterPage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("ID number :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(31, 66, 109, 21);
+		lblNewLabel.setBounds(31, 47, 109, 21);
 		panel.add(lblNewLabel);
 		
 		JLabel lblRegisterPageFor = new JLabel("Register Page for recievers");
@@ -87,7 +99,7 @@ public class RegisterPage extends JFrame {
 		JLabel wrongIdVal = new JLabel("Only Numbers!");
 		wrongIdVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		wrongIdVal.setForeground(Color.RED);
-		wrongIdVal.setBounds(330, 70, 102, 16);
+		wrongIdVal.setBounds(332, 50, 102, 16);
 		panel.add(wrongIdVal);
 		wrongIdVal.setVisible(false);
 		textField = new HintTextField("Only Digits");
@@ -104,40 +116,40 @@ public class RegisterPage extends JFrame {
 				}
 			}
 		});
-		textField.setBounds(152, 64, 172, 29);
+		textField.setBounds(152, 44, 172, 29);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblFirstName = new JLabel("First Name :");
 		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblFirstName.setBounds(31, 126, 109, 21);
+		lblFirstName.setBounds(31, 96, 109, 21);
 		panel.add(lblFirstName);
 		
 		textField_1 = new HintTextField("Enter your name");
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_1.setBounds(152, 124, 172, 29);
+		textField_1.setBounds(152, 93, 172, 29);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblLastName = new JLabel("Last Name :");
 		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblLastName.setBounds(31, 190, 109, 21);
+		lblLastName.setBounds(31, 150, 109, 21);
 		panel.add(lblLastName);
 		
 		textField_2 = new HintTextField("Enter your last name");
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_2.setBounds(152, 188, 172, 29);
+		textField_2.setBounds(152, 147, 172, 29);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblEmail.setBounds(52, 255, 88, 21);
+		lblEmail.setBounds(52, 213, 88, 21);
 		panel.add(lblEmail);
 		
 		textField_3 = new HintTextField("email@hotmail.com");
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_3.setBounds(152, 253, 172, 29);
+		textField_3.setBounds(152, 210, 172, 29);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 		
@@ -167,7 +179,10 @@ public class RegisterPage extends JFrame {
 		lblStreet.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblStreet.setBounds(52, 430, 88, 16);
 		panel.add(lblStreet);
-		
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblPassword.setBounds(29, 270, 94, 21);
+		panel.add(lblPassword);
 		textField_5 = new HintTextField("Enter street name");
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_5.setBounds(152, 426, 172, 29);
@@ -178,7 +193,11 @@ public class RegisterPage extends JFrame {
 		lblHouseNumber.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblHouseNumber.setBounds(12, 491, 138, 16);
 		panel.add(lblHouseNumber);
-		
+		JLabel label = new JLabel("8 - 16 digits");
+		label.setForeground(Color.RED);
+		label.setBounds(332, 274, 94, 16);
+		panel.add(label);
+		label.setVisible(false);
 		textField_6 = new HintTextField("Only numbers");
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_6.setBounds(152, 487, 172, 29);
@@ -189,6 +208,10 @@ public class RegisterPage extends JFrame {
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblZipCode.setBounds(31, 550, 109, 16);
 		panel.add(lblZipCode);
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		passwordField.setBounds(152, 268, 172, 28);
+		panel.add(passwordField);
 		
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -196,9 +219,9 @@ public class RegisterPage extends JFrame {
 		panel.add(textField_7);
 		textField_7.setColumns(10);
 		JLabel emptyFieldLabel = new JLabel("There is an empty Field!");
-		emptyFieldLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		emptyFieldLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		emptyFieldLabel.setForeground(Color.RED);
-		emptyFieldLabel.setBounds(162, 650, 138, 16);
+		emptyFieldLabel.setBounds(141, 650, 204, 21);
 		panel.add(emptyFieldLabel);
 		emptyFieldLabel.setVisible(false);
 		JLabel exceptionLabel1 = new JLabel("");
@@ -220,7 +243,7 @@ public class RegisterPage extends JFrame {
 		housenumberLabel.setVisible(false);
 		JLabel emailLabel = new JLabel("Wrong email format");
 		emailLabel.setForeground(Color.RED);
-		emailLabel.setBounds(330, 259, 131, 16);
+		emailLabel.setBounds(332, 217, 131, 16);
 		panel.add(emailLabel);
 		emailLabel.setVisible(false);
 		JLabel birthLabel = new JLabel("Invalid birthdate");
@@ -233,16 +256,31 @@ public class RegisterPage extends JFrame {
 		lblMinimumAgeAllowed.setForeground(Color.RED);
 		lblMinimumAgeAllowed.setBounds(141, 650, 196, 21);
 		panel.add(lblMinimumAgeAllowed);
+		JLabel lblTheGivenId = new JLabel("The given ID does already exist in our system !");
+		lblTheGivenId.setForeground(Color.RED);
+		lblTheGivenId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTheGivenId.setBounds(12, 653, 345, 21);
+		panel.add(lblTheGivenId);
+		JLabel lblIdMustBe = new JLabel("ID must be 9 digits !");
+		lblIdMustBe.setForeground(Color.RED);
+		lblIdMustBe.setBounds(332, 51, 131, 16);
+		panel.add(lblIdMustBe);
+		lblIdMustBe.setVisible(false);
+		lblTheGivenId.setVisible(false);
 		lblMinimumAgeAllowed.setVisible(false);
 		JButton registerButton = new JButton("Register");
+		Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 		registerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				exceptionLabel1.setVisible(false);
+				lblIdMustBe.setVisible(false);
 				zipLabel.setVisible(false);
 				housenumberLabel.setVisible(false);
 				emailLabel.setVisible(false);
 				birthLabel.setVisible(false);
+				label.setVisible(false);
+				lblTheGivenId.setVisible(false);
 				lblMinimumAgeAllowed.setVisible(false);
 				textField.setBorder(new JTextField().getBorder());
 				textField_2.setBorder(new JTextField().getBorder());
@@ -252,54 +290,52 @@ public class RegisterPage extends JFrame {
 				textField_5.setBorder(new JTextField().getBorder());
 				textField_6.setBorder(new JTextField().getBorder());
 				textField_7.setBorder(new JTextField().getBorder());
+				passwordField.setBorder(new JPasswordField().getBorder());
 				emptyFieldLabel.setVisible(false);
 				if(textField.getText().equals("Only Digits") || textField_1.getText().equals("Enter your name") || textField_2.getText().equals("Enter your last name") || textField_3.getText().equals("email@hotmail.com") ||
-						textField_4.getText().equals("dd/mm/yyyy") || textField_5.getText().equals("Enter street name") || textField_6.getText().equals("Only numbers") || textField_7.getText().isEmpty()) {
+						textField_4.getText().equals("dd/mm/yyyy") || textField_5.getText().equals("Enter street name") || textField_6.getText().equals("Only numbers") || textField_7.getText().isEmpty() || passwordField.getPassword().length==0) {
 			
 					if(textField.getText().isEmpty() || textField.getText().equals("Only Digits")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_1.getText().isEmpty() || textField_1.getText().equals("Enter your name")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_1.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_2.getText().isEmpty() || textField_2.getText().equals("Enter your last name")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_2.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_3.getText().isEmpty() || textField_3.getText().equals("email@hotmail.com")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_3.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
+				if(passwordField.getPassword().length == 0) {
+					passwordField.setBorder(emptyBorder);
+					emptyFieldLabel.setVisible(true);
+					
+				}
 				if(textField_4.getText().isEmpty() || textField_4.getText().equals("dd/mm/yyyy")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_4.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_5.getText().isEmpty() || textField_5.getText().equals("Enter street name")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_5.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_6.getText().isEmpty() || textField_6.getText().equals("Only numbers")) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_6.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
 				}
 				if(textField_7.getText().isEmpty()) {
-					Border emptyBorder = BorderFactory.createLineBorder(Color.RED, 1);
 					textField_7.setBorder(emptyBorder);
 					emptyFieldLabel.setVisible(true);
 
@@ -307,6 +343,9 @@ public class RegisterPage extends JFrame {
 				}
 				else if(!textField.getText().matches("[0-9]+")) {
 					wrongIdVal.setVisible(true);
+				}
+				else if(textField.getText().length() != 9 ) {
+					lblIdMustBe.setVisible(true);
 				}
 				else if(!textField_1.getText().matches("^[a-zA-Z]*$") || !textField_2.getText().matches("^[a-zA-Z]*$"))
 					try {
@@ -317,6 +356,9 @@ public class RegisterPage extends JFrame {
 					}
 				else if (!checkEmailIsValid(textField_3.getText())) {
 					emailLabel.setVisible(true);
+				}
+				else if(passwordField.getPassword().length < 8 || passwordField.getPassword().length > 16) {
+						label.setVisible(true);
 				}
 				else if(textField_4.getText().length()!=10 || !checkValidDate(textField_4.getText())||!textField_4.getText().matches("[0-3]\\d/[01]\\d/\\d{4}")) {
 					birthLabel.setVisible(true);
@@ -334,8 +376,24 @@ public class RegisterPage extends JFrame {
 
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Your Registeration is successfully done !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
-					dispose();
+					df = new SimpleDateFormat("dd/MM/yyyy");
+					dtf = new SimpleDateFormat("dd/MM/yyyy");
+					Date dd = null;
+					 try {
+						 dd =	dtf.parse(textField_4.getText());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} String strDate = df.format(dd);
+					      String password = String.valueOf(passwordField.getPassword());
+					if(SysData.getInstance().addReceiver(Long.parseLong(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_6.getText()),textField_7.getText()), textField_3.getText(),password)) { 
+						JOptionPane.showMessageDialog(null, "Your Registeration is successfully done !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+						dispose();
+						System.out.println(SysData.getInstance().getReceiversMap());
+						}
+						else
+							lblTheGivenId.setVisible(true);
+
 				}
 					
 			}
@@ -352,6 +410,15 @@ public class RegisterPage extends JFrame {
 		panel.add(background);
 		background.setIcon(imageicon);
 		this.getRootPane().setDefaultButton(registerButton);
+		
+	
+		
+		
+		
+		
+		
+	
+		
 		
 		
 		this.setResizable(false);

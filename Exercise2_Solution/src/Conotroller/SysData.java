@@ -45,8 +45,10 @@ public class SysData {
     HashMap<String, Parcel> allParcelsMap;
     HashMap<String,Vehicle> allVehiclesMap;
     HashMap<Integer, WareHouse> allWareHouses;
-    HashMap<Long,Receiver> allReciversMap;
-    
+    HashMap<String,Receiver> allReciversMap;
+    HashMap<String,Driver> allDriversMap;
+    HashMap<String,Coordinator> allCoordinators;
+    HashMap<Long,Receiver>allReceivers;
     //--------------------------------------------------------------------------//
     // -------------------------------Constructors------------------------------
     public SysData() {
@@ -59,9 +61,11 @@ public class SysData {
         allVehiclesMap = new HashMap<String, Vehicle>();
         allWareHouses = new HashMap<Integer, WareHouse>();
         allWareHouses.put(1, Constants.BASE_WAREHOUSE);
-        allReciversMap = new HashMap<Long, Receiver>();
+        allReciversMap = new HashMap<String, Receiver>();
         allVehicles = new ArrayList(allVehiclesMap.values());
-        
+        allDriversMap = new HashMap<String,Driver>();
+        allCoordinators=new HashMap<String,Coordinator>();
+        allReceivers = new HashMap<Long,Receiver>();
      }
     // -----------------------------------------Getters--------------------------------------
 
@@ -101,11 +105,17 @@ public class SysData {
     	return allWareHouses ;
     }
     
-    public HashMap<Long,Receiver> getReceiversMap(){
+    public HashMap<String,Receiver> getReceiversMap(){
     	return allReciversMap ;
     }
     public ArrayList<Vehicle> getVehicles(){
     	return allVehicles;
+    }
+    public HashMap<String,Driver> getAllDriversMap(){
+    	return this.allDriversMap;
+    }
+    public HashMap<String,Coordinator> getAllCoordinators(){
+    	return allCoordinators;
     }
 // -------------------------------Add && Remove Methods------------------------------
     
@@ -235,15 +245,22 @@ public class SysData {
     	//TODO
     	Receiver currentReceiver = null;
     	
-    	currentReceiver = allReciversMap.get(id);
+    	currentReceiver = allReceivers.get(id);
     	if(currentReceiver == null) 
     	{
     		return null;
     	}
-    	if (parcelId.equals(null))
-    		return null;
+    	if (parcelId==null) {
+    		SmallParcel sp =new SmallParcel(currentReceiver);
+    		allParcels.add(sp);
+    		return sp.getParcelId();
+    	}
+    		
     	SmallParcel sp = new SmallParcel(parcelId,currentReceiver);
-    	
+    	for(Parcel temp : allParcels) {
+    		if(temp.getParcelId().equals(sp.getParcelId()))
+    			return null;
+    	}
     	if(sp!=null) 
     	{
     		allParcelsMap.put(sp.getParcelId(), sp);
@@ -265,14 +282,19 @@ public class SysData {
     {
     	//TODO
     	Receiver currentReceiver = null;
-    	if (!allReciversMap.containsKey(id))
+    	if (!allReceivers.containsKey(id))
     		return null;
-    	currentReceiver = allReciversMap.get(id);
-
-    	if (parcelId.equals(null))
-    		return null;
+    	currentReceiver = allReceivers.get(id);
+    	if (parcelId==null) {
+    		LargeParcel lp =new LargeParcel(currentReceiver);
+    		allParcels.add(lp);
+    		return lp.getParcelId();
+    	}
     	LargeParcel lp = new LargeParcel(parcelId,currentReceiver);
-    	
+    	for(Parcel temp : allParcels) {
+    		if(temp.getParcelId().equals(lp.getParcelId()))
+    			return null;
+    	}
     	if(lp!=null) 
     	{
     		allParcelsMap.put(lp.getParcelId(), lp);
@@ -291,17 +313,19 @@ public class SysData {
      * @return true IF this Driver was added successfully, false otherwise
      */
     public boolean addDriver(long id, String firstName, String surname, Date birthDate, Address address,
-                             boolean hasValidLicense)   {
+                             boolean hasValidLicense,String password)   {
     	//TODO
     	if (id > 0 && !firstName.equals("") && !surname.equals("") && birthDate != null && address != null) 
     	{
             Person newPerson = new Person(id, firstName, surname, birthDate, address);
             
             Driver newDriver = new Driver(id, firstName, surname, birthDate, address, hasValidLicense);
-            
+            for(Map.Entry<String, Coordinator> temp : allCoordinators.entrySet())
+        		if(temp.getValue().getId()==id)
+        			return false;
             if (newPerson != null && !allDrivers.contains(newDriver) && !allReciversMap.containsValue(newDriver)) 
             {
-            	System.out.println(newDriver);
+            	allDriversMap.put(password, newDriver);
                 return allDrivers.add(newDriver);
             }
         }
@@ -315,17 +339,21 @@ public class SysData {
      * Creates and adds a new Receiver into the relevant data-structure
      * @return true IF this Receiver was added successfully, false otherwise
      */
-    public boolean addReceiver(long id, String firstName, String surname, Date birthDate, Address address, String email) {
+    public boolean addReceiver(long id, String firstName, String surname, Date birthDate, Address address, String email,String password) {
     //TODO
     	if (id > 0 && !firstName.equals("") && !surname.equals("") && birthDate != null && address != null &&
            email != null) 
     	{
             Receiver newReceiver = new Receiver (id, firstName, surname, birthDate, address, email);
+            	for(Map.Entry<String, Coordinator> temp : allCoordinators.entrySet())
+            		if(temp.getValue().getId()==id)
+            			return false;
             if (newReceiver != null && !allReciversMap.containsValue(newReceiver) && !allDrivers.contains(newReceiver)) 
             {
             	if (newReceiver.getEmail()!=null)
             	{
-            		allReciversMap.put(id, newReceiver);
+            		allReceivers.put(id, newReceiver);
+            		allReciversMap.put(password, newReceiver);
             		return true;
             	}
             }

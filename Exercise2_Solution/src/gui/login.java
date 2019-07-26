@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+import Conotroller.SysData;
 import javafx.scene.control.PasswordField;
 
 import javax.swing.JPasswordField;
@@ -65,9 +66,9 @@ public class login {
 		frame.getContentPane().setLayout(null);
 		image1 = new ImageIcon (this.getClass().getResource("/new.png")) ;
 		
-		JLabel lblUsername = new JLabel("ID number  :");
+		JLabel lblUsername = new JLabel("User ID :");
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblUsername.setBounds(22, 166, 130, 33);
+		lblUsername.setBounds(34, 166, 108, 33);
 		frame.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password :");
@@ -114,12 +115,12 @@ public class login {
 		lblNewLabel.setIcon(image1);
 		lblNewLabel.setBounds(372, 44, 285, 382);
 		frame.getContentPane().add(lblNewLabel);
-		JLabel lblIncorrectEmailOr = new JLabel("Incorrect Email or Password.");
+		JLabel lblIncorrectEmailOr = new JLabel("Incorrect ID number or Password.");
 		lblIncorrectEmailOr.setVisible(false);
 		lblIncorrectEmailOr.setForeground(Color.RED);
 		lblIncorrectEmailOr.setBackground(Color.WHITE);
 		lblIncorrectEmailOr.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblIncorrectEmailOr.setBounds(165, 322, 205, 16);
+		lblIncorrectEmailOr.setBounds(141, 316, 248, 16);
 		frame.getContentPane().add(lblIncorrectEmailOr);
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBackground(Color.ORANGE);
@@ -137,6 +138,7 @@ public class login {
 		lblEmpty_1.setBounds(365, 212, 63, 26);
 		lblEmpty_1.setVisible(false);
 		frame.getContentPane().add(lblEmpty_1);
+		Border border = BorderFactory.createLineBorder(Color.RED,1);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblEmpty.setVisible(false);
@@ -147,24 +149,77 @@ public class login {
 				if(textField.getText().isEmpty() || password.isEmpty()) {
 					
 					if(textField.getText().isEmpty()) {
-					Border border = BorderFactory.createLineBorder(Color.RED,1);
 					textField.setBorder(border);
 					lblEmpty.setVisible(true);
 					}
 					if(password.isEmpty()) {
-						Border border1 = BorderFactory.createLineBorder(Color.RED,1);
-						passwordField.setBorder(border1);
+						passwordField.setBorder(border);
 						lblEmpty_1.setVisible(true);
 					}
 				}
-				else if(!textField.getText().equals("Admin") || !password.equals("Admin")) {
-				lblIncorrectEmailOr.setVisible(true);
+				else if(password.equals("Admin") || SysData.getInstance().getAllDriversMap().containsKey(password) || SysData.getInstance().getReceiversMap().containsKey(password)
+						|| SysData.getInstance().getAllCoordinators().containsKey(password)) {
+					if(password.equals("Admin")) {
+						if(textField.getText().equals("Admin")) {
+							Homepage home = new Homepage();
+							home.setVisible(true);
+							frame.dispose();
+						}
+						else {
+							lblIncorrectEmailOr.setVisible(true);
+							passwordField.setText("");
+							textField.setText("");
+						}
+					}
+					else if(SysData.getInstance().getAllDriversMap().containsKey(password)) {
+						if(textField.getText().equals(Long.toString(SysData.getInstance().getAllDriversMap().get(password).getId())) ) {
+							
+							frame.dispose();
+						}
+						else {
+							lblIncorrectEmailOr.setVisible(true);	
+							passwordField.setText("");
+							textField.setText("");	
+						}
+					}
+					else if(SysData.getInstance().getAllCoordinators().containsKey(password)) {
+						if(textField.getText().equals(Long.toString(SysData.getInstance().getAllCoordinators().get(password).getId())) ) {
+							
+							frame.dispose();
+						}
+						else {
+							lblIncorrectEmailOr.setVisible(true);	
+							passwordField.setText("");
+							textField.setText("");	
+						}
+
+					}
+					else if(SysData.getInstance().getReceiversMap().containsKey(password)) {
+						if(textField.getText().equals(Long.toString(SysData.getInstance().getReceiversMap().get(password).getId()))) {
+							ReceiverFrame receiverFrame = new ReceiverFrame();
+							receiverFrame.setVisible(true);
+							frame.dispose();
+						}
+						else {
+							lblIncorrectEmailOr.setVisible(true);	
+							passwordField.setText("");
+							textField.setText("");
+						}
+					}
+				}else {
+					lblIncorrectEmailOr.setVisible(true);	
+					passwordField.setText("");
+					textField.setText("");	
 				}
-				else if(textField.getText().equals("Admin") && password.equals("Admin")) {
-					Homepage home = new Homepage();
-					home.setVisible(true);
-					frame.dispose();
-				}
+
+//				else if(!textField.getText().equals("Admin") || !password.equals("Admin")) {
+//				lblIncorrectEmailOr.setVisible(true);
+//				}
+//				else if(textField.getText().equals("Admin") && password.equals("Admin")) {
+//					Homepage home = new Homepage();
+//					home.setVisible(true);
+//					frame.dispose();
+//				}
 			}
 		});
 		ImageIcon image4=new ImageIcon(this.getClass().getResource("/log.png"));
@@ -182,6 +237,8 @@ public class login {
 		frame.getContentPane().add(lim);
 		frame.setResizable(false);
 		frame.getRootPane().setDefaultButton(btnNewButton);
+		
+		
 		
 
 	}

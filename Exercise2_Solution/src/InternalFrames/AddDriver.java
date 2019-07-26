@@ -234,11 +234,18 @@ public class AddDriver extends JInternalFrame {
 		minimumageDriver.setBounds(387, 399, 163, 16);
 		getContentPane().add(minimumageDriver);
 		minimumageDriver.setVisible(false);
+		JLabel driverExisted = new JLabel("Driver with the given ID does exist !");
+		driverExisted.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		driverExisted.setForeground(Color.RED);
+		driverExisted.setBounds(82, 847, 287, 22);
+		getContentPane().add(driverExisted);
+		driverExisted.setVisible(false);
 		Border border = BorderFactory.createLineBorder(Color.RED, 1);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lettersOnly.setVisible(false);
 				numbersOnly.setVisible(false);
+				driverExisted.setVisible(false);
 				minimumageDriver.setVisible(false);
 				emptyField.setVisible(false);
 				numbers1.setVisible(false);
@@ -301,7 +308,7 @@ public class AddDriver extends JInternalFrame {
 						textField_2.setBorder(border);
 					}
 				}
-				else if ( passwordField.getPassword().length < 8) {
+				else if ( passwordField.getPassword().length < 8 || passwordField.getPassword().length > 16) {
 					passwordLength.setVisible(true);
 					passwordField.setBorder(border);
 
@@ -339,21 +346,26 @@ public class AddDriver extends JInternalFrame {
 				}
 				 
 			      String strDate = df.format(dd);
-					if(SysData.getInstance().addDriver(Integer.parseInt(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_4.getText()),textField_6.getText()), ValidLicense.isSelected())){
+			      String password = String.valueOf(passwordField.getPassword());
+					if(SysData.getInstance().addDriver(Long.parseLong(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_4.getText()),textField_6.getText()), ValidLicense.isSelected(),password)){
 						JOptionPane.showMessageDialog(null, "Driver has been added successfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+						textField.setText("");
+						textField_1.setText("");
+						textField_2.setText("");
+						textField_3.setText("");
+						textField_4.setText("");
+						textField_5.setText("");
+						textField_6.setText("");
+						passwordField.setText("");
+						ValidLicense.setSelected(false);
+						System.out.println(SysData.getInstance().allDrivers());
 					}
 					else
-						JOptionPane.showConfirmDialog(null, "Error occured");
+						driverExisted.setVisible(true);
 				}
 			}
 		});
 		this.getRootPane().setDefaultButton(btnNewButton);
-		
-		
-		
-		
-		
-		
 		
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
