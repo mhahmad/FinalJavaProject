@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +17,8 @@ import Model.Car;
 import Model.Item;
 import Model.Truck;
 import Model.Vehicle;
+import gui.login;
+
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
@@ -29,7 +32,12 @@ public class Receiver_ItemList extends JInternalFrame {
 		itemsList.setFont(new Font("Yu Gothic Medium", Font.BOLD, 34));
 		itemsList.setBounds(101, 38, 234, 56);
 		getContentPane().add(itemsList);
-		
+		JLabel emptyListLabel = new JLabel("Your list is empty ! ");
+		emptyListLabel.setForeground(Color.RED);
+		emptyListLabel.setFont(new Font("Sitka Subheading", Font.PLAIN, 20));
+		emptyListLabel.setBounds(54, 430, 222, 26);
+		getContentPane().add(emptyListLabel);
+		emptyListLabel.setVisible(false);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(44, 118, 687, 299);
 		getContentPane().add(scrollPane);
@@ -53,12 +61,12 @@ public class Receiver_ItemList extends JInternalFrame {
 			}
 		));
 		
-		
-		if(!SysData.getInstance().getReceiverItems((long)2222221).isEmpty()  ) {
+		System.out.println(login.idUser);
+		 if(!SysData.getInstance().getReceiverItems(SysData.getInstance().getReceiversMap().get(login.idUser).getId()).isEmpty()) {
 			((DefaultTableModel) table.getModel()).setRowCount(0);
 			Car car = null ;
 			Truck tt = null ; 
-		for(Item i :SysData.getInstance().getReceiverItems((long) 2222221)) {
+		for(Item i :SysData.getInstance().getReceiverItems( SysData.getInstance().getReceiversMap().get(login.idUser).getId())) {
 			Object[] Row = new Object[5];
 			
 	     	Row[0] = i.getCatalogID();
@@ -80,11 +88,15 @@ public class Receiver_ItemList extends JInternalFrame {
 			
 		
 		}else{
-			JOptionPane.showMessageDialog(null, "No Items Found To Displpay !!!","OOPs" , 0,new ImageIcon(getClass().getResource("/Ops.png")));
+			emptyListLabel.setVisible(true);
 			//dispose();
 			}
 		
 		
 		scrollPane.setViewportView(table);
+		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+			}
+	
 	}
 }

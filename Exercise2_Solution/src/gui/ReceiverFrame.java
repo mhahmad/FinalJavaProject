@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.border.SoftBevelBorder;
 
+import Conotroller.SysData;
 import InternalFrames.Receiver_ItemList;
 import InternalFrames.TrackParcel;
 import gui.Homepage;
@@ -64,13 +65,13 @@ public class ReceiverFrame extends JFrame {
 	    itemList.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(255, 153, 0), null, null, new Color(255, 153, 0)));
 	    itemList.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	  //  itemList.setVisible(false);
-	    itemList.setBounds(155, 78, 934, 534);
+	    itemList.setBounds(416,0,1506,994);
 		getContentPane().add(itemList);
 	 
 		
 		
 		JPanel Centerpanel = new JPanel();
-		Centerpanel.setBounds(154, 91, 701, 453);
+		Centerpanel.setBounds(263, 94, 701, 453);
 		getContentPane().add(Centerpanel);
 		Centerpanel.setLayout(null);
 		
@@ -80,10 +81,9 @@ public class ReceiverFrame extends JFrame {
 		Centerpanel.add(lblNewLabel);
 		
 			    TrackParcel trackparcel = new TrackParcel();
-			    trackparcel.setBounds(40, 40, 943, 610);
-			    Centerpanel.add(trackparcel);
+			    trackparcel.setBounds(416,0,1506,994);
 			    trackparcel.setVisible(false);
-			    
+			    getContentPane().add(trackparcel);
 			     trackparcel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, new Color(255, 153, 0), null, null, new Color(255, 153, 0)));
 			     trackparcel.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
@@ -96,14 +96,14 @@ public class ReceiverFrame extends JFrame {
 		lblWelcome.setBounds(96, 32, 108, 26);
 		getContentPane().add(lblWelcome);
 		
-		JLabel lblName = new JLabel("MF NAme");
+		JLabel lblName = new JLabel(SysData.getInstance().getReceiversMap().get(login.idUser).getFirstName() + " " + SysData.getInstance().getReceiversMap().get(login.idUser).getSurname());
 		lblName.setBounds(197, 35, 108, 26);
 		getContentPane().add(lblName);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 153, 0), new Color(255, 153, 0), new Color(255, 153, 0), new Color(255, 153, 0)));
 		panel_1.setBackground(new Color(51, 153, 255));
-		panel_1.setBounds(10, 109, 134, 283);
+		panel_1.setBounds(10, 109, 211, 283);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -113,7 +113,7 @@ public class ReceiverFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				itemList.setVisible(true);
 				Centerpanel.setVisible(false);
-				trackparcel.setVisible(false);
+				trackparcel.dispose();
 			}
 		});
 		
@@ -121,23 +121,23 @@ public class ReceiverFrame extends JFrame {
 		
 		
 		panel_1.add(ListButton);
-		ListButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		ListButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ListButton.setBackground(new Color(102, 0, 204));
-		ListButton.setBounds(10, 43, 114, 38);
+		ListButton.setBounds(10, 23, 189, 53);
 		
 		JButton btnNewButton = new JButton("Track Parcel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Centerpanel.setVisible(false);
 				trackparcel.setVisible(true);
-				itemList.setVisible(false);
+				itemList.dispose();
 			}
 		});
 		
 		
 		btnNewButton.setBackground(new Color(102, 51, 255));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton.setBounds(10, 99, 114, 38);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnNewButton.setBounds(10, 99, 189, 53);
 		panel_1.add(btnNewButton);
 		
 		JButton Homebtn = new JButton("Home");
@@ -145,16 +145,16 @@ public class ReceiverFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Centerpanel.setVisible(true);
 				//Centerpanel.setBounds(70, 70, 1200, 850);
-				trackparcel.setVisible(false);
-				itemList.setVisible(false);
+				trackparcel.dispose();
+				itemList.dispose();
 				
 			}
 		});
 		
 		
-		Homebtn.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		Homebtn.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Homebtn.setBackground(new Color(153, 0, 255));
-		Homebtn.setBounds(10, 154, 114, 38);
+		Homebtn.setBounds(10, 181, 189, 53);
 		panel_1.add(Homebtn);
 		
 		JInternalFrame inFrame = new JInternalFrame("New JInternalFrame");
@@ -188,7 +188,7 @@ public class ReceiverFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				itemList.setVisible(true);
 				Centerpanel.setVisible(false);
-				trackparcel.setVisible(false);
+				trackparcel.dispose();
 			}
 		});
 		
@@ -202,7 +202,7 @@ public class ReceiverFrame extends JFrame {
 				
 				Centerpanel.setVisible(false);
 				trackparcel.setVisible(true);
-				itemList.setVisible(false);
+				itemList.dispose();
 			}
 		});
 		mnNavigate.add(mntmParcelTracking);

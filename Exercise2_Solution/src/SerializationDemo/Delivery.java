@@ -25,7 +25,7 @@ public class Delivery implements Serializable {
     ArrayList <WareHouse> WareHouses = new ArrayList<>(SysData.getInstance().WareHouses()) ;
     ArrayList <Item> allItems = new  ArrayList<>(SysData.getInstance().allItems()) ; 
      ArrayList<Vehicle> allVehicles= new  ArrayList<>(SysData.getInstance().getVehicles()) ; 
-      
+      HashMap<Long,Receiver> allReceiversMap = new HashMap<>(SysData.getInstance().getReceiversMap());
       
    // HashMap<String, Parcel> allParcelsMap;
   //  HashMap<String,Vehicle> allVehiclesMap;
@@ -72,6 +72,8 @@ public class Delivery implements Serializable {
     SaveData.add(allDrivers) ;
     SaveData.add(allVehicles) ;
     SaveData.add(allWareHouses) ;
+    SaveData.add(allReceiversMap);
+    System.out.println(allReceiversMap);
     	//SaveData.addAll(allItems);
     //	allVehicles = SysData.getInstance().getVehicles() ;
     	//long catalogID, String itemName,  double price, boolean hasFreeShipping,double itemWeight)

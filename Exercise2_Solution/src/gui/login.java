@@ -34,7 +34,7 @@ public class login {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private ImageIcon image1;
-	 
+	 public static Long idUser ;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -157,10 +157,8 @@ public class login {
 						lblEmpty_1.setVisible(true);
 					}
 				}
-				else if(password.equals("Admin") || SysData.getInstance().getAllDriversMap().containsKey(password) || SysData.getInstance().getReceiversMap().containsKey(password)
-						|| SysData.getInstance().getAllCoordinators().containsKey(password)) {
-					if(password.equals("Admin")) {
-						if(textField.getText().equals("Admin")) {
+				else if(textField.getText().equals("Admin")){
+					if(password.equals("Admin") ) {
 							Homepage home = new Homepage();
 							home.setVisible(true);
 							frame.dispose();
@@ -170,10 +168,18 @@ public class login {
 							passwordField.setText("");
 							textField.setText("");
 						}
-					}
-					else if(SysData.getInstance().getAllDriversMap().containsKey(password)) {
-						if(textField.getText().equals(Long.toString(SysData.getInstance().getAllDriversMap().get(password).getId())) ) {
-							
+				}
+				else if (!textField.getText().matches("[0-9]+")) {
+					lblIncorrectEmailOr.setVisible(true);
+					passwordField.setText("");
+					textField.setText("");
+				}
+				else if( SysData.getInstance().getAllDriversMap().containsKey(Long.parseLong(textField.getText())) || SysData.getInstance().getReceiversMap().containsKey(Long.parseLong(textField.getText()))
+						|| SysData.getInstance().getAllCoordinators().containsKey(Long.parseLong(textField.getText()))) {
+					
+					
+					 if(SysData.getInstance().getAllDriversMap().containsKey(Long.parseLong(textField.getText()))) {
+						if(password.equals(SysData.getInstance().getAllDriversMap().get(Long.parseLong(textField.getText())).getpassword())) {
 							frame.dispose();
 						}
 						else {
@@ -182,9 +188,11 @@ public class login {
 							textField.setText("");	
 						}
 					}
-					else if(SysData.getInstance().getAllCoordinators().containsKey(password)) {
-						if(textField.getText().equals(Long.toString(SysData.getInstance().getAllCoordinators().get(password).getId())) ) {
-							
+					else if(SysData.getInstance().getAllCoordinators().containsKey(Long.parseLong(textField.getText()))) {
+						if(password.equals(SysData.getInstance().getAllCoordinators().get(Long.parseLong(textField.getText())).getpassword()) ) {
+							idUser = Long.parseLong(textField.getText());
+							CoordinatorPage coorPage = new CoordinatorPage();
+							coorPage.setVisible(true);
 							frame.dispose();
 						}
 						else {
@@ -194,8 +202,9 @@ public class login {
 						}
 
 					}
-					else if(SysData.getInstance().getReceiversMap().containsKey(password)) {
-						if(textField.getText().equals(Long.toString(SysData.getInstance().getReceiversMap().get(password).getId()))) {
+					else if(SysData.getInstance().getReceiversMap().containsKey(Long.parseLong(textField.getText()))) {
+						if(password.equals(SysData.getInstance().getReceiversMap().get(Long.parseLong(textField.getText())).getpassword())) {
+							idUser = Long.parseLong(textField.getText());
 							ReceiverFrame receiverFrame = new ReceiverFrame();
 							receiverFrame.setVisible(true);
 							frame.dispose();
@@ -211,6 +220,7 @@ public class login {
 					passwordField.setText("");
 					textField.setText("");	
 				}
+
 
 //				else if(!textField.getText().equals("Admin") || !password.equals("Admin")) {
 //				lblIncorrectEmailOr.setVisible(true);

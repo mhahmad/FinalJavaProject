@@ -1,10 +1,11 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 //ADAM
 import Utils.Constants;
 import Utils.E_ModelType;
 
-public class Car extends Vehicle{
+public class Car extends Vehicle implements Serializable{
 	
 
 	

@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 public class AddItemToParcel extends JInternalFrame {
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
 
 	/**
 	 * Launch the application.
@@ -51,7 +52,7 @@ public class AddItemToParcel extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AddItemToParcel() {
-		setBounds(100, 100, 1000, 1080);
+		setBounds(100, 100, 1400, 1080);
 		getContentPane().setLayout(null);
 		
 		JLabel lblAddItemTo = new JLabel("Add Item to Parcel :");
@@ -170,10 +171,35 @@ public class AddItemToParcel extends JInternalFrame {
 		alreadyInLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		alreadyInLabel.setBounds(163, 905, 430, 25);
 		getContentPane().add(alreadyInLabel);
-		alreadyInLabel.setVisible(false);
 		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(972, 226, 279, 335);
+		getContentPane().add(scrollPane_2);
+		
+		table_2 = new JTable();
+		table_2.setBackground(Color.WHITE);
+		table_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		scrollPane_2.setViewportView(table_2);
+		scrollPane_2.setVisible(false);
+		table_2.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Items in parcel"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		alreadyInLabel.setVisible(false);
+		DefaultTableModel model_2 = (DefaultTableModel)table_2.getModel();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		 public void valueChanged(ListSelectionEvent event) {
+			 scrollPane_2.setVisible(false);
 			 if(table.getSelectedRow()>=0 &&table_1.getSelectedRow()>=0)
 			 SwingUtilities.invokeLater( 
 				        new Runnable() {
@@ -182,8 +208,24 @@ public class AddItemToParcel extends JInternalFrame {
 				            }
 				        }
 				    );
+			 if(table.getSelectedRow()>=0) {
+				 model_2.setRowCount(0);
+				 Object rowData1[]= new Object[1];
+				 for(Parcel parcel : SysData.getInstance().allParcels()) {
+					 if(parcel.getParcelId().equals(table.getValueAt(table.getSelectedRow(), 0)))
+						 if(!parcel.getListOfItem().isEmpty()) {
+							scrollPane_2.setVisible(true);
+							for(Item item : parcel.getListOfItem()) {
+								rowData1[0] = item.getItemName();
+								((DefaultTableModel)table_2.getModel()).addRow(rowData1);
+							}
+
+					 }
+				 }
+			 }
 			 }
 		});
+		
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			 public void valueChanged(ListSelectionEvent event) {
 				 if(table_1.getSelectedRow()>=0 && table.getSelectedRow()>=0)
@@ -194,13 +236,26 @@ public class AddItemToParcel extends JInternalFrame {
 						            }
 						        }
 						    );
+			
 			 }
+			 
 			});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alreadyInLabel.setVisible(false);
-				if(SysData.getInstance().addItemToParcel((String)table.getValueAt(table.getSelectedRow(), 0),(Long)table_1.getValueAt(table_1.getSelectedRow(), 0),(String) table_1.getValueAt(table_1.getSelectedRow(), 1))) 
+				if(SysData.getInstance().addItemToParcel((String)table.getValueAt(table.getSelectedRow(), 0),(Long)table_1.getValueAt(table_1.getSelectedRow(), 0),(String) table_1.getValueAt(table_1.getSelectedRow(), 1))) { 
 					JOptionPane.showMessageDialog(null, "Item has been added to the parcel succesfuly !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+					model_2.setRowCount(0);
+					Object newData1[] = new Object[1];
+ 					scrollPane_2.setVisible(true);
+					 for(Parcel parcel : SysData.getInstance().allParcels()) {
+						 if(parcel.getParcelId().equals(table.getValueAt(table.getSelectedRow(), 0)))
+					for(Item item : parcel.getListOfItem()) {
+						newData1[0] = item.getItemName();
+						((DefaultTableModel)table_2.getModel()).addRow(newData1);
+					}
+				}
+				}
 				else {
 					alreadyInLabel.setVisible(true);				
 					}

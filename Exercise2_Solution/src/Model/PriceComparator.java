@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class PriceComparator implements Comparator<LargeParcel>{
+public class PriceComparator implements Comparator<LargeParcel> , Serializable{
 
 	@Override
 	public int compare(LargeParcel o1, LargeParcel o2) {

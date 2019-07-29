@@ -1,16 +1,16 @@
 package Model;
+import java.io.Serializable;
 import java.util.Date;
 
 
 
-public class Driver extends Person{
+public class Driver extends Person implements Serializable{
 	
 	/**
 	 * Is the driver has valid license
 	 */	
 	private boolean hasValidLicense;
 	private boolean driverInUse;
-	private String password;
     public Driver(long id, String firstName, String surname, Date birthDate, Address address,
     		boolean hasValidLicense) 
     {
@@ -27,13 +27,7 @@ public class Driver extends Person{
 
 
 	/********************** Getters/Setters of class*****************************/
-	public String getPassword()	{
-		return this.password;
-	}
-	
-	public void setPassword(String password) {
-		this.password=password;
-	}
+
 	public boolean getHasValidLicense() {
 		return hasValidLicense;
 	}

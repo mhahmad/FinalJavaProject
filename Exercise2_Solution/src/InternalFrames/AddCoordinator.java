@@ -180,20 +180,21 @@ public class AddCoordinator extends JInternalFrame {
 			}
 			else {
 				String password = String.valueOf(passwordField.getPassword());
-				for(Map.Entry<String, Coordinator> coor : SysData.getInstance().getAllCoordinators().entrySet()) {
+				for(Map.Entry<Long, Coordinator> coor : SysData.getInstance().getAllCoordinators().entrySet()) {
 					if(coor.getValue().getId() == Long.parseLong(textField.getText()))
 						existCoor.setVisible(true);
 				}
 				for(Driver driver : SysData.getInstance().allDrivers())
 					if(driver.getId()==Long.parseLong(textField.getText()))
 						existCoor.setVisible(true);
-				for(Map.Entry<String,Receiver> rec :SysData.getInstance().getReceiversMap().entrySet()) {
+				for(Map.Entry<Long,Receiver> rec :SysData.getInstance().getReceiversMap().entrySet()) {
 					if(rec.getValue().getId()==Long.parseLong(textField.getText()))
 						existCoor.setVisible(true);
 				}
 				if(!existCoor.isVisible()) {
-					Coordinator coordinator = new Coordinator(Long.parseLong(textField.getText()),textField_1.getText(),textField_2.getText(),password);
-					SysData.getInstance().getAllCoordinators().put(password,coordinator );
+					Coordinator coordinator = new Coordinator(Long.parseLong(textField.getText()),textField_1.getText(),textField_2.getText());
+					SysData.getInstance().getAllCoordinators().put(Long.parseLong(textField.getText()),coordinator );
+					coordinator.setPassword(password);
 					JOptionPane.showMessageDialog(null, "Coordinator has been added succesfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 					textField.setText("");
 					textField_1.setText("");

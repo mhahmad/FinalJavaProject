@@ -1,12 +1,13 @@
 package Model;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Utils.Constants;
 import Utils.E_ParcelType;
 
-public class SmallParcel extends Parcel{
+public class SmallParcel extends Parcel implements Serializable{
 	
 	/** Small parcel type */
 	private E_ParcelType parcelType;

@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import Utils.E_Cities;
 
-public class Address {
+public class Address implements Serializable{
 	
 	;
 	

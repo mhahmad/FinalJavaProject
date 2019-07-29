@@ -1,4 +1,5 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Utils.Constants;
@@ -7,7 +8,7 @@ import Utils.Constants;
 
 
 
-public class Parcel 
+public class Parcel implements Serializable 
 {
 	
 	/**Key: Parcel ID, increase automatic*/

@@ -1,10 +1,12 @@
 package Model;
 
 
+import java.io.Serializable;
+
 import Utils.Constants;
 import Utils.E_Color;
 
-public class LargeParcel extends Parcel{
+public class LargeParcel extends Parcel implements Serializable{
 	
 	/** Color of the sticker for customs*/
 	public E_Color color;

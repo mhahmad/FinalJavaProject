@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import javax.swing.JTextField;
 
@@ -21,22 +22,22 @@ public class TrackParcel extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JLabel track1 = new JLabel("");
-		track1.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.png")));
+		track1.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.jpg")));
 		track1.setBounds(20, 11, 134, 176);
 		panel.add(track1);
 		
 		JLabel track2 = new JLabel("");
-		track2.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.png")));
+		track2.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.jpg")));
 		track2.setBounds(209, 11, 134, 176);
 		panel.add(track2);
 		
 		JLabel track3 = new JLabel("");
-		track3.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.png")));
+		track3.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.jpg")));
 		track3.setBounds(410, 11, 125, 176);
 		panel.add(track3);
 		
 		JLabel track4 = new JLabel("");
-		track4.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.png")));
+		track4.setIcon(new ImageIcon(TrackParcel.class.getResource("/4445.jpg")));
 		track4.setBounds(606, 11, 116, 183);
 		panel.add(track4);
 		
@@ -112,5 +113,9 @@ public class TrackParcel extends JInternalFrame {
 		JLabel lblCurrentLocation = new JLabel("XXXXXXXXXXX");
 		lblCurrentLocation.setBounds(324, 232, 91, 25);
 		getContentPane().add(lblCurrentLocation);
+		
+		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+			}
 	}
 }

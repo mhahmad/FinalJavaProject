@@ -1,7 +1,8 @@
 package Model;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Person {
+public class Person implements Serializable{
 
     /**
      * The ID of the person.
@@ -28,7 +29,8 @@ public class Person {
      * The person's address.
      */
     private Address address;
-
+    
+    protected String password;
 
 
   
@@ -98,6 +100,12 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public String getpassword() {
+    	return this.password;
+    }
+    public void setPassword(String password) {
+    	this.password = password;
     }
 
     public void setAddress(Address address) {

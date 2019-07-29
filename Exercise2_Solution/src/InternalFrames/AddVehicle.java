@@ -212,6 +212,8 @@ public class AddVehicle extends JInternalFrame {
 	    					duplicate.setVisible(true);
 	    			}
     				textField.setText("");
+    				System.out.println(SysData.getInstance().getVehicles());
+    				System.out.println(SysData.getInstance().getVehclesMap());
 	    		}
 	    	}
 	    });

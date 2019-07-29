@@ -1,6 +1,8 @@
 package Model;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 	 /**
 	  * Key:item catalog number 
 	  */

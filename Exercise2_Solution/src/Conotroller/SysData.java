@@ -45,9 +45,9 @@ public class SysData {
     HashMap<String, Parcel> allParcelsMap;
     HashMap<String,Vehicle> allVehiclesMap;
     HashMap<Integer, WareHouse> allWareHouses;
-    HashMap<String,Receiver> allReciversMap;
-    HashMap<String,Driver> allDriversMap;
-    HashMap<String,Coordinator> allCoordinators;
+    HashMap<Long, Receiver> allReciversMap;
+    HashMap<Long,Driver> allDriversMap;
+    HashMap<Long,Coordinator> allCoordinators;
     HashMap<Long,Receiver>allReceivers;
     //--------------------------------------------------------------------------//
     // -------------------------------Constructors------------------------------
@@ -61,10 +61,10 @@ public class SysData {
         allVehiclesMap = new HashMap<String, Vehicle>();
         allWareHouses = new HashMap<Integer, WareHouse>();
         allWareHouses.put(1, Constants.BASE_WAREHOUSE);
-        allReciversMap = new HashMap<String, Receiver>();
+        allReciversMap = new HashMap<Long, Receiver>();
         allVehicles = new ArrayList(allVehiclesMap.values());
-        allDriversMap = new HashMap<String,Driver>();
-        allCoordinators=new HashMap<String,Coordinator>();
+        allDriversMap = new HashMap<Long,Driver>();
+        allCoordinators=new HashMap<Long,Coordinator>();
         allReceivers = new HashMap<Long,Receiver>();
      }
     // -----------------------------------------Getters--------------------------------------
@@ -105,16 +105,16 @@ public class SysData {
     	return allWareHouses ;
     }
     
-    public HashMap<String,Receiver> getReceiversMap(){
+    public HashMap<Long,Receiver> getReceiversMap(){
     	return allReciversMap ;
     }
     public ArrayList<Vehicle> getVehicles(){
     	return allVehicles;
     }
-    public HashMap<String,Driver> getAllDriversMap(){
+    public HashMap<Long,Driver> getAllDriversMap(){
     	return this.allDriversMap;
     }
-    public HashMap<String,Coordinator> getAllCoordinators(){
+    public HashMap<Long,Coordinator> getAllCoordinators(){
     	return allCoordinators;
     }
 // -------------------------------Add && Remove Methods------------------------------
@@ -169,6 +169,7 @@ public class SysData {
             if (newCar != null) 
             {
 //                driver.setDriverInUse(true);
+            	allVehicles.add(newCar);
                 allVehiclesMap.put(vin,newCar);
                 return true;
                 
@@ -226,6 +227,7 @@ public class SysData {
             if (newTruck != null ) 
             {
 //                driver.setDriverInUse(true);
+            	allVehicles.add(newTruck);
                 allVehiclesMap.put(vin,newTruck);
                 return true;
             }
@@ -320,12 +322,13 @@ public class SysData {
             Person newPerson = new Person(id, firstName, surname, birthDate, address);
             
             Driver newDriver = new Driver(id, firstName, surname, birthDate, address, hasValidLicense);
-            for(Map.Entry<String, Coordinator> temp : allCoordinators.entrySet())
+            for(Map.Entry<Long, Coordinator> temp : allCoordinators.entrySet())
         		if(temp.getValue().getId()==id)
         			return false;
             if (newPerson != null && !allDrivers.contains(newDriver) && !allReciversMap.containsValue(newDriver)) 
             {
-            	allDriversMap.put(password, newDriver);
+            	newDriver.setPassword(password);
+            	allDriversMap.put(id, newDriver);
                 return allDrivers.add(newDriver);
             }
         }
@@ -345,15 +348,16 @@ public class SysData {
            email != null) 
     	{
             Receiver newReceiver = new Receiver (id, firstName, surname, birthDate, address, email);
-            	for(Map.Entry<String, Coordinator> temp : allCoordinators.entrySet())
+            	for(Map.Entry<Long, Coordinator> temp : allCoordinators.entrySet())
             		if(temp.getValue().getId()==id)
             			return false;
             if (newReceiver != null && !allReciversMap.containsValue(newReceiver) && !allDrivers.contains(newReceiver)) 
             {
             	if (newReceiver.getEmail()!=null)
             	{
+            		newReceiver.setPassword(password);
             		allReceivers.put(id, newReceiver);
-            		allReciversMap.put(password, newReceiver);
+            		allReciversMap.put(id, newReceiver);
             		return true;
             	}
             }
@@ -648,7 +652,7 @@ public class SysData {
     	int maxItems =0;
     	for(Receiver r:allReciversMap.values())
     	{
-    		if(r.getReceivedItems().size()>maxItems) 
+    		if(r.getReceivedItems().size() > maxItems) 
     		{
     			maxItems = r.getReceivedItems().size();
     			currReceiver = r;

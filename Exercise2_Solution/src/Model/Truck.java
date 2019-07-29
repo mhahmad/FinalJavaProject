@@ -1,4 +1,5 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -8,7 +9,7 @@ import Utils.Constants;
 import Utils.E_ModelType;
 import Utils.E_TypeTruck;
 
-public class Truck extends Vehicle{
+public class Truck extends Vehicle implements Serializable{
 
 	/** Type of trunk -depend on the load*/
 	private E_TypeTruck typeTrunk;

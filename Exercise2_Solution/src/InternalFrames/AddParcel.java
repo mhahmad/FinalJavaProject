@@ -200,7 +200,7 @@ public class AddParcel extends JInternalFrame {
 				dtf = new SimpleDateFormat("dd/MM/yyyy");
 				Date dd = null;
 				model.setRowCount(0);
-				for(Map.Entry<String, Receiver> temp : SysData.getInstance().getReceiversMap().entrySet()) {
+				for(Map.Entry<Long, Receiver> temp : SysData.getInstance().getReceiversMap().entrySet()) {
 					boolean flag = false;
 					for(int i =0 ;i < table.getRowCount();i++){
 						if(table.getValueAt(0, i).equals(temp.getValue().getId())) {

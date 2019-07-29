@@ -11,6 +11,7 @@ import java.util.List;
 
 import Model.Driver;
 import Model.Item;
+import Model.Receiver;
 import Model.Vehicle;
 import Model.WareHouse;
 
@@ -23,7 +24,6 @@ public class SerializationApp implements Serializable{
 		// ArrayList<WareHouse> list2 = D1.getWareHouses();
 		System.out.println("the size of array Items : "+D1.getAllItems().size());
 		System.out.println("the size of array WareHouse : "+D1.getWareHouses().size());
-		
 		System.out.println(" just created the delivery Instance ! ");
 		//listt.addAll((Collection<?>) D1.getAllItems()) ;
 	//	listt.addAll( D1.getWareHouses());
@@ -58,10 +58,12 @@ public class SerializationApp implements Serializable{
 		ArrayList<Driver> Drivers = (ArrayList<Driver>)List.get(2) ;
 		ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) List.get(3);
 		 HashMap<Integer, WareHouse> allWareHouses = (HashMap<Integer,WareHouse>)List.get(4);
-		 
+		 HashMap<String,Receiver> allReceiversMap = (HashMap<String,Receiver>)List.get(5);
 		System.out.println("the Drivver are : "+Drivers);
 		System.out.println("the vihcles : "+ vehicles);
 		System.out.println("the Warhouses Map : "+ allWareHouses);
+		System.out.println("All Receivers : " + allReceiversMap);
+		System.out.println("SIZE OF MAP : " + allReceiversMap.size());
  
 	}
 

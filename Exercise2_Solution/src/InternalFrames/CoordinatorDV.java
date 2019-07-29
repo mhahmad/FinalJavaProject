@@ -35,11 +35,14 @@ import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.JScrollPane;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.border.EtchedBorder;
 
 public class CoordinatorDV extends JInternalFrame {
@@ -54,7 +57,6 @@ public class CoordinatorDV extends JInternalFrame {
 			String[] columns = {"F.Name","L.Name","ID","Has A Valid License"};
 			DefaultTableModel model = new DefaultTableModel();
 			model.setColumnIdentifiers(columns);
-			setClosable(true);
 			getContentPane().setLayout(null);
 			
 			JLabel lblVehicledriverCordination = new JLabel("Vehicle&Driver Cordination");
@@ -62,22 +64,22 @@ public class CoordinatorDV extends JInternalFrame {
 			lblVehicledriverCordination.setHorizontalAlignment(SwingConstants.CENTER);
 			lblVehicledriverCordination.setBackground(new Color(204, 153, 204));
 			lblVehicledriverCordination.setForeground(new Color(51, 51, 204));
-			lblVehicledriverCordination.setBounds(210, 11, 242, 34);
+			lblVehicledriverCordination.setBounds(136, 48, 242, 34);
 			getContentPane().add(lblVehicledriverCordination);
 			
 			JLabel lblVehicles = new JLabel("Vehicles");
 			lblVehicles.setFont(new Font("Tahoma", Font.BOLD, 16));
-			lblVehicles.setBounds(244, 66, 88, 14);
+			lblVehicles.setBounds(244, 98, 88, 14);
 			getContentPane().add(lblVehicles);
 			
 			JLabel lblDrivers = new JLabel("Drivers");
 			lblDrivers.setFont(new Font("Tahoma", Font.BOLD, 16));
-			lblDrivers.setBounds(258, 330, 94, 14);
+			lblDrivers.setBounds(244, 383, 94, 14);
 			getContentPane().add(lblDrivers);
 			
 			JPanel vehicleSelection = new JPanel();
 			vehicleSelection.setBackground(new Color(255, 102, 102));
-			vehicleSelection.setBounds(18, 130, 94, 126);
+			vehicleSelection.setBounds(94, 167, 94, 126);
 			getContentPane().add(vehicleSelection);
 			vehicleSelection.setLayout(null);
 			
@@ -86,7 +88,7 @@ public class CoordinatorDV extends JInternalFrame {
 			
 			//String[] numbers = {"1","2","3","4"};
 	
-			SubmitButton.setBounds(641, 273, 89, 34);
+			SubmitButton.setBounds(766, 296, 89, 34);
 			getContentPane().add(SubmitButton);
 			
 			JRadioButton rdbtnCars = new JRadioButton("Cars");
@@ -188,7 +190,7 @@ public class CoordinatorDV extends JInternalFrame {
 			
 			
 			JScrollPane VehiclesTable = new JScrollPane();
-			VehiclesTable.setBounds(122, 87, 490, 219);
+			VehiclesTable.setBounds(232, 125, 490, 219);
 			getContentPane().add(VehiclesTable);
 			
 			table_1 = new JTable()  {
@@ -326,7 +328,7 @@ public class CoordinatorDV extends JInternalFrame {
 			
 			
 			JScrollPane DriversTable = new JScrollPane();
-			DriversTable.setBounds(122, 364, 490, 204);
+			DriversTable.setBounds(232, 410, 490, 204);
 			getContentPane().add(DriversTable);
 			
 			table_2 = new JTable() {
@@ -351,7 +353,7 @@ public class CoordinatorDV extends JInternalFrame {
 			
 			JPanel PickDriverspanel = new JPanel();
 			PickDriverspanel.setBackground(new Color(30, 144, 255));
-			PickDriverspanel.setBounds(10, 386, 102, 88);
+			PickDriverspanel.setBounds(86, 449, 102, 88);
 			getContentPane().add(PickDriverspanel);
 			PickDriverspanel.setLayout(null);
 			ButtonGroup Drivergroup  = new ButtonGroup() ;
@@ -457,7 +459,7 @@ public class CoordinatorDV extends JInternalFrame {
 					}
 				
 			});
-			AllDrivers.setBounds(0, 39, 102, 23);
+			AllDrivers.setBounds(0, 35, 102, 23);
 			PickDriverspanel.add(AllDrivers);
 			
 			Drivergroup.add(AvaliableDrivers);
@@ -468,7 +470,7 @@ public class CoordinatorDV extends JInternalFrame {
 		     PickBoth.setVisible(false);
 			PickBoth.setForeground(new Color(255, 0, 0));
 			PickBoth.setFont(new Font("Tahoma", Font.BOLD, 10));
-			PickBoth.setBounds(529, 318, 242, 26);
+			PickBoth.setBounds(693, 343, 242, 26);
 			getContentPane().add(PickBoth);
 			
 			table_2.addMouseListener(new MouseAdapter() {
@@ -568,6 +570,10 @@ public class CoordinatorDV extends JInternalFrame {
 			//addTruck(String vin, String color, E_ModelType type, long driverId, E_TypeTruck typeTrunk)
 			//addCar(String vin, String color, E_ModelType type,long driverId,boolean hybryd)
 			DefaultTableModel modell = new DefaultTableModel();
-		
+			for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+				((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+				}
+			BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
+			bi.setNorthPane(null);
 		}
 	}

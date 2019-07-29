@@ -1,16 +1,16 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 import Utils.Constants;
 //ADAM
-public class Receiver extends Person
+public class Receiver extends Person implements Serializable
 {
 	/**
 	 * Receiver e-mail for announcing about the parcel
 	 */
 	private String email;
-	private String password;
 	/**
 	 * List of received items of the person
 	 */
@@ -122,11 +122,6 @@ public class Receiver extends Person
 			this.email = null;
 	}
 	
-	public String getPassword() {
-		return this.password;
-	}
-	public void setPassword(String password) {
-		this.password=password;
-	}
+
 
 }
