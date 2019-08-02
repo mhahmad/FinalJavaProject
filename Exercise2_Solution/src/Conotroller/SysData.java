@@ -1036,6 +1036,61 @@ public class SysData {
     	return null;
     }
 
-    
+    /**
+     * 
+     * @param array
+     * @returns an array of the Available Trucks in the SysData .
+     */
+ public ArrayList<Vehicle> SetTruckArray(){
+	 ArrayList<Vehicle> toReturn = new ArrayList<Vehicle>();
+	 if(this.allVehiclesMap.isEmpty()) {
+		 return toReturn;
+	 }
+	 for(Vehicle V : this.allVehiclesMap.values()) {
+		 if(V instanceof Truck) {
+			 if(! V.isInUse()) {
+				 toReturn.add(V) ;
+			 }
+		 }
+	 }
+	 
+	 return toReturn ;
+ }
+ 
+ public ArrayList<Driver> setDriverArray(){
+	 ArrayList<Driver> toReturn = new ArrayList<Driver>() ;
+	 if(this.allDrivers.isEmpty()) {
+		 return toReturn ;
+	 }
+	 for(Driver d : this.allDrivers) {
+		 if(d.getHasValidLicense()) {
+		 if(!d.isDriverInUse()) {
+			 toReturn.add(d) ;
+		 }
+	 }
+	 }
+	 return toReturn ;
+ }
+ 
+ /**
+  * 
+  * @param array
+  * @returns an array of the Available Cars in the SysData .
+  */
+public ArrayList<Vehicle> SetCarArray(){
+	 ArrayList<Vehicle> toReturn = new ArrayList<Vehicle>();
+	 if(this.allVehiclesMap.isEmpty()) {
+		 return toReturn;
+	 }
+	 for(Vehicle V : this.allVehiclesMap.values()) {
+		 if(V instanceof Car) {
+			 if(! V.isInUse()) {
+				 toReturn.add(V) ;
+			 }
+		 }
+	 }
+	 
+	 return toReturn ;
+}
     
 }

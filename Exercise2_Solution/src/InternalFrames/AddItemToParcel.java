@@ -31,6 +31,7 @@ public class AddItemToParcel extends JInternalFrame {
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	private JButton btnRefresh;
 
 	/**
 	 * Launch the application.
@@ -120,8 +121,8 @@ public class AddItemToParcel extends JInternalFrame {
 		DefaultTableModel model_1 = (DefaultTableModel)table_1.getModel();
 		JButton btnNewButton = new JButton("Add item to parcel");
 		Object rowData[] = new Object[5];
-
-		JButton btnRefresh = new JButton("Refresh");
+		
+		 btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnNewButton.setEnabled(false);
@@ -173,7 +174,7 @@ public class AddItemToParcel extends JInternalFrame {
 		getContentPane().add(alreadyInLabel);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(972, 226, 279, 335);
+		scrollPane_2.setBounds(967, 225, 284, 336);
 		getContentPane().add(scrollPane_2);
 		
 		table_2 = new JTable();
@@ -195,11 +196,53 @@ public class AddItemToParcel extends JInternalFrame {
 				return columnEditables[column];
 			}
 		});
+		
+		JButton btnDeleteItem = new JButton("Delete Item");
+	
+		btnDeleteItem.setBackground(Color.RED);
+		btnDeleteItem.setForeground(Color.WHITE);
+		btnDeleteItem.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnDeleteItem.setBounds(1038, 574, 151, 37);
+		getContentPane().add(btnDeleteItem);
+		btnDeleteItem.setVisible(false);
+		JLabel doneLabel = new JLabel("Item has been successfuly added to the parcel .");
 		alreadyInLabel.setVisible(false);
 		DefaultTableModel model_2 = (DefaultTableModel)table_2.getModel();
+		btnDeleteItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				doneLabel.setVisible(false);
+				 Object newData2[]= new Object[1];
+				 
+				Parcel p = SysData.getInstance().getParcelById((String) table.getValueAt(table.getSelectedRow(), 0));
+				if(!p.getListOfItem().isEmpty())
+				for(Item item : p.getListOfItem()) {
+					if(table_2.getValueAt(table_2.getSelectedRow(), 0) == item.getItemName()) {
+						p.removeItem(item);
+						break;
+				}
+			}
+				
+				if(p.getListOfItem().isEmpty()) {
+					btnDeleteItem.setVisible(false);
+				 scrollPane_2.setVisible(false);
+				}
+				model_2.setRowCount(0);
+				for(Item item : p.getListOfItem()) {
+					newData2[0] = item.getItemName();
+					((DefaultTableModel)table_2.getModel()).addRow(newData2);
+				}
+				if(p.getListOfItem().isEmpty())
+					table.setValueAt(0, table.getSelectedRow(), 2);
+				else
+					table.setValueAt(p.getWeight(), table.getSelectedRow(), 2);
+				table.setValueAt(p.getCurrentCost(),table.getSelectedRow(), 3);
+					
+			}
+		});
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		 public void valueChanged(ListSelectionEvent event) {
 			 scrollPane_2.setVisible(false);
+				btnDeleteItem.setVisible(false);
 			 if(table.getSelectedRow()>=0 &&table_1.getSelectedRow()>=0)
 			 SwingUtilities.invokeLater( 
 				        new Runnable() {
@@ -215,6 +258,7 @@ public class AddItemToParcel extends JInternalFrame {
 					 if(parcel.getParcelId().equals(table.getValueAt(table.getSelectedRow(), 0)))
 						 if(!parcel.getListOfItem().isEmpty()) {
 							scrollPane_2.setVisible(true);
+							btnDeleteItem.setVisible(true);
 							for(Item item : parcel.getListOfItem()) {
 								rowData1[0] = item.getItemName();
 								((DefaultTableModel)table_2.getModel()).addRow(rowData1);
@@ -225,7 +269,15 @@ public class AddItemToParcel extends JInternalFrame {
 			 }
 			 }
 		});
+
+		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		btnDeleteItem.setEnabled(false);
 		
+		doneLabel.setForeground(new Color(50, 205, 50));
+		doneLabel.setFont(new Font("Verdana Pro Cond SemiBold", Font.PLAIN, 23));
+		doneLabel.setBounds(131, 896, 532, 37);
+		getContentPane().add(doneLabel);
+		doneLabel.setVisible(false);
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			 public void valueChanged(ListSelectionEvent event) {
 				 if(table_1.getSelectedRow()>=0 && table.getSelectedRow()>=0)
@@ -240,19 +292,37 @@ public class AddItemToParcel extends JInternalFrame {
 			 }
 			 
 			});
+		table_2.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			 public void valueChanged(ListSelectionEvent event) {
+				 if(table_2.getSelectedRow()>=0)
+					 SwingUtilities.invokeLater( 
+						        new Runnable() {
+						            public void run() {
+						                btnDeleteItem.setEnabled(true);
+						            }
+						        }
+						    );
+			
+			 }
+			 
+			});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				alreadyInLabel.setVisible(false);
+				doneLabel.setVisible(false);
 				if(SysData.getInstance().addItemToParcel((String)table.getValueAt(table.getSelectedRow(), 0),(Long)table_1.getValueAt(table_1.getSelectedRow(), 0),(String) table_1.getValueAt(table_1.getSelectedRow(), 1))) { 
-					JOptionPane.showMessageDialog(null, "Item has been added to the parcel succesfuly !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+					doneLabel.setVisible(true);
 					model_2.setRowCount(0);
 					Object newData1[] = new Object[1];
  					scrollPane_2.setVisible(true);
+ 					btnDeleteItem.setVisible(true);
 					 for(Parcel parcel : SysData.getInstance().allParcels()) {
-						 if(parcel.getParcelId().equals(table.getValueAt(table.getSelectedRow(), 0)))
+						 if(parcel.getParcelId().equals((String)table.getValueAt(table.getSelectedRow(), 0)))
 					for(Item item : parcel.getListOfItem()) {
 						newData1[0] = item.getItemName();
 						((DefaultTableModel)table_2.getModel()).addRow(newData1);
+						table.setValueAt(parcel.getWeight(), table.getSelectedRow(), 2);
+						table.setValueAt(parcel.getCurrentCost(), table.getSelectedRow(), 3);
 					}
 				}
 				}
@@ -261,8 +331,14 @@ public class AddItemToParcel extends JInternalFrame {
 					}
 				}
 		});
+		scrollPane_2.getViewport().setBackground(Color.WHITE);
+
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}
+	}
+	
+	public JButton refresh() {
+		return btnRefresh;
 	}
 }

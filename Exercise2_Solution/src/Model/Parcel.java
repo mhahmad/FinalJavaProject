@@ -78,7 +78,7 @@ public class Parcel implements Serializable
 		 this.parcelId = getNextId();
 		 this.sentToReceiver = false;
 		 listOfItem = new ArrayList<Item>();
-
+		 Constants.BASE_WAREHOUSE.addParcel(this);
 		 locations = new ArrayList<WareHouse>();
 		 locations.add(Constants.BASE_WAREHOUSE);
 		 currentWareHouse = Constants.BASE_WAREHOUSE;

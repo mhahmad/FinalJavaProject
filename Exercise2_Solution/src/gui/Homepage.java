@@ -5,6 +5,7 @@ import InternalFrames.AddItem;
 import InternalFrames.AddItemToParcel;
 import InternalFrames.AddParcel;
 import InternalFrames.AddReceiver;
+import InternalFrames.AddRoute;
 import InternalFrames.AddVehicle;
 import InternalFrames.AddWarehouse;
 import InternalFrames.AllCars;
@@ -12,6 +13,7 @@ import InternalFrames.AllCoordinators;
 import InternalFrames.AllDrivers;
 import InternalFrames.AllReceivers;
 import InternalFrames.AllTrucks;
+import InternalFrames.CoordinatorDV;
 import InternalFrames.SmartBuy;
 import InternalFrames.TwiceAtWareHouse;
 
@@ -118,6 +120,9 @@ public class Homepage extends JFrame {
 		TwiceAtWareHouse frameTwice = new TwiceAtWareHouse();
 		frameTwice.setBounds(416, 0, 1506, 994);
 		getContentPane().add(frameTwice);
+		AddRoute frameRoute = new AddRoute();
+		getContentPane().add(frameRoute);
+		frameRoute.setBounds(416, 0, 1506, 994);
 		mnFile.add(mntmExit);
 		AllCars frameCars = new AllCars();
 		frameCars.setBounds(416, 0, 1506, 994);
@@ -145,6 +150,10 @@ public class Homepage extends JFrame {
 		JMenuItem menuAddItem = new JMenuItem("Add Item");
 		menuAddItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mnActions.add(menuAddItem);
+		
+		CoordinatorDV frameDV = new CoordinatorDV();
+		frameDV.setBounds(416, 0, 1506, 994);
+		getContentPane().add(frameDV);
 		
 		JMenuItem menuAddParcel = new JMenuItem("Add Parcel");
 		JMenuItem mntmAllReceivers = new JMenuItem("All Receivers");
@@ -209,6 +218,7 @@ public class Homepage extends JFrame {
 					label.setVisible(false);
 					clock.setVisible(false);
 					frameDrivers.dispose();
+					frameDV.dispose();
 					frameCoordinators.dispose();
 					frameTrucks.dispose();
 					frameSmartBuy.dispose();
@@ -239,6 +249,7 @@ public class Homepage extends JFrame {
 					label.setVisible(false);
 					frameDrivers.dispose();
 					frameTrucks.dispose();
+					frameDV.dispose();
 
 				}
 			});
@@ -250,6 +261,63 @@ public class Homepage extends JFrame {
 		JMenuItem addItemtoParcelMenu = new JMenuItem("Add Item to Parcel");
 		addItemtoParcelMenu.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mnActions.add(addItemtoParcelMenu);
+		
+		JMenuItem mntmAddDriverTo = new JMenuItem("Add driver to Vehicle");
+		mntmAddDriverTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frameDV.setVisible(true);
+				frame2.dispose();
+				frame1.dispose();
+				frame3.dispose();
+				frameSmartBuy.dispose();
+				frame4.dispose();
+				frameCars.dispose();
+				frame5.dispose();
+				frameTwice.dispose();
+				frameReceivers.dispose();
+				frame6.dispose();
+				frame7.dispose();
+				frame8.dispose();
+				frameCoordinators.dispose();
+				clock.setVisible(false);
+				label2.setVisible(true);
+				label.setVisible(false);
+				frameDrivers.dispose();
+				frameTrucks.dispose();
+				frameRoute.dispose();
+			}
+		});
+		mntmAddDriverTo.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnActions.add(mntmAddDriverTo);
+		
+		JMenuItem mntmAddRoute = new JMenuItem("Add Route");
+		mntmAddRoute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frameRoute.setVisible(true);
+				frameDV.dispose();
+				frame2.dispose();
+				frame1.dispose();
+				frameRoute.getRefresh().doClick();
+				frame3.dispose();
+				frameSmartBuy.dispose();
+				frame4.dispose();
+				frameCars.dispose();
+				frame5.dispose();
+				frameTwice.dispose();
+				frameReceivers.dispose();
+				frame6.dispose();
+				frame7.dispose();
+				frame8.dispose();
+				frameCoordinators.dispose();
+				clock.setVisible(false);
+				label2.setVisible(true);
+				label.setVisible(false);
+				frameDrivers.dispose();
+				frameTrucks.dispose();
+			}
+		});
+		mntmAddRoute.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnActions.add(mntmAddRoute);
 		
 		JMenu mnShow = new JMenu("Show");
 		mnShow.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -270,6 +338,7 @@ public class Homepage extends JFrame {
 				frameCars.dispose();
 				frameSmartBuy.dispose();
 				frame5.dispose();
+				frameDV.dispose();
 				frame7.dispose();
 				frameTrucks.dispose();
 				frame8.dispose();
@@ -297,6 +366,7 @@ public class Homepage extends JFrame {
 				frameSmartBuy.dispose();
 				frame3.dispose();
 				frame4.dispose();
+				frameDV.dispose();
 				frame5.dispose();
 				frameCars.dispose();
 				frame7.dispose();
@@ -326,6 +396,7 @@ public class Homepage extends JFrame {
 				frameSmartBuy.dispose();
 				frame7.dispose();
 				frameCars.dispose();
+				frameDV.dispose();
 				frame8.dispose();
 				frameCoordinators.dispose();
 				clock.setVisible(false);
@@ -346,6 +417,7 @@ public class Homepage extends JFrame {
 				frame1.dispose();
 				frame2.dispose();
 				frame3.dispose();
+				frameDV.dispose();
 				frameDrivers.dispose();
 				frameSmartBuy.dispose();
 				frame4.dispose();
@@ -376,6 +448,7 @@ public class Homepage extends JFrame {
 				frame1.dispose();
 				frameCars.dispose();
 				frame2.dispose();
+				frameDV.dispose();
 				frame3.dispose();
 				frameDrivers.dispose();
 				frame4.dispose();
@@ -407,6 +480,7 @@ public class Homepage extends JFrame {
 			frameSmartBuy.dispose();
 			frameDrivers.dispose();
 			frame4.dispose();
+			frameDV.dispose();
 			frame5.dispose();
 			frame7.dispose();
 			frame8.dispose();
@@ -442,7 +516,7 @@ public class Homepage extends JFrame {
 				frame8.dispose();
 				frameCoordinators.dispose();
 				frameTwice.dispose();
-			
+				frameDV.dispose();
 				clock.setVisible(false);
 				frameReceivers.dispose();
 				label2.setVisible(true);
@@ -464,6 +538,7 @@ public class Homepage extends JFrame {
 				frameReceivers.dispose();
 				frame7.dispose();
 				frame8.dispose();
+				frameDV.dispose();
 				frameSmartBuy.dispose();
 				frameCoordinators.dispose();
 				label2.setVisible(true);
@@ -480,6 +555,7 @@ public class Homepage extends JFrame {
 				frame2.dispose();		
 				frameCars.dispose();
 				frameSmartBuy.dispose();
+				frameDV.dispose();
 				frame4.dispose();
 				frameTwice.dispose();
 				frame5.dispose();
@@ -505,6 +581,7 @@ public class Homepage extends JFrame {
 				frameCars.dispose();
 				frameDrivers.dispose();
 				frame6.dispose();
+				frameDV.dispose();
 				frame7.dispose();
 				frame8.dispose();
 				frameTwice.dispose();
@@ -522,6 +599,7 @@ public class Homepage extends JFrame {
 				frame7.setVisible(true);
 				frame3.dispose();
 				frame2.dispose();
+				frameDV.dispose();
 				frame1.dispose();
 				frameDrivers.dispose();
 				frame5.dispose();
@@ -545,11 +623,12 @@ public class Homepage extends JFrame {
 				frame3.dispose();
 				frame2.dispose();	
 				frameSmartBuy.dispose();
-
+				frame8.refresh().doClick();
 				frameDrivers.dispose();
 				frame1.dispose();
 				frameCars.dispose();
 				frame5.dispose();
+				frameDV.dispose();
 				frame6.dispose();
 				frame4.dispose();
 				frameCoordinators.dispose();
@@ -572,6 +651,7 @@ public class Homepage extends JFrame {
 				frame3.dispose();
 				frame5.dispose();
 				frameSmartBuy.dispose();
+				frameDV.dispose();
 				frameCars.dispose();
 				frameTwice.dispose();
 				frame6.dispose();
