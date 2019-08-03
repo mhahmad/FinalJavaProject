@@ -134,6 +134,14 @@ public class DriverPage extends JFrame {
 		panel.add(checked);
 		checked.setOpaque(false);
 		
+		JLabel lblUnloadedSuccessfuly = new JLabel("UNLOADED SUCCESSFULY !");
+		lblUnloadedSuccessfuly.setForeground(new Color(0, 255, 0));
+		lblUnloadedSuccessfuly.setFont(new Font("Verdana Pro", Font.PLAIN, 25));
+		lblUnloadedSuccessfuly.setBounds(352, 518, 383, 55);
+		panel.add(lblUnloadedSuccessfuly);
+		lblUnloadedSuccessfuly.setVisible(false);
+		
+		
 		JButton btnUnload = new JButton("UNLOAD");
 		btnUnload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -151,7 +159,21 @@ public class DriverPage extends JFrame {
 				dialog.getBtnNewButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
+						dialog.getFailedLabel().setVisible(false);
+						lblUnloadedSuccessfuly.setVisible(false);
+						if(driver != null && truck != null) {
+							if(SysData.getInstance().sendTruckToWareHouse(truck.getVin())) {
+								dialog.dispose();
+								lblUnloadedSuccessfuly.setVisible(true);
+								jobLabel.setText("You have no job for today , ");
+								
+							}
+							else
+							{
+								dialog.getFailedLabel().setVisible(true);
+							}
+							
+						}
 					}
 				});
 				
@@ -174,25 +196,19 @@ public class DriverPage extends JFrame {
 		
 		
 		this.setLocation(getLocation());
+		
+		
 		JLabel background = new JLabel("");
 		background.setBounds(79, 178, 56, 16);
 		panel.add(background);
 		background.setIcon(new ImageIcon(getClass().getResource("/blue.jpg")) );
 		background.setBounds(0, 0, 1057, 648);
+		
+		
 		setLocationRelativeTo(null);
 		setResizable(false);
-
-		
-		
-		
-		
-		
 		
 	
-		
-		
-	
-		
 		
 	}
 	public Driver getDriver() {

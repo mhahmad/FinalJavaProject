@@ -21,6 +21,7 @@ public class UNLOAD extends JDialog {
 	private JButton btnNewButton;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private JLabel lblFailedToUnload;
 	/**
 	 * Launch the application.
 	 */
@@ -71,12 +72,21 @@ public class UNLOAD extends JDialog {
 				return columnEditables[column];
 			}
 		});
+		
+		lblFailedToUnload = new JLabel("Failed to unload !");
+        lblFailedToUnload.setForeground(Color.RED);
+        lblFailedToUnload.setFont(new Font("Tahoma", Font.BOLD, 15));
+        lblFailedToUnload.setBounds(73, 13, 271, 26);
+        contentPanel.add(lblFailedToUnload);
+        lblFailedToUnload.setVisible(false);
 		setLocationRelativeTo(null);
 		JLabel texture = new JLabel();
 		texture.setIcon(new ImageIcon(getClass().getResource("/blue.jpg")));
 		contentPanel.add(texture);
 		texture.setSize(400,550);
         table.setCellSelectionEnabled(false);
+        
+        
 
 		
 		texture.setVisible(true);
@@ -88,5 +98,9 @@ public class UNLOAD extends JDialog {
 	
 	public JTable getTable() {
 		return table;
+	}
+	
+	public JLabel getFailedLabel() {
+		return lblFailedToUnload;
 	}
 }
