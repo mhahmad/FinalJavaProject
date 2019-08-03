@@ -171,8 +171,10 @@ public class WareHouse implements Comparable<WareHouse>{
 		//The parcel and the warehouse on the same region, and the truck destination is to another region.
 		if(this.getAddress().getCity().getRegion()==p.getReceiver().getAddress().getCity().getRegion()) 
 		{
+			System.out.println("DDDDDDDDDDDDDDDDDDDDDDDD");
 			if(destinationWareHouse.getAddress().getCity().getRegion()!=p.getReceiver().getAddress().getCity().getRegion())
 			{
+				System.out.println("RRRRRRRRRRRRRRRRRRRRR");
 				return false;
 			}
 		}
@@ -195,6 +197,7 @@ public class WareHouse implements Comparable<WareHouse>{
 			Parcel p = parcelsByPriceAndIndex.poll();
 			if(checkValidity(p, destinationWareHouse,limitWeight))
 			{
+				System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
 				parcelsByOrder.remove(p);
 				while(parcelsListSortedByPrice.contains(p))
 					parcelsListSortedByPrice.remove(p);
@@ -203,6 +206,7 @@ public class WareHouse implements Comparable<WareHouse>{
 					parcelsByPriceAndIndex.addAll(tmp);
 					
 				}
+				System.out.println("CHECKING : " + p);
 				return p;
 			}
 			else {

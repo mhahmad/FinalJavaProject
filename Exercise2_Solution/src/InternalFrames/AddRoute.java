@@ -218,7 +218,7 @@ public class AddRoute extends JInternalFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setForeground(new Color(50, 205, 50));
 		lblNewLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-		lblNewLabel.setBounds(711, 753, 498, 29);
+		lblNewLabel.setBounds(645, 753, 658, 29);
 		getContentPane().add(lblNewLabel);
 		
 		refresh = new JButton("Refresh");
@@ -227,10 +227,13 @@ public class AddRoute extends JInternalFrame {
 				Object newData[] = new Object[2];
 				model.setRowCount(0);
 				for(Map.Entry<String, Vehicle > temp : SysData.getInstance().getVehclesMap().entrySet()) {
-					if(temp.getValue() instanceof Truck && temp.getValue().isInUse() && temp.getValue().getDriver() != null) {
+					if(temp.getValue() instanceof Truck && temp.getValue().isInUse() && temp.getValue().getDriver() != null ) {
+						Truck tr = (Truck) temp.getValue();
+						if(tr.getDestinationWareHouse() == null) {
 						newData[0] = temp.getValue().getVin() ;
 						newData[1] = "DriverID: " +temp.getValue().getDriver().getId();
 						model.addRow(newData);
+						}
 					}
 				}
 				
@@ -274,6 +277,8 @@ public class AddRoute extends JInternalFrame {
 		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			 public void valueChanged(ListSelectionEvent event) {
+				 panel.setVisible(false);
+	                addRoute.setVisible(false);
 				 if(table.getSelectedRow()>=0)
 				 SwingUtilities.invokeLater( 
 					        new Runnable() {
@@ -308,17 +313,21 @@ public class AddRoute extends JInternalFrame {
 				sameWarehouse.setVisible(false);
 				lblNewLabel.setVisible(false);
 				lblNewLabel.setText("");
-				ArrayList<Parcel> array;
+				ArrayList<Parcel> array = new ArrayList<Parcel>();
 				Truck tr1 = (Truck)SysData.getInstance().getVehclesMap().get(table.getValueAt(table.getSelectedRow(), 0));
-				System.out.println(tr1);
-				System.out.println(tr1.getDestinationWareHouse());
-				if(table_2.getValueAt(table_2.getSelectedRow(), 0) == table_1.getValueAt(table_1.getSelectedRow(), 0))
+				if(table_1.getSelectedRow() >= 0 && table_2.getSelectedRow() >= 0) {
 					sameWarehouse.setVisible(true);
+					sameWarehouse.setText("You should select a warehouse first");
+				}
+				else if(table_2.getValueAt(table_2.getSelectedRow(), 0) == table_1.getValueAt(table_1.getSelectedRow(), 0)) {
+					sameWarehouse.setVisible(true);
+					sameWarehouse.setText("You can't choose same Warehouse !");
+				}
 				else if(tr1.getDestinationWareHouse() ==null) {
-					array =(ArrayList<Parcel>)SysData.getInstance().addAllPossibleParcelsToTruck(tr1.getVin(), (Integer)table_1.getValueAt(table_2.getSelectedRow(), 0), (Integer)table_2.getValueAt(table_2.getSelectedRow(), 0));
-					System.out.println(array);
+					array = (ArrayList<Parcel>)(SysData.getInstance().addAllPossibleParcelsToTruck((String)tr1.getVin(), (int)table_1.getValueAt(table_1.getSelectedRow(), 0), (int)table_2.getValueAt(table_2.getSelectedRow(), 0)));
 					lblNewLabel.setVisible(true);
 					lblNewLabel.setText("Route for TruckID : " + table.getValueAt(table.getSelectedRow(), 0) + " has been added successfuly !");
+					refresh.doClick();
 				}
 			}
 		});

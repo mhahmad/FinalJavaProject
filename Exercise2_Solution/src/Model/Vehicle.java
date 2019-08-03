@@ -134,8 +134,8 @@ public class Vehicle {
 			CAPACITY = Constants.TRUCK_CAPACTITY;
 		}
 		
-		if(isInUse())
-			return false;
+//		if(isInUse())
+//			return false;
 
 		if((getWeight() + parcel.getWeight()) <= CAPACITY) {
 			setWeight(getWeight() + parcel.getWeight());

@@ -66,6 +66,8 @@ public class SysData {
         allDriversMap = new HashMap<Long,Driver>();
         allCoordinators=new HashMap<Long,Coordinator>();
         allReceivers = new HashMap<Long,Receiver>();
+        
+
      }
     // -----------------------------------------Getters--------------------------------------
 
@@ -930,14 +932,15 @@ public class SysData {
     	}
     	WareHouse sourceWareHouse = allWareHouses.get(fromWh);
     	WareHouse distenationWareHouse = allWareHouses.get(toWh);
-
     	while(t.getWeight() < Constants.TRUCK_CAPACTITY)
     	{
+    		System.out.println("TRUCK WEIGHT : " + t.getWeight());
     		Parcel p;
     		p = sourceWareHouse.getNextParcelForTruck(distenationWareHouse, (Constants.TRUCK_CAPACTITY-t.getWeight()));
+    	System.out.println("THIS IS " + p);
     		if(p!=null)
     		{
-    			
+    			System.out.println("3aaaaaaaaaaaaaaaaaaaaaw");
     			t.addParcel(p);
     		}
     		else {
@@ -946,6 +949,8 @@ public class SysData {
     	}
     	
     	t.setDestinationWareHouse(distenationWareHouse);
+    	System.out.println(t.getParcels().isEmpty());
+    	System.out.println(t.getParcels());
     	return t.getParcels();
     }
     
