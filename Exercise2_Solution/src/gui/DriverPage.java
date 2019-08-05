@@ -77,8 +77,13 @@ public class DriverPage extends JFrame {
 				dispose();
 			}
 		});
+		
 		mntmLogOut.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mnNewMenu.add(mntmLogOut);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setFont(new Font("Sitka Small", Font.PLAIN, 35));
+		label_1.setBounds(32, 182, 970, 61);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Exit");
 		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -97,7 +102,8 @@ public class DriverPage extends JFrame {
 		panel.setBounds(0, 0, 1057, 648);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+		panel.add(label_1);
+		label_1.setVisible(true);
 		JLabel lblWelcome = new JLabel("Welcome");
 		lblWelcome.setForeground(Color.WHITE);
 		lblWelcome.setFont(new Font("Verdana Pro", Font.PLAIN, 40));
@@ -105,7 +111,7 @@ public class DriverPage extends JFrame {
 		panel.add(lblWelcome);
 		
 		JLabel label = new JLabel("");
-		label.setForeground(Color.WHITE);
+		label.setForeground(Color.ORANGE);
 		label.setFont(new Font("Verdana Pro", Font.PLAIN, 40));
 		label.setBounds(228, 48, 662, 36);
 		panel.add(label);
@@ -113,7 +119,7 @@ public class DriverPage extends JFrame {
 		JLabel jobLabel = new JLabel("You have no job for today , ");
 		jobLabel.setForeground(new Color(253, 245, 230));
 		jobLabel.setFont(new Font("Sitka Small", Font.PLAIN, 35));
-		jobLabel.setBounds(22, 110, 1011, 129);
+		jobLabel.setBounds(22, 110, 1011, 83);
 		panel.add(jobLabel);
 		
 		System.out.println(login.idUser);
@@ -132,10 +138,14 @@ public class DriverPage extends JFrame {
 						System.out.println("DRIVER IS matched");
 						truck = (Truck)ridenV.getValue(); 
 						if(truck!= null && truck.getDestinationWareHouse() !=null) { 
-							jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
+							jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,");
+							label_1.setText("the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
 						}
-						else
+						else {
 							jobLabel.setText("You have no job for today , ");
+							label_1.setText("");
+						}
+							
 					}
 			}
 			else if(ridenV.getValue() instanceof Car) {
@@ -159,10 +169,10 @@ public class DriverPage extends JFrame {
 //				}
 //		}
 		
-		if(truck!= null && truck.getDestinationWareHouse() !=null) {
-			jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
-			
-		}
+//		if(truck!= null && truck.getDestinationWareHouse() !=null) {
+//			jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
+//			
+//		}
 		
 		JCheckBox checked = new JCheckBox("Destination reached.");
 		checked.setForeground(Color.WHITE);
@@ -203,6 +213,7 @@ public class DriverPage extends JFrame {
 								dialog.dispose();
 								lblUnloadedSuccessfuly.setVisible(true);
 								jobLabel.setText("You have no job for today , ");
+								label_1.setText("");
 								
 							}
 							else
@@ -239,6 +250,8 @@ public class DriverPage extends JFrame {
 		panel.add(background);
 		background.setIcon(new ImageIcon(getClass().getResource("/blue.jpg")) );
 		background.setBounds(0, 0, 1057, 648);
+		
+		
 		
 		
 		
