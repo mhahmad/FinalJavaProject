@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Map;
 import java.awt.Color;
@@ -315,7 +316,7 @@ public class AddRoute extends JInternalFrame {
 				lblNewLabel.setText("");
 				ArrayList<Parcel> array = new ArrayList<Parcel>();
 				Truck tr1 = (Truck)SysData.getInstance().getVehclesMap().get(table.getValueAt(table.getSelectedRow(), 0));
-				if(table_1.getSelectedRow() >= 0 && table_2.getSelectedRow() >= 0) {
+				if(table_1.getSelectedRow() < 0 && table_2.getSelectedRow() < 0) {
 					sameWarehouse.setVisible(true);
 					sameWarehouse.setText("You should select a warehouse first");
 				}
@@ -335,7 +336,9 @@ public class AddRoute extends JInternalFrame {
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		scrollPane_1.getViewport().setBackground(Color.WHITE);
 		scrollPane_2.getViewport().setBackground(Color.WHITE);
-
+		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
+			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
+			}
 		
 	}
 	

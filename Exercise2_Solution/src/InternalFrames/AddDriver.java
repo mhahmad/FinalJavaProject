@@ -8,8 +8,12 @@ import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 import Model.Address;
 
 import javax.swing.JPasswordField;
@@ -116,30 +120,35 @@ public class AddDriver extends JInternalFrame {
 		textField.setBounds(206, 145, 169, 30);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(9));
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_1.setBounds(206, 204, 169, 30);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(20));
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_2.setBounds(206, 269, 169, 30);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		textField_2.setDocument(new JTextFieldLimit(20));
 		
 		textField_3 = new JTextField();
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_3.setBounds(206, 392, 169, 30);
 		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
+		textField_3.setDocument(new JTextFieldLimit(10));
 		
 		textField_5 = new JTextField();
 		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_5.setBounds(206, 508, 169, 30);
 		getContentPane().add(textField_5);
 		textField_5.setColumns(10);
+		textField_5.setDocument(new JTextFieldLimit(20));
 		
 		JLabel lblPassword = new JLabel("Password :");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -161,12 +170,14 @@ public class AddDriver extends JInternalFrame {
 		textField_4.setBounds(206, 571, 169, 30);
 		getContentPane().add(textField_4);
 		textField_4.setColumns(10);
+		textField_4.setDocument(new JTextFieldLimit(5));
 		
 		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textField_6.setBounds(206, 628, 169, 30);
 		getContentPane().add(textField_6);
 		textField_6.setColumns(10);
+		textField_6.setDocument(new JTextFieldLimit(7));
 		
 		JLabel lblAddDriverTo = new JLabel("Add driver to the System :");
 		lblAddDriverTo.setForeground(Color.BLUE);
@@ -181,9 +192,9 @@ public class AddDriver extends JInternalFrame {
 		btnNewButton.setBounds(123, 791, 177, 53);
 		getContentPane().add(btnNewButton);
 		
-		JLabel numbersOnly = new JLabel("Must contain numbers only!");
+		JLabel numbersOnly = new JLabel("");
 		numbersOnly.setForeground(Color.RED);
-		numbersOnly.setBounds(387, 152, 157, 16);
+		numbersOnly.setBounds(387, 152, 205, 17);
 		getContentPane().add(numbersOnly);
 		numbersOnly.setVisible(false);
 		
@@ -293,6 +304,13 @@ public class AddDriver extends JInternalFrame {
 				else if (!textField.getText().matches("[0-9]+")) {
 					textField.setBorder(border);
 					numbersOnly.setVisible(true);
+					numbersOnly.setText("Must contain numbers only!");
+				}
+				else if(textField.getText().length() != 9) {
+					textField.setBorder(border);
+					numbersOnly.setText("Must be 9 digits!");
+					numbersOnly.setVisible(true);
+					
 				}
 				else if(!textField_1.getText().matches("^[a-zA-Z]*$") || !textField_2.getText().matches("^[a-zA-Z]*$")) {
 					try {
@@ -367,6 +385,11 @@ public class AddDriver extends JInternalFrame {
 		});
 		this.getRootPane().setDefaultButton(btnNewButton);
 		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 842, 899);
+		getContentPane().add(label);
+		label.setBounds(0, 0, 1506, 994);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}
@@ -382,4 +405,21 @@ public class AddDriver extends JInternalFrame {
 			return false;
 		}
 	}
+	
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

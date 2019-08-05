@@ -87,7 +87,7 @@ public class UNLOAD extends JDialog {
         table.setCellSelectionEnabled(false);
         
         
-
+        this.setIconImage(new ImageIcon(getClass().getResource("/delivery2-512.png")).getImage());
 		
 		texture.setVisible(true);
 	}

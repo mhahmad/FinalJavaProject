@@ -11,6 +11,9 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -20,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import Conotroller.*;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 public class AddItem extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -66,6 +70,7 @@ public class AddItem extends JInternalFrame {
 		textField.setBounds(185, 185, 172, 30);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(6));
 		
 		JLabel ItemNameLabel = new JLabel("Item Name :");
 		ItemNameLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -77,6 +82,7 @@ public class AddItem extends JInternalFrame {
 		textField_1.setBounds(185, 278, 172, 30);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(30));
 		
 		JLabel lblPrice = new JLabel("Price :");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -88,6 +94,7 @@ public class AddItem extends JInternalFrame {
 		textField_2.setBounds(185, 373, 116, 30);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		textField_2.setDocument(new JTextFieldLimit(7));
 		
 		JLabel lblWeight = new JLabel("Weight :");
 		lblWeight.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -99,6 +106,7 @@ public class AddItem extends JInternalFrame {
 		textField_3.setBounds(185, 461, 116, 30);
 		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
+		textField_3.setDocument(new JTextFieldLimit(4));
 		
 		JToggleButton toggleButton = new JToggleButton("No Free Shipping");
 		toggleButton.addActionListener(new ActionListener() {
@@ -259,4 +267,21 @@ public class AddItem extends JInternalFrame {
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}
 	}
+	
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

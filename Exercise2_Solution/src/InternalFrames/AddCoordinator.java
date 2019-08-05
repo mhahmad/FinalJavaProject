@@ -10,8 +10,12 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 import Model.Coordinator;
 import Model.Driver;
 import gui.OnlyLettersException;
@@ -85,28 +89,31 @@ public class AddCoordinator extends JInternalFrame {
 		textField.setBounds(272, 200, 219, 37);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(9));
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		textField_1.setBounds(272, 297, 219, 37);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(20));
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		textField_2.setBounds(272, 391, 219, 37);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		textField_2.setDocument(new JTextFieldLimit(20));
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		passwordField.setBounds(272, 478, 219, 37);
 		getContentPane().add(passwordField);
 
-		JLabel lblNewLabel = new JLabel("Only numbers !");
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(503, 208, 131, 20);
+		lblNewLabel.setBounds(503, 197, 279, 31);
 		getContentPane().add(lblNewLabel);
 		lblNewLabel.setVisible(false);
 		JLabel firstandlastError = new JLabel("");
@@ -161,6 +168,12 @@ public class AddCoordinator extends JInternalFrame {
 				else if ( !textField.getText().matches("[0-9]+")) {
 					textField.setBorder(border);
 					lblNewLabel.setVisible(true);
+					lblNewLabel.setText("Only numbers !");
+				}
+				else if (textField.getText().length() != 9) {
+					textField.setBorder(border);
+					lblNewLabel.setVisible(true);
+					lblNewLabel.setText("Must be 9 digits!");
 				}
 			else if(!textField_1.getText().matches("^[a-zA-Z]*$") || !textField_2.getText().matches("^[a-zA-Z]*$")) {
 				try {
@@ -221,4 +234,21 @@ public class AddCoordinator extends JInternalFrame {
 		
 
 	}
+	
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

@@ -82,10 +82,10 @@ public class AllTrucks extends JInternalFrame {
 				newData[1] = truck.getColor();
 				newData[2] = truck.getType();
 				newData[3] = ((Truck)truck).getTypeTrunk();
-				if(truck.isInUse())
-					newData[5] = "None";
+				if(!truck.isInUse())
+					newData[4] = "None";
 				else
-					newData[5] = truck.getDriver().getFirstName() + " " + truck.getDriver().getSurname();
+					newData[4] = truck.getDriver().getFirstName() + " " + truck.getDriver().getSurname();
 				((DefaultTableModel)table.getModel()).addRow(newData);
 			}
 		}

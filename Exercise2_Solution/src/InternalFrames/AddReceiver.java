@@ -27,8 +27,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 import Model.Address;
 import Utils.Constants;
 import Utils.E_Cities;
@@ -98,7 +102,7 @@ public class AddReceiver extends JInternalFrame {
 		JLabel wrongIdVal = new JLabel("Only Numbers!");
 		wrongIdVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		wrongIdVal.setForeground(Color.RED);
-		wrongIdVal.setBounds(327, 114, 102, 16);
+		wrongIdVal.setBounds(327, 114, 192, 16);
 		panel.add(wrongIdVal);
 		wrongIdVal.setVisible(false);
 		textField = new JTextField();
@@ -111,6 +115,7 @@ public class AddReceiver extends JInternalFrame {
 					wrongIdVal.setVisible(false);
 				}
 				catch(NumberFormatException e) {
+					wrongIdVal.setText("Only Numbers!");
 					wrongIdVal.setVisible(true);
 				}
 			}
@@ -118,6 +123,7 @@ public class AddReceiver extends JInternalFrame {
 		textField.setBounds(152, 108, 172, 29);
 		panel.add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(9));
 		
 		JLabel lblFirstName = new JLabel("First Name :");
 		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -129,18 +135,20 @@ public class AddReceiver extends JInternalFrame {
 		textField_1.setBounds(152, 167, 172, 29);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(20));
 		
 		JLabel lblLastName = new JLabel("Last Name :");
 		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblLastName.setBounds(31, 225, 109, 21);
 		panel.add(lblLastName);
 		
+		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textField_2.setBounds(152, 222, 172, 29);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
-		
+		textField_2.setDocument(new JTextFieldLimit(20));
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblEmail.setBounds(52, 280, 88, 21);
@@ -151,6 +159,7 @@ public class AddReceiver extends JInternalFrame {
 		textField_3.setBounds(152, 277, 172, 29);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
+		textField_3.setDocument(new JTextFieldLimit(30));
 		
 		JLabel lblBirthdate = new JLabel("Birthdate :");
 		lblBirthdate.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -162,6 +171,7 @@ public class AddReceiver extends JInternalFrame {
 		textField_4.setBounds(152, 401, 172, 29);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
+		textField_4.setDocument(new JTextFieldLimit(10));
 		
 		JLabel lblCity = new JLabel("City :");
 		lblCity.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -184,6 +194,7 @@ public class AddReceiver extends JInternalFrame {
 		textField_5.setBounds(152, 516, 172, 29);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
+		textField_5.setDocument(new JTextFieldLimit(20));
 		
 		JLabel lblHouseNumber = new JLabel("House Number :");
 		lblHouseNumber.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -192,9 +203,10 @@ public class AddReceiver extends JInternalFrame {
 		
 		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField_6.setBounds(152, 563, 172, 29);
+		textField_6.setBounds(152, 563, 80, 29);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
+		textField_6.setDocument(new JTextFieldLimit(5));
 		
 		JLabel lblZipCode = new JLabel("ZIP Code :");
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -214,6 +226,7 @@ public class AddReceiver extends JInternalFrame {
 		textField_7.setBounds(152, 624, 80, 29);
 		panel.add(textField_7);
 		textField_7.setColumns(10);
+		textField_7.setDocument(new JTextFieldLimit(7));
 		JLabel emptyFieldLabel = new JLabel("There is an empty Field!");
 		emptyFieldLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		emptyFieldLabel.setForeground(Color.RED);
@@ -235,7 +248,7 @@ public class AddReceiver extends JInternalFrame {
 		JLabel housenumberLabel = new JLabel("Wrong number format");
 		housenumberLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		housenumberLabel.setForeground(Color.RED);
-		housenumberLabel.setBounds(327, 570, 143, 16);
+		housenumberLabel.setBounds(244, 570, 143, 16);
 		panel.add(housenumberLabel);
 		housenumberLabel.setVisible(false);
 		JLabel emailLabel = new JLabel("Wrong email format");
@@ -340,6 +353,11 @@ public class AddReceiver extends JInternalFrame {
 				}
 				else if(!textField.getText().matches("[0-9]+")) {
 					wrongIdVal.setVisible(true);
+					wrongIdVal.setText("Only Numbers!");
+				}
+				else if (textField.getText().length()!=9) {
+					wrongIdVal.setVisible(true);
+					wrongIdVal.setText("must be 9 digits!");
 				}
 				else if(!textField_1.getText().matches("^[a-zA-Z]*$") || !textField_2.getText().matches("^[a-zA-Z]*$"))
 					try {
@@ -468,4 +486,20 @@ public class AddReceiver extends JInternalFrame {
 			return false;
 		}
 	}
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

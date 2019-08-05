@@ -28,6 +28,9 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class DriverPage extends JFrame {
 
@@ -55,8 +58,36 @@ public class DriverPage extends JFrame {
 	 * Create the frame.
 	 */
 	public DriverPage() {
+		setTitle("Driver page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1075, 695);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("File");
+		mnNewMenu.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmLogOut = new JMenuItem("Log out");
+		mntmLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login loginPage = new login();
+				loginPage.getJframe().setVisible(true);
+				dispose();
+			}
+		});
+		mntmLogOut.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mnNewMenu.add(mntmLogOut);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Exit");
+		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			dispose();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,33 +107,39 @@ public class DriverPage extends JFrame {
 		JLabel label = new JLabel("");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Verdana Pro", Font.PLAIN, 40));
-		label.setBounds(228, 48, 288, 36);
+		label.setBounds(228, 48, 662, 36);
 		panel.add(label);
 		
 		JLabel jobLabel = new JLabel("You have no job for today , ");
 		jobLabel.setForeground(new Color(253, 245, 230));
 		jobLabel.setFont(new Font("Sitka Small", Font.PLAIN, 35));
-		jobLabel.setBounds(22, 110, 635, 129);
+		jobLabel.setBounds(22, 110, 1011, 129);
 		panel.add(jobLabel);
 		
-		
+		System.out.println(login.idUser);
 		Car car = null;
 		if(login.idUser  != null)
 			 driver = SysData.getInstance().getAllDriversMap().get(login.idUser);
 		
 		if(driver != null) {
+			System.out.println("DRIVER IS FOUND");
 			label.setText(driver.getFirstName() + " " + driver.getSurname());
 		for(Map.Entry<String, Vehicle> ridenV : SysData.getInstance().getVehclesMap().entrySet()) {
-			if(ridenV instanceof Truck) {
-				if(ridenV.getValue().getDriver().equals(driver)) {
-					truck = (Truck)ridenV.getValue(); 
-					if(truck!= null && truck.getDestinationWareHouse() !=null) 
-						jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
-				}
-				else
-				jobLabel.setText("You have no job for today , ");
+				System.out.println("TRUCK:     " + ridenV.getValue().getVin());
+				if(ridenV.getValue() instanceof Truck) {
+					System.out.println("ITS A TRUCK PEAPLE");
+					if(ridenV.getValue().getDriver().equals(driver)) {
+						System.out.println("DRIVER IS matched");
+						truck = (Truck)ridenV.getValue(); 
+						if(truck!= null && truck.getDestinationWareHouse() !=null) { 
+							jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
+						}
+						else
+							jobLabel.setText("You have no job for today , ");
+					}
 			}
-			if(ridenV instanceof Car) {
+			else if(ridenV.getValue() instanceof Car) {
+				System.out.println("ITS A CAR");
 				if(ridenV.getValue().getDriver().equals(driver)) {
 					car = (Car)ridenV.getValue();
 				}
@@ -112,15 +149,15 @@ public class DriverPage extends JFrame {
 		
 		
 		
-		if(driver != null)
-			for(Map.Entry<String, Vehicle> temp : SysData.getInstance().getVehclesMap().entrySet()) {
-				if(temp.getValue().getDriver().equals( driver)) {
-					if(temp instanceof Truck)
-						truck =(Truck) temp.getValue();
-					else
-						car =(Car) temp.getValue();
-				}
-		}
+//		if(driver != null)
+//			for(Map.Entry<String, Vehicle> temp : SysData.getInstance().getVehclesMap().entrySet()) {
+//				if(temp.getValue().getDriver().equals( driver)) {
+//					if(temp instanceof Truck)
+//						truck =(Truck) temp.getValue();
+//					else if(temp instanceof Car)
+//						car =(Car) temp.getValue();
+//				}
+//		}
 		
 		if(truck!= null && truck.getDestinationWareHouse() !=null) {
 			jobLabel.setText(" You are Driving : " + truck.getVin() + " for today ,\n" + "the truck load should be unloaded in Warehouse : " + truck.getDestinationWareHouse().getWarehouseId());
@@ -197,7 +234,6 @@ public class DriverPage extends JFrame {
 		
 		this.setLocation(getLocation());
 		
-		
 		JLabel background = new JLabel("");
 		background.setBounds(79, 178, 56, 16);
 		panel.add(background);
@@ -205,10 +241,11 @@ public class DriverPage extends JFrame {
 		background.setBounds(0, 0, 1057, 648);
 		
 		
+		
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
-	
+		this.setIconImage(new ImageIcon(getClass().getResource("/delivery2-512.png")).getImage());
 		
 	}
 	public Driver getDriver() {

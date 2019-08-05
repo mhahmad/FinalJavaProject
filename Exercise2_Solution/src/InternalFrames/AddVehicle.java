@@ -4,8 +4,12 @@ import Utils.E_ModelType;
 import java.awt.EventQueue;
 import Utils.E_TypeTruck;
 import javax.swing.border.Border;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -62,7 +66,7 @@ public class AddVehicle extends JInternalFrame {
 		textField.setBounds(343, 289, 175, 35);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
+		textField.setDocument(new JTextFieldLimit(8));
 		JLabel typeLabel = new JLabel("Type of vehicle :");
 		typeLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		typeLabel.setBounds(137, 218, 157, 28);
@@ -246,4 +250,21 @@ public class AddVehicle extends JInternalFrame {
 		}
 		return true;	
 	}
+	
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

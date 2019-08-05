@@ -34,8 +34,12 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddWarehouse.JTextFieldLimit;
 
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -78,6 +82,7 @@ public class AddParcel extends JInternalFrame {
 		textField.setBounds(290, 193, 264, 46);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(10));
 		
 		JRadioButton largeButton = new JRadioButton("Large Parcel");
 		largeButton.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -304,4 +309,20 @@ public class AddParcel extends JInternalFrame {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

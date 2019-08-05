@@ -181,6 +181,9 @@ public class login {
 					 if(SysData.getInstance().getAllDriversMap().containsKey(Long.parseLong(textField.getText()))) {
 						if(password.equals(SysData.getInstance().getAllDriversMap().get(Long.parseLong(textField.getText())).getpassword())) {
 							frame.dispose();
+							idUser = Long.parseLong(textField.getText());
+							DriverPage driverPage = new DriverPage();
+							driverPage.setVisible(true);
 						}
 						else {
 							lblIncorrectEmailOr.setVisible(true);	
