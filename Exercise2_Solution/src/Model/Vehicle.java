@@ -1,10 +1,11 @@
 package Model;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Utils.Constants;
 import Utils.E_ModelType;
 
-public class Vehicle {
+public class Vehicle  implements Serializable {
 	
 	
 	/** Key: Vehicle identification number  */
@@ -134,7 +135,9 @@ public class Vehicle {
 			CAPACITY = Constants.TRUCK_CAPACTITY;
 		}
 		
-//		if(isInUse())
+		
+
+		//		if(isInUse())
 //			return false;
 
 		if((getWeight() + parcel.getWeight()) <= CAPACITY) {
@@ -144,6 +147,35 @@ public class Vehicle {
 			setParcels(temp);
 			
 			parcel.getLocations().get(parcel.getLocations().size()-1).removeParcel(parcel);
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	 * Add parcel to vehicle
+	 * @param parcel
+	 * @return
+	 */
+	public boolean addParcel2(Parcel parcel) {
+		double CAPACITY = 0;
+		if(this instanceof Car) {
+			CAPACITY = Constants.CAR_CAPACTITY;
+		}
+		else if(this instanceof Truck) {
+			CAPACITY = Constants.TRUCK_CAPACTITY;
+		}
+		
+		if(isInUse())
+			return false;
+
+		if((getWeight() + parcel.getWeight()) <= CAPACITY) {
+			setWeight(getWeight() + parcel.getWeight());
+			ArrayList<Parcel> temp = getParcels();
+			temp.add(parcel);
+			setParcels(temp);
+			
+			//parcel.getLocations().get(parcel.getLocations().size()-1).removeParcel(parcel);
 			return true;
 		}
 		return false;

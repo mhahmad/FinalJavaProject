@@ -994,7 +994,42 @@ public class SysData {
     }
     
     
-
+    public Collection<Parcel> sendParcelsToReceivers2(int wareHouseId, String vin){
+    	//TODO
+    	if (!allWareHouses.containsKey(wareHouseId) || !allVehiclesMap.containsKey(vin))
+    		return null;
+    	
+    	
+    	WareHouse wh = allWareHouses.get(wareHouseId);
+    	ArrayList<Parcel> tmp = new ArrayList<Parcel>();
+    	if (!(allVehiclesMap.get(vin) instanceof Car)) 
+    		return null;
+    	
+    	Car car = (Car)allVehiclesMap.get(vin);
+    	
+    	car.getParcels().clear();
+    	
+    	while(car.getWeight() < Constants.CAR_CAPACTITY)
+    	{
+    		Parcel p;
+    		p = wh.getNextParcelForCar((Constants.CAR_CAPACTITY-car.getWeight()));
+    		if((p!=null)&&(p.getReceiver().getAddress().getCity().equals(wh.getAddress().city)) ) {// maybe delete !!!
+   System.out.println("the city of the warhouse "+wh.getAddress().city+"and the city of the receiver is : "+p.getReceiver().getAddress().getCity());
+    		
+    			car.addParcel2(p);
+    		//	wh.removeParcel(p);
+    		}
+    		else {
+    			break;
+    		}
+    	}
+    	
+    	tmp.addAll(car.getParcels());
+    	car.getParcels().clear();
+    	return tmp ;
+    	//car.sendToDestination();
+    	//return tmp;
+    }
     
     /****************************** Common Methods *************************************/
 
