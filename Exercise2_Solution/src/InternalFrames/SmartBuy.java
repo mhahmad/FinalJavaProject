@@ -17,6 +17,7 @@ import InternalFrames.AddWarehouse.JTextFieldLimit;
 import Model.LargeParcel;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -144,7 +145,11 @@ public class SmartBuy extends JInternalFrame {
 			}
 		});
 		this.getRootPane().setDefaultButton(btnNewButton);
-
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 842, 899);
+		getContentPane().add(label);
+		label.setBounds(0, 0, 1506, 994);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 		
 	}
 	public class JTextFieldLimit extends PlainDocument {

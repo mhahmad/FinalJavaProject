@@ -229,6 +229,11 @@ public class AddWarehouse extends JInternalFrame {
 			}
 		this.getRootPane().setDefaultButton(btnAddWarehouse);
 		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 1506, 994);
+		getContentPane().add(label);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalBack.png")));
+
 		
 
 	}

@@ -151,6 +151,12 @@ public class AllDrivers extends JInternalFrame {
 				
 			}
 		});
+		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 842, 899);
+		getContentPane().add(label);
+		label.setBounds(0, 0, 1506, 994);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}

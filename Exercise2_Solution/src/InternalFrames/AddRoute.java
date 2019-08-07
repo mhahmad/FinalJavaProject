@@ -29,6 +29,7 @@ import Model.WareHouse;
 
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class AddRoute extends JInternalFrame {
@@ -336,6 +337,11 @@ public class AddRoute extends JInternalFrame {
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		scrollPane_1.getViewport().setBackground(Color.WHITE);
 		scrollPane_2.getViewport().setBackground(Color.WHITE);
+		JLabel label1 = new JLabel("");
+		label1.setBounds(0, 0, 842, 899);
+		getContentPane().add(label1);
+		label1.setBounds(0, 0, 1506, 994);
+		label1.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}

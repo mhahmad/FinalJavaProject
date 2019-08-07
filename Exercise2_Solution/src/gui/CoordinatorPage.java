@@ -66,14 +66,26 @@ public class CoordinatorPage extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
-		mnFile.setFont(new Font("Arial Black", Font.BOLD, 20));
+		mnFile.setFont(new Font("Arial", Font.BOLD, 20));
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmLogOut = new JMenuItem("Log out");
+		mntmLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			login loginPage = new login();
+			loginPage.getJframe().setVisible(true);
+			dispose();
+			}
+		});
 		mntmLogOut.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mnFile.add(mntmLogOut);
 		
 		JMenuItem mntmExitSystem = new JMenuItem("Exit system");
+		mntmExitSystem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			dispose();
+			}
+		});
 		mntmExitSystem.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		mnFile.add(mntmExitSystem);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

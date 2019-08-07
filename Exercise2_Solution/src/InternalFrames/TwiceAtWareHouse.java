@@ -19,6 +19,7 @@ import Model.Parcel;
 import javafx.event.ActionEvent;
 
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class TwiceAtWareHouse extends JInternalFrame {
@@ -109,6 +110,10 @@ public class TwiceAtWareHouse extends JInternalFrame {
 		btnShow.setBounds(344, 73, 103, 27);
 		getContentPane().add(btnShow);
 		noneLabel.setVisible(false);
-		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 842, 899);
+		getContentPane().add(label);
+		label.setBounds(0, 0, 1506, 994);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 	}
 }

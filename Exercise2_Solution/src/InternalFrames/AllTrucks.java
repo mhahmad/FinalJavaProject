@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTable;
@@ -15,6 +17,7 @@ import Model.Truck;
 import Model.Vehicle;
 
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -89,6 +92,14 @@ public class AllTrucks extends JInternalFrame {
 				((DefaultTableModel)table.getModel()).addRow(newData);
 			}
 		}
+		
+		JLabel lblThereAreNone = new JLabel("There are none !");
+		lblThereAreNone.setForeground(Color.RED);
+		lblThereAreNone.setFont(new Font("Segoe UI Historic", Font.BOLD, 18));
+		lblThereAreNone.setBounds(51, 579, 265, 23);
+		getContentPane().add(lblThereAreNone);
+		lblThereAreNone.setVisible(false);
+		
 		JButton btnRefresh = new JButton("Refresh");
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -111,6 +122,35 @@ public class AllTrucks extends JInternalFrame {
 		btnRefresh.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnRefresh.setBounds(361, 67, 110, 33);
 		getContentPane().add(btnRefresh);
+		
+		JButton btnNewButton = new JButton("Get Truck with Max Weight");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Truck truck;
+				lblThereAreNone.setVisible(false);
+			truck = SysData.getInstance().getTruckWithMaxWeight();
+			if(truck == null || truck.getParcels().isEmpty()) {
+				lblThereAreNone.setVisible(true);
+			}
+			else if(truck!= null) {
+				JOptionPane.showMessageDialog(null, "Truck ID : "+ truck.getVin() +"\n Truck weight : " + truck.getWeight()  ,"Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+
+			}
+			}
+		});
+		btnNewButton.setBackground(Color.ORANGE);
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton.setBounds(51, 507, 296, 59);
+		getContentPane().add(btnNewButton);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 842, 899);
+		getContentPane().add(label);
+		label.setBounds(0, 0, 1506, 994);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
+		
+		
 		
 		
 		

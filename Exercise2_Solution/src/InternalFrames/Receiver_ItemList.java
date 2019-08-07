@@ -61,8 +61,8 @@ public class Receiver_ItemList extends JInternalFrame {
 			}
 		));
 		
-		System.out.println(login.idUser);
-		 if(!SysData.getInstance().getReceiverItems(SysData.getInstance().getReceiversMap().get(login.idUser).getId()).isEmpty()) {
+		if(login.idUser != null)
+		if(!SysData.getInstance().getReceiverItems(SysData.getInstance().getReceiversMap().get(login.idUser).getId()).isEmpty()) {
 			((DefaultTableModel) table.getModel()).setRowCount(0);
 			Car car = null ;
 			Truck tt = null ; 

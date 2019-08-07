@@ -8,8 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 import Conotroller.SysData;
+import InternalFrames.AddDriver.JTextFieldLimit;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -119,6 +123,7 @@ public class RegisterPage extends JFrame {
 		textField.setBounds(152, 44, 172, 29);
 		panel.add(textField);
 		textField.setColumns(10);
+		textField.setDocument(new JTextFieldLimit(9));
 		
 		JLabel lblFirstName = new JLabel("First Name :");
 		lblFirstName.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -130,6 +135,7 @@ public class RegisterPage extends JFrame {
 		textField_1.setBounds(152, 93, 172, 29);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setDocument(new JTextFieldLimit(20));
 		
 		JLabel lblLastName = new JLabel("Last Name :");
 		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -141,6 +147,7 @@ public class RegisterPage extends JFrame {
 		textField_2.setBounds(152, 147, 172, 29);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
+		textField_2.setDocument(new JTextFieldLimit(20));
 		
 		JLabel lblEmail = new JLabel("Email :");
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -152,6 +159,7 @@ public class RegisterPage extends JFrame {
 		textField_3.setBounds(152, 210, 172, 29);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
+		textField_3.setDocument(new JTextFieldLimit(35));
 		
 		JLabel lblBirthdate = new JLabel("Birthdate :");
 		lblBirthdate.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -163,6 +171,7 @@ public class RegisterPage extends JFrame {
 		textField_4.setBounds(152, 316, 172, 29);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
+		textField_4.setDocument(new JTextFieldLimit(10));
 		
 		JLabel lblCity = new JLabel("City :");
 		lblCity.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -188,6 +197,7 @@ public class RegisterPage extends JFrame {
 		textField_5.setBounds(152, 426, 172, 29);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
+		textField_5.setDocument(new JTextFieldLimit(30));
 		
 		JLabel lblHouseNumber = new JLabel("House Number :");
 		lblHouseNumber.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -203,6 +213,7 @@ public class RegisterPage extends JFrame {
 		textField_6.setBounds(152, 487, 172, 29);
 		panel.add(textField_6);
 		textField_6.setColumns(10);
+		textField_6.setDocument(new JTextFieldLimit(5));
 		
 		JLabel lblZipCode = new JLabel("ZIP Code :");
 		lblZipCode.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -218,6 +229,7 @@ public class RegisterPage extends JFrame {
 		textField_7.setBounds(152, 545, 80, 29);
 		panel.add(textField_7);
 		textField_7.setColumns(10);
+		textField_7.setDocument(new JTextFieldLimit(7));
 		JLabel emptyFieldLabel = new JLabel("There is an empty Field!");
 		emptyFieldLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		emptyFieldLabel.setForeground(Color.RED);
@@ -479,4 +491,21 @@ public class RegisterPage extends JFrame {
 			return false;
 		}
 	}
+	
+	public class JTextFieldLimit extends PlainDocument {
+		  private int limit;
+
+		  JTextFieldLimit(int limit) {
+		   super();
+		   this.limit = limit;
+		   }
+
+		  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+		    if (str == null) return;
+
+		    if ((getLength() + str.length()) <= limit) {
+		      super.insertString(offset, str, attr);
+		    }
+		  }
+		}
 }

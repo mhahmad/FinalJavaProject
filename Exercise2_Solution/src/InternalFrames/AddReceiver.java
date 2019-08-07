@@ -425,9 +425,14 @@ public class AddReceiver extends JInternalFrame {
 		
 		
 		
-	
+	panel.setOpaque(false);
 		
 		ImageIcon imageicon = new ImageIcon(getClass().getResource("/regbackground.png"));
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 1506, 994);
+		getContentPane().add(label);
+		label.setIcon(new ImageIcon(getClass().getResource("/internal2.png")));
+		
 		for(MouseListener listener : ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().getMouseListeners()){
 			((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).getNorthPane().removeMouseListener(listener);
 			}

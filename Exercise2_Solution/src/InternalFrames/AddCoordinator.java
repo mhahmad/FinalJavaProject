@@ -224,6 +224,11 @@ public class AddCoordinator extends JInternalFrame {
 		btnNewButton.setBounds(272, 602, 219, 63);
 		getContentPane().add(btnNewButton);
 		this.getRootPane().setDefaultButton(btnNewButton);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(0, 0, 1506, 994);
+		getContentPane().add(label);
+		label.setIcon(new ImageIcon(getClass().getResource("/internalBack.png")));
 
 	
 		

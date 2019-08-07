@@ -640,6 +640,10 @@ public class CoordinatorDV extends JInternalFrame {
 			//addTruck(String vin, String color, E_ModelType type, long driverId, E_TypeTruck typeTrunk)
 			//addCar(String vin, String color, E_ModelType type,long driverId,boolean hybryd)
 			DefaultTableModel modell = new DefaultTableModel();
-		
+			JLabel label = new JLabel("");
+			label.setBounds(0, 0, 842, 899);
+			getContentPane().add(label);
+			label.setBounds(0, 0, 1506, 994);
+			label.setIcon(new ImageIcon(getClass().getResource("/internalframeBackground.png")));
 		}
 	}
