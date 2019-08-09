@@ -1,8 +1,14 @@
 package InternalFrames;
 import Utils.E_Cities;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JInternalFrame;
@@ -210,6 +216,7 @@ public class AddWarehouse extends JInternalFrame {
 				}
 				else {
 					if(SysData.getInstance().addWarehouse(Integer.parseInt(textField.getText()),new Address((E_Cities)comboBox.getSelectedItem(),textField_1.getText(),Integer.parseInt(textField_2.getText()),textField_3.getText()))) {
+						PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 						JOptionPane.showMessageDialog(null, "Warehouse was added successfuly !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 						textField.setText("");
 						textField_1.setText("");
@@ -254,4 +261,17 @@ public class AddWarehouse extends JInternalFrame {
 		    }
 		  }
 		}
+	
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }

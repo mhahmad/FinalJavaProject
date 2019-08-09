@@ -14,6 +14,7 @@ import InternalFrames.AllDrivers;
 import InternalFrames.AllReceivers;
 import InternalFrames.AllTrucks;
 import InternalFrames.CoordinatorDV;
+import InternalFrames.Route;
 import InternalFrames.SmartBuy;
 import InternalFrames.TwiceAtWareHouse;
 
@@ -120,7 +121,7 @@ public class Homepage extends JFrame {
 		TwiceAtWareHouse frameTwice = new TwiceAtWareHouse();
 		frameTwice.setBounds(416, 0, 1506, 994);
 		getContentPane().add(frameTwice);
-		AddRoute frameRoute = new AddRoute();
+		Route frameRoute = new Route();
 		getContentPane().add(frameRoute);
 		frameRoute.setBounds(416, 0, 1506, 994);
 		mnFile.add(mntmExit);
@@ -222,6 +223,7 @@ public class Homepage extends JFrame {
 					frameCoordinators.dispose();
 					frameTrucks.dispose();
 					frameSmartBuy.dispose();
+					frameRoute.dispose();
 				}
 			});
 		
@@ -250,6 +252,7 @@ public class Homepage extends JFrame {
 					frameDrivers.dispose();
 					frameTrucks.dispose();
 					frameDV.dispose();
+					frameRoute.dispose();
 
 				}
 			});
@@ -377,6 +380,7 @@ public class Homepage extends JFrame {
 				frameReceivers.dispose();
 				label2.setVisible(true);
 				label.setVisible(false);
+				frameRoute.dispose();
 			}
 		});
 		mntmAllDrivers.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -404,6 +408,7 @@ public class Homepage extends JFrame {
 				label2.setVisible(true);
 				label.setVisible(false);
 				frameTrucks.setVisible(true);
+				frameRoute.dispose();
 			}
 		});
 		mntmAllVehicles.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -430,6 +435,7 @@ public class Homepage extends JFrame {
 				label2.setVisible(true);
 				label.setVisible(false);
 				frameTrucks.dispose();
+				frameRoute.dispose();
 				frameTwice.dispose();
 			}
 		});
@@ -462,6 +468,7 @@ public class Homepage extends JFrame {
 				label.setVisible(false);
 				frameTrucks.dispose();
 				frameTwice.dispose();
+				frameRoute.dispose();
 
 			}
 		});
@@ -490,6 +497,7 @@ public class Homepage extends JFrame {
 			label2.setVisible(true);
 			label.setVisible(false);
 			frameTrucks.dispose();
+			frameRoute.dispose();
 			}
 		});
 		mntmTwiceAtWarehouse.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -522,6 +530,7 @@ public class Homepage extends JFrame {
 				label2.setVisible(true);
 				label.setVisible(false);
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		vehicleButtonMenu.addActionListener(new ActionListener() {
@@ -545,6 +554,7 @@ public class Homepage extends JFrame {
 				label.setVisible(false);
 				frameDrivers.dispose();
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		
@@ -569,6 +579,7 @@ public class Homepage extends JFrame {
 				label2.setVisible(true);
 				label.setVisible(false);
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		menuAddParcel.addActionListener(new ActionListener() {
@@ -592,6 +603,7 @@ public class Homepage extends JFrame {
 				frameTrucks.dispose();
 				label2.setVisible(true);
 				label.setVisible(false);
+				frameRoute.dispose();
 			}
 		});
 		mntmAddWarehouse.addActionListener(new ActionListener() {
@@ -615,6 +627,7 @@ public class Homepage extends JFrame {
 				label.setVisible(false);
 				frameTwice.dispose();
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		addItemtoParcelMenu.addActionListener(new ActionListener() {
@@ -639,6 +652,7 @@ public class Homepage extends JFrame {
 				label.setVisible(false);
 				frameReceivers.dispose();
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		mntmAllReceivers.addActionListener(new ActionListener() {
@@ -662,6 +676,7 @@ public class Homepage extends JFrame {
 				frame7.dispose();
 				frame8.dispose();
 				frameTrucks.dispose();
+				frameRoute.dispose();
 			}
 		});
 		JLabel background = new JLabel();

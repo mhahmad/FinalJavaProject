@@ -19,6 +19,8 @@ import InternalFrames.AddWarehouse.JTextFieldLimit;
 import Model.Coordinator;
 import Model.Driver;
 import gui.OnlyLettersException;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.JPasswordField;
 import javax.swing.BorderFactory;
@@ -26,6 +28,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import Model.Receiver;
@@ -208,6 +213,7 @@ public class AddCoordinator extends JInternalFrame {
 					Coordinator coordinator = new Coordinator(Long.parseLong(textField.getText()),textField_1.getText(),textField_2.getText());
 					SysData.getInstance().getAllCoordinators().put(Long.parseLong(textField.getText()),coordinator );
 					coordinator.setPassword(password);
+					PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 					JOptionPane.showMessageDialog(null, "Coordinator has been added succesfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 					textField.setText("");
 					textField_1.setText("");
@@ -256,4 +262,17 @@ public class AddCoordinator extends JInternalFrame {
 		    }
 		  }
 		}
+	
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }

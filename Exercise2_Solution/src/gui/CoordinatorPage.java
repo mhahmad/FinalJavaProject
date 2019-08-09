@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import Conotroller.SysData;
+import InternalFrames.CoordinatorDV;
 //import InternalFrames.CoordinatorDV;
 import gui.Homepage.ClockPane;
 
@@ -94,28 +95,28 @@ public class CoordinatorPage extends JFrame {
 		
 		JButton homepageButton = new JButton("Homepage");
 		homepageButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 19));
-		homepageButton.setBounds(0, 0, 152, 57);
+		homepageButton.setBounds(50, 50, 241, 57);
 		contentPane.add(homepageButton);
 		
 		JButton drivertotruckButton = new JButton("Add Driver To Truck");
 		drivertotruckButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 19));
-		drivertotruckButton.setBounds(152, 0, 241, 57);
+		drivertotruckButton.setBounds(50, 150, 241, 57);
 		contentPane.add(drivertotruckButton);
 		
 		JButton addRouteButton = new JButton("Add Route");
 		addRouteButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 19));
-		addRouteButton.setBounds(391, 0, 152, 57);
+		addRouteButton.setBounds(50, 250, 241, 57);
 		contentPane.add(addRouteButton);
 		
 		JLabel lblNewLabel = new JLabel("Welcome :");
 		lblNewLabel.setForeground(new Color(220, 20, 60));
 		lblNewLabel.setFont(new Font("Segoe UI Historic", Font.BOLD, 80));
-		lblNewLabel.setBounds(29, 109, 531, 118);
+		lblNewLabel.setBounds(370, 8, 531, 118);
 		contentPane.add(lblNewLabel);
 		
-//		ClockPane clock = new ClockPane();
-//		clock.setBounds(500, 400, 900, 100);
-//		getContentPane().add(clock);
+		ClockPane clock = new ClockPane();
+		clock.setBounds(500, 400, 900, 100);
+		getContentPane().add(clock);
 		
 		Label NameLabel = new Label("");
 		NameLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 76));
@@ -124,59 +125,60 @@ public class CoordinatorPage extends JFrame {
 		if(login.idUser != null)
 			NameLabel.setText(SysData.getInstance().getAllCoordinators().get(login.idUser).getFirstName() + " " + SysData.getInstance().getAllCoordinators().get(login.idUser).getSurname());
 		
-//		 CoordinatorDV page1 = new CoordinatorDV();
-//		
-//		drivertotruckButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				 page1.setVisible(true);
-//				 clock.setVisible(false);
-//				page1.setBounds(0, 0, 1920, 920);
-//				getContentPane().add(page1);
-//				lblNewLabel.setVisible(false);
-//				NameLabel.setVisible(false);
-//			}
-//		});
-//		homepageButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				page1.dispose();
-//				clock.setVisible(true);
-//				lblNewLabel.setVisible(true);
-//				NameLabel.setVisible(true);
-//			}
-//		});
-//	
-//		
-//	}
+		 CoordinatorDV page1 = new CoordinatorDV();
+		
+		drivertotruckButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 page1.setVisible(true);
+				 clock.setVisible(false);
+				page1.setBounds(416, 00, 1506	, 994);
+				getContentPane().add(page1);
+				lblNewLabel.setVisible(false);
+				NameLabel.setVisible(false);
+			}
+		});
+		homepageButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				page1.dispose();
+				clock.setVisible(true);
+				lblNewLabel.setVisible(true);
+				NameLabel.setVisible(true);
+			}
+		});
 	
-//	 public class ClockPane extends JPanel {
-//
-//	        private JLabel clock;
-//
-//	        public ClockPane() {
-//	            setLayout(new BorderLayout());
-//	            clock = new JLabel();
-////	            setOpaque( false ) ;
-//	            clock.setHorizontalAlignment(JLabel.CENTER);
-//	            clock.setFont(UIManager.getFont("Label.font").deriveFont(Font.BOLD, 72f));
-//	            tickTock();
-//	            add(clock);
-//
-//	            Timer timer = new Timer(500, new ActionListener() {
-//	                @Override
-//	                public void actionPerformed(ActionEvent e) {
-//	                    tickTock();
-//	                }
-//	            });
-//	            timer.setRepeats(true);
-//	            timer.setCoalesce(true);
-//	            timer.setInitialDelay(0);
-//	            timer.start();
-//	        }
-//
-//	        public void tickTock() {
-//	            clock.setText(DateFormat.getDateTimeInstance().format(new Date()));
-//	        }
+		
+	}
+	
+	 public class ClockPane extends JPanel {
+
+	        private JLabel clock;
+
+	        public ClockPane() {
+	            setLayout(new BorderLayout());
+	            clock = new JLabel();
+	            setOpaque( false ) ;
+	            clock.setHorizontalAlignment(JLabel.CENTER);
+	            clock.setFont(UIManager.getFont("Label.font").deriveFont(Font.BOLD, 72f));
+	            tickTock();
+	            add(clock);
+
+	            Timer timer = new Timer(500, new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    tickTock();
+	                }
+	            });
+	            timer.setRepeats(true);
+	            timer.setCoalesce(true);
+	            timer.setInitialDelay(0);
+	            timer.start();
+	        }
+
+	        public void tickTock() {
+	            clock.setText(DateFormat.getDateTimeInstance().format(new Date()));
+	        }
 	 }
+	 
 }

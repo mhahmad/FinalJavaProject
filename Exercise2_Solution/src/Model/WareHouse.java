@@ -23,7 +23,6 @@ public class WareHouse implements Comparable<WareHouse>{
 	 * Warehouse address location
 	 */
 	Address address;
-	
 	/**
 	 * list of parcels in warehouse
 	 */
@@ -253,9 +252,6 @@ public class WareHouse implements Comparable<WareHouse>{
 	public void setRegion(E_Region region) {
 		this.region = region;
 	}
-
-
-
 
 
 	public HashMap<Integer, HashMap<Truck, ArrayList<Parcel>>> getTransactionsHashMap() {

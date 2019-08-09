@@ -129,6 +129,7 @@ public class AddItemToParcel extends JInternalFrame {
 				model.setRowCount(0);
 				model_1.setRowCount(0);
 				for(Parcel temp: SysData.getInstance().allParcels()) {
+					if(!temp.isSentToReceiver()) {
 					rowData[0] = temp.getParcelId();
 					if(temp instanceof LargeParcel)
 						rowData[1] = "Large";
@@ -138,7 +139,7 @@ public class AddItemToParcel extends JInternalFrame {
 					rowData[3] = temp.getCurrentCost();
 					rowData[4] = temp.getReceiver().getFirstName() + " "+ temp.getReceiver().getSurname();
 					((DefaultTableModel)table.getModel()).addRow(rowData);
-
+					}
 				}
 				
 				for(Item item : SysData.getInstance().allItems()) {

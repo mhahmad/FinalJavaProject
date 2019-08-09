@@ -10,6 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +42,9 @@ import Utils.E_Cities;
 import gui.Datei;
 import gui.HintTextField;
 import gui.OnlyLettersException;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import javax.swing.JPasswordField;
 
 public class AddReceiver extends JInternalFrame {
@@ -398,7 +404,8 @@ public class AddReceiver extends JInternalFrame {
 			      String strDate = df.format(dd);
 			      String password = String.valueOf(passwordField.getPassword());
 					if(SysData.getInstance().addReceiver(Long.parseLong(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_6.getText()),textField_7.getText()), textField_3.getText(),password)) {
-					JOptionPane.showMessageDialog(null, "Receiver has been added successfuly!","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+						PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
+						JOptionPane.showMessageDialog(null, "Receiver has been added successfuly!","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 					textField.setText("");
 					passwordField.setText("");
 					textField_1.setText("");
@@ -507,4 +514,16 @@ public class AddReceiver extends JInternalFrame {
 		    }
 		  }
 		}
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }

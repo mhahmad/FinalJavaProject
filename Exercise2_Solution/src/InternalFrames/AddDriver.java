@@ -23,6 +23,9 @@ import javax.swing.JComboBox;
 import Utils.E_Cities;
 import gui.Datei;
 import gui.OnlyLettersException;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import java.util.Date;
 import java.awt.Color;
 
@@ -31,6 +34,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -366,6 +372,7 @@ public class AddDriver extends JInternalFrame {
 			      String strDate = df.format(dd);
 			      String password = String.valueOf(passwordField.getPassword());
 					if(SysData.getInstance().addDriver(Long.parseLong(textField.getText()), textField_1.getText(), textField_2.getText(), dd, new Address((E_Cities)comboBox.getSelectedItem(),textField_5.getText(),Integer.parseInt(textField_4.getText()),textField_6.getText()), ValidLicense.isSelected(),password)){
+						PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 						JOptionPane.showMessageDialog(null, "Driver has been added successfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 						textField.setText("");
 						textField_1.setText("");
@@ -422,4 +429,16 @@ public class AddDriver extends JInternalFrame {
 		    }
 		  }
 		}
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }

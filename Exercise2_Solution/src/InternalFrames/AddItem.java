@@ -17,6 +17,9 @@ import javax.swing.text.PlainDocument;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -24,6 +27,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import Conotroller.*;
 import InternalFrames.AddWarehouse.JTextFieldLimit;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 public class AddItem extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -249,6 +254,7 @@ public class AddItem extends JInternalFrame {
 				}
 				else {
 					if(SysData.getInstance().addItem(Long.parseLong(textField.getText()), textField_1.getText(), Double.parseDouble(textField_2.getText()), toggleButton.getText().equals("Free Shipping"),Double.parseDouble(textField_3.getText()))) {
+					PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 					JOptionPane.showMessageDialog(null, "Item has been added successfully !","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 	    			textField.setText("");
 	    			textField_1.setText("");
@@ -289,5 +295,18 @@ public class AddItem extends JInternalFrame {
 		      super.insertString(offset, str, attr);
 		    }
 		  }
+		}
+	
+		public void PlayMusic(String filepath) {
+			InputStream music;
+			try {
+				music = new FileInputStream(new File(filepath));
+				AudioStream audios = new AudioStream(music);
+				AudioPlayer.player.start(audios);
+			}
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "ERROR with file path ");
+			}
+			
 		}
 }

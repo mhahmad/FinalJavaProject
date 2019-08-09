@@ -10,6 +10,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +26,8 @@ import javax.swing.border.Border;
 import Model.Receiver;
 import Model.SmallParcel;
 import javafx.scene.Group;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.JRadioButton;
 import javax.swing.BorderFactory;
@@ -256,6 +261,7 @@ public class AddParcel extends JInternalFrame {
 					if(group.isSelected(smallButton.getModel())) {
 						if(textField.isEnabled()) {
 							if(SysData.getInstance().addSmallParcel(textField.getText(),(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 								JOptionPane.showMessageDialog(null, "Small parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 								textField.setText("");
 							}
@@ -265,6 +271,7 @@ public class AddParcel extends JInternalFrame {
 						}
 						else {
 							if(SysData.getInstance().addSmallParcel(null,(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 								JOptionPane.showMessageDialog(null, "Small parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 								textField.setText("");
 							}
@@ -276,6 +283,7 @@ public class AddParcel extends JInternalFrame {
 					else {
 						if(textField.isEnabled()) {
 							if(SysData.getInstance().addLargeParcel(textField.getText(),(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 								JOptionPane.showMessageDialog(null, "Large parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 								textField.setText("");
 
@@ -286,6 +294,7 @@ public class AddParcel extends JInternalFrame {
 						}
 						else {
 							if(SysData.getInstance().addLargeParcel(null,(Long)table.getValueAt(table.getSelectedRow(), 0))!=null) {
+								PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 								JOptionPane.showMessageDialog(null, "Large parcel has been successfuly generated! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
 								textField.setText("");
 
@@ -330,4 +339,16 @@ public class AddParcel extends JInternalFrame {
 		    }
 		  }
 		}
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }

@@ -182,7 +182,7 @@ public class login {
 						if(password.equals(SysData.getInstance().getAllDriversMap().get(Long.parseLong(textField.getText())).getpassword())) {
 							frame.dispose();
 							idUser = Long.parseLong(textField.getText());
-							DriverPage driverPage = new DriverPage();
+							DriverSecondPage driverPage = new DriverSecondPage();
 							driverPage.setVisible(true);
 						}
 						else {

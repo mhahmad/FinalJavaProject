@@ -3,6 +3,9 @@ import Utils.Constants;
 import Utils.E_ModelType;
 import java.awt.EventQueue;
 import Utils.E_TypeTruck;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import javax.swing.border.Border;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -20,6 +23,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 
 import javax.swing.JTextField;
@@ -204,14 +210,18 @@ public class AddVehicle extends JInternalFrame {
 	    		else
 	    		{
 	    			if(rdbtnYes.isEnabled() == false && rdbtnNo.isEnabled() == false && comboBox_2.isEnabled()==true)	{
-	    				if(SysData.getInstance().addTruck(textField.getText(),(String) comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, (E_TypeTruck)comboBox_2.getSelectedItem()))
+	    				if(SysData.getInstance().addTruck(textField.getText(),(String) comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, (E_TypeTruck)comboBox_2.getSelectedItem())) {
+	    					PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 	    					JOptionPane.showMessageDialog(null, "Truck has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+	    			}
 	    				else
 	    					duplicate.setVisible(true);
 	    			}
 	    			else {
-	    				if(SysData.getInstance().addCar(textField.getText(), (String)comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, rdbtnYes.isSelected()))
+	    				if(SysData.getInstance().addCar(textField.getText(), (String)comboBox.getSelectedItem(), (E_ModelType)comboBox_1.getSelectedItem(), 0, rdbtnYes.isSelected())) {
+	    					PlayMusic("Sound\\\\Beep Ping-SoundBible.com-217088958.wav");
 	    					JOptionPane.showMessageDialog(null, "Car has been added successfully! ","Successful" , 0,new ImageIcon(getClass().getResource("/correct.png")));
+	    				}
 	    				else
 	    					duplicate.setVisible(true);
 	    			}
@@ -271,4 +281,17 @@ public class AddVehicle extends JInternalFrame {
 		    }
 		  }
 		}
+	
+	public void PlayMusic(String filepath) {
+		InputStream music;
+		try {
+			music = new FileInputStream(new File(filepath));
+			AudioStream audios = new AudioStream(music);
+			AudioPlayer.player.start(audios);
+		}
+		catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "ERROR with file path ");
+		}
+		
+	}
 }
